@@ -1761,7 +1761,8 @@
         }
 
         function openEmbedPreview() {
-            const src = "https://edgarcastillo083dv.github.io/Banner_Docente/?mode=preview";
+            const version = Date.now(); // cache-buster para LMS (Moodle)
+            const src = `https://edgarcastillo083dv.github.io/Banner_Docente/?mode=preview&v=${version}`;
             const code = `<iframe src="${src}" width="900" height="450" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
             showEmbedCode(code);
         }
@@ -1877,6 +1878,3 @@
 </body>
 </html>
            
-
-
-        
