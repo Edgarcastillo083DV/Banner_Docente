@@ -1855,11 +1855,28 @@
             // Opcional: ocultar botones en preview
             try {
                 document.querySelector(".button-group")?.remove();
+                document.querySelector(".header")?.remove();
+                document.querySelectorAll(".form-section").forEach(el => el.remove());
+                const previewTitle = document.querySelector(".preview-section h2");
+                if (previewTitle) previewTitle.remove();
+
+                // Dejar solo el banner en pantalla
+                const banner = document.getElementById("bannerPreview");
+                const previewSection = document.querySelector(".preview-section");
+                if (banner && previewSection) {
+                    previewSection.replaceWith(banner);
+                    banner.style.margin = "0 auto";
+                    banner.style.maxWidth = "900px";
+                }
+                document.body.style.padding = "20px";
+                document.querySelector(".container")?.style.setProperty("max-width", "100%");
+                document.querySelector(".container")?.style.setProperty("margin", "0");
             } catch (e) {}
         }
     </script>
 </body>
 </html>
            
+
 
         
