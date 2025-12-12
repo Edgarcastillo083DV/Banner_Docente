@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1099,9 +1099,13 @@
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg></div>
                     WebP (Moderno)
                 </button>
-                <button class="export-btn" onclick="openEmbedModal()">
+                <button class="export-btn" onclick="openEmbedConfig()">
+                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg></div>
+                    Embed / Configuración
+                </button>
+                <button class="export-btn" onclick="openEmbedPreview()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></div>
-                    Embed / Moodle
+                    Embed / Vista
                 </button>
                     <!-- Embed removed: embed functionality deleted -->
             </div>
@@ -1245,6 +1249,10 @@
             'sunset': { primary: '#ff6f00', accent: '#ff1744' }
         };
 
+        // 🔴 MODO DE EJECUCIÓN (config / preview)
+        const params = new URLSearchParams(window.location.search);
+        const MODE = params.get("mode") || "config";
+
         let currentDeviceSize = 'mobile';
 
         // Drag & Drop
@@ -1306,6 +1314,17 @@
             localStorage.setItem('bannerData', JSON.stringify(data));
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
+
+            // 🔴 ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
+            try {
+                window.parent.postMessage({
+                    type: "BANNER_UPDATE",
+                    payload: {
+                        data: JSON.parse(localStorage.getItem('bannerData') || '{}'),
+                        theme: JSON.parse(localStorage.getItem('themeConfig') || '{}')
+                    }
+                }, "*");
+            } catch (e) {}
             
         }
 
@@ -1728,11 +1747,30 @@
         }
 
         function openEmbedModal() {
-            const placeholderSrc = 'https://edgarcastillo083dv.github.io/Banner_Docente/';
+            const placeholderSrc = 'https://tuservidor.com/banner.html';
             const code = `<iframe src=\"${placeholderSrc}\" width=\"900\" height=\"450\" style=\"border:0; overflow:hidden;\" allowfullscreen loading=\"lazy\"></iframe>`;
             const textarea = document.getElementById('embedCode');
             if (textarea) textarea.value = code;
             document.getElementById('embedModal').classList.add('active');
+        }
+
+        function openEmbedConfig() {
+            const src = "https://edgarcastillo083dv.github.io/Banner_Docente/?mode=config";
+            const code = `<iframe src="${src}" width="100%" height="650" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
+            showEmbedCode(code);
+        }
+
+        function openEmbedPreview() {
+            const src = "https://edgarcastillo083dv.github.io/Banner_Docente/?mode=preview";
+            const code = `<iframe src="${src}" width="900" height="450" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
+            showEmbedCode(code);
+        }
+
+        function showEmbedCode(code) {
+            const textarea = document.getElementById("embedCode");
+            const modal = document.getElementById("embedModal");
+            textarea.value = code;
+            modal.classList.add("active");
         }
 
         function closeEmbedModal() {
@@ -1795,7 +1833,33 @@
 
         // Initialize
         loadData();
+
+        // 🔴 SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
+        if (MODE === "preview") {
+            window.addEventListener("message", (event) => {
+                if (!event.data || event.data.type !== "BANNER_UPDATE") return;
+
+                localStorage.setItem(
+                    "bannerData",
+                    JSON.stringify(event.data.payload.data)
+                );
+
+                localStorage.setItem(
+                    "themeConfig",
+                    JSON.stringify(event.data.payload.theme)
+                );
+
+                updateBanner();
+            });
+
+            // Opcional: ocultar botones en preview
+            try {
+                document.querySelector(".button-group")?.remove();
+            } catch (e) {}
+        }
     </script>
 </body>
 </html>
+           
+
         
