@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -334,7 +334,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 
-    position: relative; /* Necesario para que el título se posicione dentro */
+    position: relative; /* Necesario para que el t├¡tulo se posicione dentro */
 }
 
 /* Mover el h2 a la esquina derecha */
@@ -573,6 +573,43 @@
             font-size: 15px;
             line-height: 1.5;
             opacity: 0.95;
+        }
+
+        .banner-extra-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .banner-extra-text {
+            flex: 1;
+        }
+
+        .banner-qr {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+        }
+
+        .banner-qr img {
+            display: block;
+            width: 96px;
+            height: 96px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 640px) {
+            .banner-extra-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .banner-qr {
+                align-self: flex-end;
+            }
         }
 
         .empty-state {
@@ -951,7 +988,7 @@
         <div class="header">
             <img src="data:image/jpeg;base64,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" alt="UAPA" style="height: 140px; margin-top: 40px; margin-bottom: 8px;" />
             <h1>Banner Facilitador</h1>
-            <p>Una educación superior para todos</p>
+            <p>Una educaci├│n superior para todos</p>
                         <div class="button-group">
                 <button class="btn-form" onclick="openFormModal()">
                     <svg class="icon" aria-hidden="true"><use href="#icon-form"></use></svg>
@@ -963,7 +1000,7 @@
                 </button>
                 <button class="btn-config" onclick="openConfigModal()">
                     <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
-                    Configuración
+                    Configuraci├│n
                 </button>
                 <button class="btn-versions" onclick="openVersionsModal()">
                     <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
@@ -1007,7 +1044,7 @@
                                     <label for="photo" class="photo-input-label">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
-                                <div class="photo-input-status" id="photoInputStatus">NingÃºn archivo seleccionado</div>
+                                <div class="photo-input-status" id="photoInputStatus">Ning├â┬║n archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
@@ -1020,7 +1057,7 @@
 
                     <div class="form-group">
                         <label class="required">Nombre Completo</label>
-                        <input type="text" id="name" placeholder="Ej: Prof. Marí­a Garcí­a" onchange="saveData()" />
+                        <input type="text" id="name" placeholder="Ej: Prof. Mar├¡┬¡a Garc├¡┬¡a" onchange="saveData()" />
                         <div class="error" id="nameError"></div>
                     </div>
 
@@ -1028,8 +1065,8 @@
                         <label class="required">Escuela</label>
                                                                         <select id="school" onchange="saveData()">
                             <option value="">Seleccionar Escuela</option>
-                            <option value="educacion">Escuela de Educación</option>
-                            <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnología</option>
+                            <option value="educacion">Escuela de Educaci├│n</option>
+                            <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnolog├¡a</option>
                             <option value="humanidades">Escuela de Humanidades</option>
                             <option value="negocios">Escuela de Negocios</option>
                             <option value="salud">Escuela de Salud</option>
@@ -1039,19 +1076,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Correo Electrónico</label>
+                        <label class="required">Correo Electr├│nico</label>
                         <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" onchange="saveData()" />
                         <div class="error" id="emailError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Teléfono / Celular</label>
+                        <label class="required">Tel├⌐fono / Celular</label>
                         <input type="tel" id="phone" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Enlace de WhatsApp Personal (número)</label>
+                        <label class="required">Enlace de WhatsApp Personal (n├║mero)</label>
                         <input type="tel" id="whatsappPersonal" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
@@ -1063,7 +1100,7 @@
                     </div>
 
                                         <div class="form-group">
-                        <label>Información Adicional</label>
+                        <label>Informaci├│n Adicional</label>
                         <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc." onchange="saveData()"></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
@@ -1101,7 +1138,7 @@
                 </button>
                 <button class="export-btn" onclick="openEmbedConfig()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg></div>
-                    Embed / Configuración
+                    Embed / Configuraci├│n
                 </button>
                 <button class="export-btn" onclick="openEmbedPreview()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></div>
@@ -1121,13 +1158,13 @@
                 <h2>Insertar en Moodle / Web</h2>
                 <button class="close-btn" type="button" onclick="closeEmbedModal()">&times;</button>
             </div>
-            <p style="color: #666; margin-bottom: 12px;">Copia este código e insértalo en un bloque HTML de Moodle o en tu página.</p>
+            <p style="color: #666; margin-bottom: 12px;">Copia este c├│digo e ins├⌐rtalo en un bloque HTML de Moodle o en tu p├ígina.</p>
             <textarea id="embedCode" style="width:100%; min-height: 140px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
             <div style="display:flex; gap:10px; margin-top:12px;">
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar código</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar c├│digo</button>
                 <button class="btn-form" style="flex:1; justify-content:center;" onclick="closeEmbedModal()">Cerrar</button>
             </div>
-            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">Código copiado al portapapeles</div>
+            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">C├│digo copiado al portapapeles</div>
         </div>
     </div>
 
@@ -1135,7 +1172,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Configuración del Banner</h2>
+                <h2>Configuraci├│n del Banner</h2>
                 <button class="close-btn" type="button" onclick="closeConfigModal()">&times;</button>
             </div>
 
@@ -1153,7 +1190,7 @@
                 <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
                     <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
                     <div>
-                        <div class="theme-label">Océano</div>
+                        <div class="theme-label">Oc├⌐ano</div>
                     </div>
                 </div>
 
@@ -1207,7 +1244,7 @@
             </div>
 
             <div class="form-group">
-                <label>Guardar versión actual como:</label>
+                <label>Guardar versi├│n actual como:</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="versionName" placeholder="Ej: Banner v1 - Octubre" style="flex: 1;" />
                     <button class="btn-form" onclick="saveVersion()" style="width: auto;">Guardar</button>
@@ -1216,7 +1253,7 @@
 
             <h3 style="color: #1a4d7e; margin: 20px 0 15px; font-size: 16px;">Versiones Guardadas</h3>
             <div class="versions-list" id="versionsList">
-                <p style="color: #999; text-align: center;">No hay versiones guardadas aÃºn</p>
+                <p style="color: #999; text-align: center;">No hay versiones guardadas a├â┬║n</p>
             </div>
 
             <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full" style="margin-top: 20px;">Cerrar</button>
@@ -1227,15 +1264,15 @@
         // Global error handlers to capture and report JS errors (helps debugging)
         window.addEventListener('error', function (e) {
             console.error('Global error caught:', e.message, 'at', e.filename + ':' + e.lineno);
-            try { alert('Error JavaScript: ' + e.message + '\nArchivo: ' + e.filename + ':' + e.lineno); } catch (err) {}
+            try { alert('Error JavaScript: ' + e.message + '\\nArchivo: ' + e.filename + ':' + e.lineno); } catch (err) {}
         });
         window.addEventListener('unhandledrejection', function (e) {
             console.error('Unhandled promise rejection:', e.reason);
             try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'educacion': 'Escuela de Educación',
-            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnología',
+            'educacion': 'Escuela de Educaci├│n',
+            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnolog├¡a',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1249,7 +1286,7 @@
             'sunset': { primary: '#ff6f00', accent: '#ff1744' }
         };
 
-        // 🔴 MODO DE EJECUCIÓN (config / preview)
+        // ≡ƒö┤ MODO DE EJECUCI├ôN (config / preview)
         const params = new URLSearchParams(window.location.search);
         const MODE = params.get("mode") || "config";
 
@@ -1280,7 +1317,7 @@
                 const photoInputStatus = document.getElementById('photoInputStatus');
                 photoPreview.src = data.photo;
                 photoWrapper.style.display = 'inline-block';
-                photoInputStatus.textContent = 'âœ“ Foto cargada';
+                photoInputStatus.textContent = '├ó┼ôΓÇ£ Foto cargada';
                 photoInputStatus.classList.add('has-file');
             }
 
@@ -1315,7 +1352,7 @@
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
 
-            // 🔴 ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
+            // ≡ƒö┤ ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
             try {
                 window.parent.postMessage({
                     type: "BANNER_UPDATE",
@@ -1356,12 +1393,12 @@
                 img.onload = () => {
                     photoPreview.src = e.target.result;
                     photoWrapper.style.display = 'inline-block';
-                    photoInputStatus.textContent = 'âœ“ ' + file.name;
+                    photoInputStatus.textContent = '├ó┼ôΓÇ£ ' + file.name;
                     photoInputStatus.classList.add('has-file');
                     saveData();
                 };
                 img.onerror = () => {
-                    photoError.textContent = 'El archivo no es una imagen vÃ¡lida.';
+                    photoError.textContent = 'El archivo no es una imagen v├â┬ílida.';
                 };
                 img.src = e.target.result;
             };
@@ -1377,7 +1414,7 @@
             photoInput.value = '';
             photoPreview.src = '';
             photoWrapper.style.display = 'none';
-            photoInputStatus.textContent = 'NingÃºn archivo seleccionado';
+            photoInputStatus.textContent = 'Ning├â┬║n archivo seleccionado';
             photoInputStatus.classList.remove('has-file');
             saveData();
         }
@@ -1437,15 +1474,16 @@
             }catch(e){ console.error('updateConfigPreview error', e); }
         }
 
-        // Device selection removed â€” always show desktop preview
+        // Device selection removed ├óΓé¼ΓÇ¥ always show desktop preview
 
         function updateBanner() {
             const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
             const theme = JSON.parse(localStorage.getItem('themeConfig') || '{}');
             const primaryColor = theme.primaryColor || THEMES['sunset'].primary;
             const accentColor = theme.accentColor || THEMES['sunset'].accent;
+            const qrImage = data.whatsappGroup ? `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(data.whatsappGroup)}` : '';
 
-            // marcar tarjeta activa según colores actuales
+            // marcar tarjeta activa seg├║n colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             if (primaryColor === THEMES['sunset'].primary && accentColor === THEMES['sunset'].accent) {
                 const card = document.querySelector('.theme-card[data-theme=\"sunset\"]');
@@ -1510,12 +1548,16 @@
                         </button>
                     </div>
 
-                    ${
-                        data.comments
+                                        ${
+                        data.comments || qrImage
                             ? `
                         <div class="banner-additional">
-                            <h4>Información Adicional</h4>
-                            <p>${data.comments.replace(/\n/g, '<br>')}</p>
+                            <div class="banner-extra-row">
+                                <div class="banner-extra-text">
+                                    ${data.comments ? `<h4>Información Adicional</h4><p>${data.comments.replace(/\\n/g, '<br>')}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el código para unirte al grupo.</p>`}
+                                </div>
+                                ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
+                            </div>
                         </div>
                     `
                             : ''
@@ -1568,7 +1610,7 @@
                 emailError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                emailError.textContent = 'Ingrese un correo vÃ¡lido.';
+                emailError.textContent = 'Ingrese un correo v├â┬ílido.';
                 isValid = false;
             }
 
@@ -1586,7 +1628,7 @@
                 wpGroupError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
-                wpGroupError.textContent = 'Ingrese un enlace vÃ¡lido (http o https).';
+                wpGroupError.textContent = 'Ingrese un enlace v├â┬ílido (http o https).';
                 isValid = false;
             }
 
@@ -1612,7 +1654,7 @@
             const btn = document.activeElement;
             btn.disabled = true;
             const originalText = btn.innerHTML;
-            btn.innerHTML = 'â³ Procesando...';
+            btn.innerHTML = '├ó┬Å┬│ Procesando...';
 
             try {
                 const canvas = await html2canvas(banner, {
@@ -1650,7 +1692,7 @@
         function saveVersion() {
             const versionName = document.getElementById('versionName').value.trim();
             if (!versionName) {
-                alert('Ingresa un nombre para la versiÃ³n.');
+                alert('Ingresa un nombre para la versi├â┬│n.');
                 return;
             }
 
@@ -1670,7 +1712,7 @@
             localStorage.setItem('bannerVersions', JSON.stringify(versions));
 
             document.getElementById('versionName').value = '';
-            alert('âœ“ VersiÃ³n guardada correctamente');
+            alert('├ó┼ôΓÇ£ Versi├â┬│n guardada correctamente');
             loadVersionsList();
         }
 
@@ -1679,7 +1721,7 @@
             const listContainer = document.getElementById('versionsList');
 
             if (versions.length === 0) {
-                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aÃºn</p>';
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a├â┬║n</p>';
                 return;
             }
 
@@ -1706,11 +1748,11 @@
 
             loadData();
             closeVersionsModal();
-            alert('âœ“ VersiÃ³n cargada correctamente');
+            alert('├ó┼ôΓÇ£ Versi├â┬│n cargada correctamente');
         }
 
         function deleteVersion(versionId) {
-            if (!confirm('Â¿EstÃ¡s seguro de que deseas eliminar esta versiÃ³n?')) return;
+            if (!confirm('├é┬┐Est├â┬ís seguro de que deseas eliminar esta versi├â┬│n?')) return;
 
             const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
             const filtered = versions.filter(v => v.id !== versionId);
@@ -1835,7 +1877,7 @@
         // Initialize
         loadData();
 
-        // 🔴 SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
+        // ≡ƒö┤ SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
         if (MODE === "preview") {
             window.addEventListener("message", (event) => {
                 if (!event.data || event.data.type !== "BANNER_UPDATE") return;
@@ -1878,3 +1920,6 @@
 </body>
 </html>
            
+
+
+
