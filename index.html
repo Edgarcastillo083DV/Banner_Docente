@@ -21,34 +21,9 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .header img {
-            height: 140px;
-            margin-top: 40px;
-            margin-bottom: 8px;
-        }
-
-        .header h1 {
-            color: #1a4d7e;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 16px;
+            padding: 0 32px 32px;
         }
 
         .button-group {
@@ -56,7 +31,7 @@
             gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin: 0 0 32px 0;
         }
 
         button {
@@ -331,23 +306,10 @@
 
   .preview-section {
     background: white;
-    padding: 30px;
+    padding: 32px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-
-    position: relative; /* Necesario para que el t├¡tulo se posicione dentro */
-}
-
-/* Mover el h2 a la esquina derecha */
-.preview-section h2 {
-    position: absolute;
-    top: 15px;     /* distancia desde arriba */
-    right: 940px;   /* distancia desde la derecha */
-
-    color: #1a4d7e;
-    font-size: 20px;
-    margin: 0;
-}
+  }
 
 
         .device-selector {
@@ -381,7 +343,8 @@
             display: flex;
             justify-content: center;
             overflow-x: auto;
-            padding: 20px 0;
+            padding: 0;
+            width: 100%;
         }
 
         #bannerPreview {
@@ -396,6 +359,8 @@
             padding: 30px;
             position: relative;
             transition: width 0.3s ease;
+            width: 100%;
+            max-width: 1200px;
         }
 
         #bannerPreview.mobile {
@@ -986,30 +951,26 @@
         </symbol>
     </svg>
     <div class="container">
-        <div class="header">
-            <div class="button-group">
-                <button class="btn-form" onclick="openFormModal()">
-                    <svg class="icon" aria-hidden="true"><use href="#icon-form"></use></svg>
-                    Formulario
-                </button>
-                <button class="btn-download" onclick="openExportModal()" id="downloadBtn">
-                    <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
-                    Exportar
-                </button>
-                <button class="btn-config" onclick="openConfigModal()">
-                    <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
-                    Configuración
-                </button>
-                <button class="btn-versions" onclick="openVersionsModal()">
-                    <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
-                    Historial
-                </button>
-            </div>
-        </div>
-
         <div class="content">
             <div class="preview-section">
-                <h2>Vista Previa </h2>
+                <div class="button-group">
+                    <button class="btn-form" onclick="openFormModal()">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-form"></use></svg>
+                        Formulario
+                    </button>
+                    <button class="btn-download" onclick="openExportModal()" id="downloadBtn">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+                        Exportar
+                    </button>
+                    <button class="btn-config" onclick="openConfigModal()">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
+                        Configuración
+                    </button>
+                    <button class="btn-versions" onclick="openVersionsModal()">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
+                        Historial
+                    </button>
+                </div>
                 <div class="preview-container">
                     <div id="bannerPreview" class="desktop">
                         <div class="empty-state">
