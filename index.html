@@ -302,7 +302,7 @@
             margin-top: 4px;
         }
 
-        /* Launcher + modal wrapper */
+        /* Launcher  modal wrapper */
         .app-launcher {
             position: fixed;
             right: 20px;
@@ -1021,42 +1021,48 @@
             <path d="M9.5 8.8c.2-.3.3-.5.5-.5.1 0 .3-.1.5.1.1.1.9 1 .9 1.1 0 .1.1.3 0 .5-.2.2-.3.3-.5.5-.1.1-.3.2-.2.4.1.2.5.9 1.2 1.5.8.6 1.4.8 1.6.9.1.1.3 0 .4-.1s.5-.6.7-.8.3-.1.5-.1.3 0 .4 0 .4.2.4.3.4 1.1.4 1.3-.1.3-.3.4c-.1.1-.7.4-1.4.4-.3 0-.9-.1-1.6-.4-.9-.3-1.8-1-2.5-1.8-.3-.4-.8-1-1-1.6-.4-.8-.3-1.4-.2-1.5z" fill="none"></path>
         </symbol>
     </svg>
-    <div class="container">
-        <div class="content">
-            <div class="preview-section">
-                <div class="button-group">
-                    <button class="btn-form" onclick="openFormModal()">
-                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15H6V5a1 1 0 0 1 1-1z"></path><path d="M9 9h6"></path><path d="M9 13h6"></path><path d="M9 17h3"></path></svg>
-                        Formulario
-                    </button>
-                    <button class="btn-download" onclick="openExportModal()" id="downloadBtn">
-                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg>
-                        Exportar
-                    </button>
-                    <button class="btn-config" onclick="openConfigModal()">
-                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg>
-                        Configuraci�n
-                    </button>
-                    <button class="btn-versions" onclick="openVersionsModal()">
-                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-                        Historial
-                    </button>
-                </div>
-                <div class="preview-container">
-                    <div id="bannerPreview" class="desktop">
-                        <div class="empty-state">
-                            <p>El Facilitador no ha actualizado</p>
-                            <p>Debe contactar con Encargado de Escuela</p>
+        <div id="appLauncher" class="app-launcher" onclick="openAppModal()">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+        <span>Abrir Banner</span>
+    </div>
+
+    <div id="appModal" class="app-modal">
+        <div class="app-modal-content">
+            <button class="app-modal-close" type="button" aria-label="Cerrar" onclick="closeAppModal()">&times;</button>
+            <div class="container">
+                <div class="content">
+                    <div class="preview-section">
+                        <div class="button-group">
+                            <button class="btn-form" onclick="openFormModal()">
+                                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15H6V5a1 1 0 0 1 1-1z"></path><path d="M9 9h6"></path><path d="M9 13h6"></path><path d="M9 17h3"></path></svg>
+                                Formulario
+                            </button>
+                            <button class="btn-download" onclick="openExportModal()" id="downloadBtn">
+                                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg>
+                                Exportar
+                            </button>
+                            <button class="btn-config" onclick="openConfigModal()">
+                                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg>
+                                Configuracion
+                            </button>
+                            <button class="btn-versions" onclick="openVersionsModal()">
+                                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+                                Historial
+                            </button>
+                        </div>
+                        <div class="preview-container">
+                            <div id="bannerPreview" class="desktop">
+                                <div class="empty-state">
+                                    <p>El Facilitador no ha actualizado</p>
+                                    <p>Debe contactar con Encargado de Escuela</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-            
-
-    <!-- Form Modal -->
+    </div><!-- Form Modal -->
     <div id="formModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1101,13 +1107,13 @@
 
                     <div class="form-group">
                         <label class="required">Telefono / Celular</label>
-                        <input type="tel" id="phone" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
+                        <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Numero de WhatsApp personal</label>
-                        <input type="tel" id="whatsappPersonal" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
+                        <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
 
@@ -1175,7 +1181,7 @@
                 </button>
                 <button class="export-btn" onclick="openEmbedConfig()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg></div>
-                    Embed / Configuraci+�n
+                    Embed / Configuraci�n
                 </button>
                 <button class="export-btn" onclick="openEmbedPreview()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 3-12"></path><path d="m5 14-3-2 3-2"></path><path d="m15 10 3 2-3 2"></path></svg></div>
@@ -1195,13 +1201,13 @@
                 <h2>Insertar en Moodle / Web</h2>
                 <button class="close-btn" type="button" onclick="closeEmbedModal()">&times;</button>
             </div>
-            <p style="color: #666; margin-bottom: 12px;">Copia este c+�digo e ins+�rtalo en un bloque HTML de Moodle o en tu p+�gina.</p>
+            <p style="color: #666; margin-bottom: 12px;">Copia este c�codigo e ins�rtalo en un bloque HTML de Moodle o en tu p�gina.</p>
             <textarea id="embedCode" style="width:100%; min-height: 140px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
             <div style="display:flex; gap:10px; margin-top:12px;">
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar c+�digo</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar c�codigo</button>
                 <button class="btn-form" style="flex:1; justify-content:center;" onclick="closeEmbedModal()">Cerrar</button>
             </div>
-            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">C+�digo copiado al portapapeles</div>
+            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">C�codigo copiado al portapapeles</div>
         </div>
     </div>
 
@@ -1209,7 +1215,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Configuraci+�n del Banner</h2>
+                <h2>Configuraci�n del Banner</h2>
                 <button class="close-btn" type="button" onclick="closeConfigModal()">&times;</button>
             </div>
 
@@ -1227,7 +1233,7 @@
                 <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
                     <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
                     <div>
-                        <div class="theme-label">Oc+�ano</div>
+                        <div class="theme-label">Oc�ano</div>
                     </div>
                 </div>
 
@@ -1281,7 +1287,7 @@
             </div>
 
             <div class="form-group">
-                <label>Guardar versi+�n actual como:</label>
+                <label>Guardar versi�n actual como:</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="versionName" placeholder="Ej: Banner v1 - Octubre" style="flex: 1;" />
                     <button class="btn-form" onclick="saveVersion()" style="width: auto;">Guardar</button>
@@ -1290,7 +1296,7 @@
 
             <h3 style="color: #1a4d7e; margin: 20px 0 15px; font-size: 16px;">Versiones Guardadas</h3>
             <div class="versions-list" id="versionsList">
-                <p style="color: #999; text-align: center;">No hay versiones guardadas a+�-�n</p>
+                <p style="color: #999; text-align: center;">No hay versiones guardadas a�-�n</p>
             </div>
 
             <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full" style="margin-top: 20px;">Cerrar</button>
@@ -1300,16 +1306,16 @@
     <script>
         // Global error handlers to capture and report JS errors (helps debugging)
         window.addEventListener('error', function (e) {
-            console.error('Global error caught:', e.message, 'at', e.filename + ':' + e.lineno);
-            try { alert('Error JavaScript: ' + e.message + '\\nArchivo: ' + e.filename + ':' + e.lineno); } catch (err) {}
+            console.error('Global error caught:', e.message, 'at', e.filename  ':'  e.lineno);
+            try { alert('Error JavaScript: '  e.message  '\\nArchivo: '  e.filename  ':'  e.lineno); } catch (err) {}
         });
         window.addEventListener('unhandledrejection', function (e) {
             console.error('Unhandled promise rejection:', e.reason);
-            try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
+            try { alert('Error (promise): '  (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'Educacion': 'Escuela de Educaci+�n',
-            'ciencia-Tecnologia': 'Escuela de Ciencia y Tecnolog+�a',
+            'Educacion': 'Escuela de Educaci�n',
+            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnolog�a',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1323,7 +1329,7 @@
             'sunset': { primary: '#ff6f00', accent: '#ff1744' }
         };
 
-        // =��� MODO DE EJECUCI+�N (config / preview)
+        // =��� MODO DE EJECUCI�N (config / preview)
         const params = new URLSearchParams(window.location.search);
         const MODE = params.get("mode") || "config";
 
@@ -1442,12 +1448,12 @@
                 img.onload = () => {
                     photoPreview.src = e.target.result;
                     photoWrapper.style.display = 'inline-block';
-                    photoInputStatus.textContent = '+�+�Gǣ ' + file.name;
+                    photoInputStatus.textContent = '��Gǣ '  file.name;
                     photoInputStatus.classList.add('has-file');
                     saveData();
                 };
                 img.onerror = () => {
-                    photoError.textContent = 'El archivo no es una imagen v+�-�lida.';
+                    photoError.textContent = 'El archivo no es una imagen v�-�lida.';
                 };
                 img.src = e.target.result;
             };
@@ -1463,7 +1469,7 @@
             photoInput.value = '';
             photoPreview.src = '';
             photoWrapper.style.display = 'none';
-            photoInputStatus.textContent = 'Ning+�-�n archivo seleccionado';
+            photoInputStatus.textContent = 'Ning�-�n archivo seleccionado';
             photoInputStatus.classList.remove('has-file');
             saveData();
         }
@@ -1497,6 +1503,22 @@
 
                 saveTheme();
             }
+        }
+
+        function openAppModal() {
+            const modal = document.getElementById('appModal');
+            if (modal) {
+                const frame = document.getElementById('appFrame');
+                if (frame && !frame.src) {
+                    frame.src = window.location.href;
+                }
+                modal.classList.add('show');
+            }
+        }
+
+        function closeAppModal() {
+            const modal = document.getElementById('appModal');
+            if (modal) modal.classList.remove('show');
         }
 
         function selectThemeCard(el, themeName) {
@@ -1564,7 +1586,7 @@
             }catch(e){ console.error('updateConfigPreview error', e); }
         }
 
-        // Device selection removed +�G�Gǥ always show desktop preview
+        // Device selection removed �G�Gǥ always show desktop preview
 
         async function updateBanner() {
             const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
@@ -1573,7 +1595,7 @@
             const accentColor = theme.accentColor || THEMES['sunset'].accent;
             const qrImage = data.whatsappGroup ? await generateQrDataUrl(data.whatsappGroup, 200) : '';
 
-            // marcar tarjeta activa seg+�n colores actuales
+            // marcar tarjeta activa seg�n colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             if (primaryColor === THEMES['sunset'].primary && accentColor === THEMES['sunset'].accent) {
                 const card = document.querySelector('.theme-card[data-theme=\"sunset\"]');
@@ -1645,7 +1667,7 @@
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
-                                    ${data.comments ? `<h4>Informaci�n Adicional</h4><p>${data.comments.replace(/\\n/g, '<br>')}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el c�digo para unirte al grupo.</p>`}
+                                    ${data.comments ? `<h4>Informaci�n Adicional</h4><p>${data.comments.replace(/\\n/g, '<br>')}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el c�codigo para unirte al grupo.</p>`}
                                 </div>
                                 ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
                             </div>
@@ -1703,8 +1725,8 @@
             if (!email) {
                 emailError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
-            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                emailError.textContent = 'Ingrese un correo v+�-�lido.';
+            } else if (!/^\S@\S\.\S$/.test(email)) {
+                emailError.textContent = 'Ingrese un correo v�-�lido.';
                 isValid = false;
             }
 
@@ -1727,7 +1749,7 @@
                 wpGroupError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
-                wpGroupError.textContent = 'Ingrese un enlace v+�-�lido (http o https).';
+                wpGroupError.textContent = 'Ingrese un enlace v�-�lido (http o https).';
                 isValid = false;
             }
 
@@ -1753,7 +1775,7 @@
             const btn = document.activeElement;
             btn.disabled = true;
             const originalText = btn.innerHTML;
-            btn.innerHTML = '+�-�-� Procesando...';
+            btn.innerHTML = '�-�-� Procesando...';
 
             try {
                 const canvas = await html2canvas(banner, {
@@ -1764,7 +1786,7 @@
                     logging: false
                 });
 
-                const safeName = (data.name || 'banner-facilitador').replace(/\s+/g, '-').toLowerCase();
+                const safeName = (data.name || 'banner-facilitador').replace(/\s/g, '-').toLowerCase();
                 const link = document.createElement('a');
                 
                 // Export as image formats only (PNG, JPG, WebP)
@@ -1791,7 +1813,7 @@
         function saveVersion() {
             const versionName = document.getElementById('versionName').value.trim();
             if (!versionName) {
-                alert('Ingresa un nombre para la versi+�-�n.');
+                alert('Ingresa un nombre para la versi�-�n.');
                 return;
             }
 
@@ -1811,7 +1833,7 @@
             localStorage.setItem('bannerVersions', JSON.stringify(versions));
 
             document.getElementById('versionName').value = '';
-            alert('+�+�Gǣ Versi+�-�n guardada correctamente');
+            alert('��Gǣ Versi�-�n guardada correctamente');
             loadVersionsList();
         }
 
@@ -1820,7 +1842,7 @@
             const listContainer = document.getElementById('versionsList');
 
             if (versions.length === 0) {
-                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a+�-�n</p>';
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a�-�n</p>';
                 return;
             }
 
@@ -1847,11 +1869,11 @@
 
             loadData();
             closeVersionsModal();
-            alert('+�+�Gǣ Versi+�-�n cargada correctamente');
+            alert('��Gǣ Versi�-�n cargada correctamente');
         }
 
         function deleteVersion(versionId) {
-            if (!confirm('+�-+Est+�-�s seguro de que deseas eliminar esta versi+�-�n?')) return;
+            if (!confirm('�-Est�-�s seguro de que deseas eliminar esta versi�-�n?')) return;
 
             const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
             const filtered = versions.filter(v => v.id !== versionId);
@@ -1936,7 +1958,7 @@
                     setTimeout(() => status.style.display = 'none', 2000);
                 }
             } catch (e) {
-                alert('No se pudo copiar. Copia manualmente con Ctrl+C.');
+                alert('No se pudo copiar. Copia manualmente con CtrlC.');
             }
         }
 
@@ -1976,6 +1998,7 @@
         // Initialize
         loadData();
         try { updateBanner(); } catch (e) { console.error(e); }
+        mountAppIntoModal();
 
         // =��� SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
         if (MODE === "preview") {
