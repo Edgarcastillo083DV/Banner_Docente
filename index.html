@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V3 Banner Facilitador - Aula Digital RD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -1463,6 +1464,18 @@
 
         function applyConfigChanges(){ saveTheme(); closeConfigModal(); }
 
+        async function generateQrDataUrl(text, size = 200) {
+            if (!text || !window.QRCode || typeof QRCode.toDataURL !== 'function') return '';
+            const value = String(text).trim();
+            if (!value) return '';
+            try {
+                return await QRCode.toDataURL(value, { width: size, margin: 1 });
+            } catch (e) {
+                console.error('Error al generar el QR', e);
+                return '';
+            }
+        }
+
         function updateConfigPreview(){
             try{
                 const banner = document.getElementById('bannerPreview');
@@ -1476,12 +1489,12 @@
 
         // Device selection removed ├óΓé¼ΓÇ¥ always show desktop preview
 
-        function updateBanner() {
+        async function updateBanner() {
             const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
             const theme = JSON.parse(localStorage.getItem('themeConfig') || '{}');
             const primaryColor = theme.primaryColor || THEMES['sunset'].primary;
             const accentColor = theme.accentColor || THEMES['sunset'].accent;
-            const qrImage = data.whatsappGroup ? `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(data.whatsappGroup)}` : '';
+            const qrImage = data.whatsappGroup ? await generateQrDataUrl(data.whatsappGroup, 200) : '';
 
             // marcar tarjeta activa seg├║n colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
@@ -1920,6 +1933,4 @@
 </body>
 </html>
            
-
-
 
