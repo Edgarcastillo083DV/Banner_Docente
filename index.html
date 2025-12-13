@@ -1465,14 +1465,15 @@
         function applyConfigChanges(){ saveTheme(); closeConfigModal(); }
 
         async function generateQrDataUrl(text, size = 200) {
-            if (!text || !window.QRCode || typeof QRCode.toDataURL !== 'function') return '';
-            const value = String(text).trim();
+            const value = (text || '').trim();
             if (!value) return '';
+            const fallback = `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chl=${encodeURIComponent(value)}`;
+            if (!window.QRCode || typeof QRCode.toDataURL !== 'function') return fallback;
             try {
                 return await QRCode.toDataURL(value, { width: size, margin: 1 });
             } catch (e) {
                 console.error('Error al generar el QR', e);
-                return '';
+                return fallback;
             }
         }
 
@@ -1889,6 +1890,7 @@
 
         // Initialize
         loadData();
+        try { updateBanner(); } catch (e) { console.error(e); }
 
         // ≡ƒö┤ SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
         if (MODE === "preview") {
@@ -1933,4 +1935,3 @@
 </body>
 </html>
            
-
