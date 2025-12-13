@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V3 Banner Facilitador - Aula Digital RD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="./qr/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -1468,13 +1468,27 @@
             const value = (text || '').trim();
             if (!value) return '';
             const fallback = `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chl=${encodeURIComponent(value)}`;
-            if (!window.QRCode || typeof QRCode.toDataURL !== 'function') return fallback;
-            try {
-                return await QRCode.toDataURL(value, { width: size, margin: 1 });
-            } catch (e) {
-                console.error('Error al generar el QR', e);
-                return fallback;
+
+            // Prefer QRCode (qrcode package)
+            if (window.QRCode && typeof QRCode.toDataURL === 'function') {
+                try {
+                    return await QRCode.toDataURL(value, { width: size, margin: 1 });
+                } catch (e) {
+                    console.error('Error al generar el QR con QRCode', e);
+                }
             }
+
+            // Fallback to QRious (local vendored)
+            if (window.QRious) {
+                try {
+                    const qr = new QRious({ value, size, level: 'H' });
+                    if (typeof qr.toDataURL === 'function') return qr.toDataURL();
+                } catch (e) {
+                    console.error('Error al generar el QR con QRious', e);
+                }
+            }
+
+            return fallback;
         }
 
         function updateConfigPreview(){
