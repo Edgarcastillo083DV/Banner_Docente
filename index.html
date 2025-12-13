@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -505,9 +505,10 @@
         }
 
         .banner-button .icon {
-            margin-left: 6px;
+            margin-left: 0;
             width: 20px;
             height: 20px;
+            transform: translateY(-1px);
         }
 
         .banner-button.whatsapp-personal .icon,
@@ -543,7 +544,7 @@
 
         .banner-extra-row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 14px;
         }
@@ -974,7 +975,8 @@
                 <div class="preview-container">
                     <div id="bannerPreview" class="desktop">
                         <div class="empty-state">
-                            <p>Completa los datos del facilitador para ver el banner</p>
+                            <p>El Facilitador no ha actualizado</p>
+                            <p>Debe contactar con encargado de escuela</p>
                         </div>
                     </div>
                 </div>
@@ -996,6 +998,56 @@
                     <div class="save-status" id="saveStatus">Datos guardados autom&aacute;ticamente</div>
 
                     <div class="form-group">
+                        <label class="required">Cedula</label>
+                        <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" onchange="saveData()" />
+                        <div class="error" id="cedulaError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Nombre Completo</label>
+                        <input type="text" id="name" placeholder="Ej: Prof. Maria Garcia" onchange="saveData()" />
+                        <div class="error" id="nameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Escuela</label>
+                        <select id="school" onchange="saveData()">
+                            <option value="">Seleccionar Escuela</option>
+                            <option value="educacion">Escuela de Educacion</option>
+                            <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnologia</option>
+                            <option value="humanidades">Escuela de Humanidades</option>
+                            <option value="negocios">Escuela de Negocios</option>
+                            <option value="salud">Escuela de Salud</option>
+                            <option value="artes">Escuela de Artes</option>
+                        </select>
+                        <div class="error" id="schoolError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Correo Electronico</label>
+                        <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" onchange="saveData()" />
+                        <div class="error" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Telefono / Celular</label>
+                        <input type="tel" id="phone" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
+                        <div class="error" id="phoneError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Numero de WhatsApp personal</label>
+                        <input type="tel" id="whatsappPersonal" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
+                        <div class="error" id="whatsappPersonalError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Link del Grupo de WhatsApp</label>
+                        <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." onchange="saveData()" />
+                        <div class="error" id="whatsappGroupError"></div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="required">Foto del Facilitador</label>
                         <div class="photo-row">
                             <div class="photo-input-container">
@@ -1003,7 +1055,7 @@
                                     <label for="photo" class="photo-input-label">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
-                                <div class="photo-input-status" id="photoInputStatus">Ning├â┬║n archivo seleccionado</div>
+                                <div class="photo-input-status" id="photoInputStatus">Ningun archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
@@ -1015,51 +1067,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Nombre Completo</label>
-                        <input type="text" id="name" placeholder="Ej: Prof. Mar├¡┬¡a Garc├¡┬¡a" onchange="saveData()" />
-                        <div class="error" id="nameError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="required">Escuela</label>
-                                                                        <select id="school" onchange="saveData()">
-                            <option value="">Seleccionar Escuela</option>
-                            <option value="educacion">Escuela de Educaci├│n</option>
-                            <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnolog├¡a</option>
-                            <option value="humanidades">Escuela de Humanidades</option>
-                            <option value="negocios">Escuela de Negocios</option>
-                            <option value="salud">Escuela de Salud</option>
-                            <option value="artes">Escuela de Artes</option>
-                        </select>
-                        <div class="error" id="schoolError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="required">Correo Electr├│nico</label>
-                        <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" onchange="saveData()" />
-                        <div class="error" id="emailError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="required">Tel├⌐fono / Celular</label>
-                        <input type="tel" id="phone" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
-                        <div class="error" id="phoneError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="required">Enlace de WhatsApp Personal (n├║mero)</label>
-                        <input type="tel" id="whatsappPersonal" placeholder="Ej: +1 809-555-1234" onchange="saveData()" />
-                        <div class="error" id="whatsappPersonalError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="required">Link del Grupo de WhatsApp</label>
-                        <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." onchange="saveData()" />
-                        <div class="error" id="whatsappGroupError"></div>
-                    </div>
-
-                                        <div class="form-group">
-                        <label>Informaci├│n Adicional</label>
+                        <label>Informacion Adicional</label>
                         <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc." onchange="saveData()"></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
@@ -1230,8 +1238,8 @@
             try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'educacion': 'Escuela de Educaci├│n',
-            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnolog├¡a',
+            'Educacion': 'Escuela de Educaci├│n',
+            'ciencia-Tecnologia': 'Escuela de Ciencia y Tecnolog├¡a',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1266,6 +1274,7 @@
             if (data.school) document.getElementById('school').value = data.school;
             if (data.email) document.getElementById('email').value = data.email;
             if (data.phone) document.getElementById('phone').value = data.phone;
+            if (data.Cedulaa) document.getElementById('Cedulaa').value = data.Cedulaa;
             if (data.whatsappPersonal) document.getElementById('whatsappPersonal').value = data.whatsappPersonal;
             if (data.whatsappGroup) document.getElementById('whatsappGroup').value = data.whatsappGroup;
             if (data.comments) document.getElementById('comments').value = data.comments;
@@ -1302,6 +1311,7 @@
                 school: document.getElementById('school').value,
                 email: document.getElementById('email').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
+                Cedulaa: document.getElementById('Cedulaa').value.trim(),
                 whatsappPersonal: document.getElementById('whatsappPersonal').value.trim(),
                 whatsappGroup: document.getElementById('whatsappGroup').value.trim(),
                 comments: document.getElementById('comments').value,
@@ -1497,6 +1507,7 @@
                 data.school &&
                 data.email &&
                 data.phone &&
+                data.Cedulaa &&
                 data.whatsappPersonal &&
                 data.whatsappGroup;
 
@@ -1526,6 +1537,7 @@
                                 <div class="banner-school">${schoolLabel}</div>
                             </div>
                         </div>
+                        <img class="banner-logo" src="https://www.uapa.edu.do/wp-content/uploads/2022/06/Logo-blanco-UAPA.png" alt="Logo UAPA" loading="lazy" />
                     </div>
 
                     <div class="banner-contact">
@@ -1575,6 +1587,7 @@
             const school = document.getElementById('school').value;
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
+            const Cedulaa = document.getElementById('Cedulaa').value.trim();
             const photoPreview = document.getElementById('photoPreview');
             const whatsappPersonal = document.getElementById('whatsappPersonal').value.trim();
             const whatsappGroup = document.getElementById('whatsappGroup').value.trim();
@@ -1583,6 +1596,7 @@
             const schoolError = document.getElementById('schoolError');
             const emailError = document.getElementById('emailError');
             const phoneError = document.getElementById('phoneError');
+            const CedulaaError = document.getElementById('CedulaaError');
             const wpPersonalError = document.getElementById('whatsappPersonalError');
             const wpGroupError = document.getElementById('whatsappGroupError');
             const photoError = document.getElementById('photoError');
@@ -1591,6 +1605,7 @@
             schoolError.textContent = '';
             emailError.textContent = '';
             phoneError.textContent = '';
+            CedulaaError.textContent = '';
             wpPersonalError.textContent = '';
             wpGroupError.textContent = '';
             if (photoError) photoError.textContent = '';
@@ -1615,6 +1630,11 @@
 
             if (!phone) {
                 phoneError.textContent = 'Este campo es obligatorio.';
+                isValid = false;
+            }
+
+            if (!Cedulaa) {
+                CedulaaError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             }
 
@@ -1920,3 +1940,19 @@
 </body>
 </html>
            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
