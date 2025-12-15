@@ -1036,7 +1036,7 @@
                     </button>
                     <button class="btn-config" onclick="openConfigModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
-                        Configuracion
+                        Configuración
                     </button>
                     <button class="btn-versions" onclick="openVersionsModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
@@ -1080,8 +1080,8 @@
                         <label class="required">Escuela</label>
                         <select id="school" onchange="saveData()">
                             <option value="">Seleccionar Escuela</option>
-                            <option value="educacion">Escuela de Educacion</option>
-                            <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnologia</option>
+                        <option value="educacion">Escuela de Educación</option>
+                        <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnología</option>
                             <option value="humanidades">Escuela de Humanidades</option>
                             <option value="negocios">Escuela de Negocios</option>
                             <option value="salud">Escuela de Salud</option>
@@ -1097,13 +1097,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Telefono / Celular</label>
+                        <label class="required">Teléfono / Celular</label>
                         <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Numero de WhatsApp personal</label>
+                        <label class="required">Número de WhatsApp personal</label>
                         <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
@@ -1122,7 +1122,7 @@
                                     <label for="photo" class="photo-input-label">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
-                                <div class="photo-input-status" id="photoInputStatus">Ningun archivo seleccionado</div>
+                                <div class="photo-input-status" id="photoInputStatus">Ningún archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
@@ -1134,7 +1134,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Informacion Adicional</label>
+                        <label>Información Adicional</label>
                         <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc." onchange="saveData()"></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
@@ -1172,7 +1172,7 @@
                 </button>
                 <button class="export-btn" onclick="openEmbedConfig()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg></div>
-                    Embed / Configuracion
+                    Embed / Configuración
                 </button>
                 <button class="export-btn" onclick="openEmbedPreview()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 3-12"></path><path d="m5 14-3-2 3-2"></path><path d="m15 10 3 2-3 2"></path></svg></div>
@@ -1192,13 +1192,13 @@
                 <h2>Insertar en Moodle / Web</h2>
                 <button class="close-btn" type="button" onclick="closeEmbedModal()">&times;</button>
             </div>
-            <p style="color: #666; margin-bottom: 12px;">Copia este codigo e insertalo en un bloque HTML de Moodle o en tu pagina.</p>
+            <p style="color: #666; margin-bottom: 12px;">Copia este código e insértalo en un bloque HTML de Moodle o en tu página.</p>
             <textarea id="embedCode" style="width:100%; min-height: 140px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
             <div style="display:flex; gap:10px; margin-top:12px;">
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar codigo</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar código</button>
                 <button class="btn-form" style="flex:1; justify-content:center;" onclick="closeEmbedModal()">Cerrar</button>
             </div>
-            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">codigo copiado al portapapeles</div>
+            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">Código copiado al portapapeles</div>
         </div>
     </div>
 
@@ -1206,7 +1206,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Configuracion del Banner</h2>
+                <h2>Configuración del Banner</h2>
                 <button class="close-btn" type="button" onclick="closeConfigModal()">&times;</button>
             </div>
 
@@ -1224,7 +1224,7 @@
                 <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
                     <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
                     <div>
-                        <div class="theme-label">Oceano</div>
+                        <div class="theme-label">Océano</div>
                     </div>
                 </div>
 
@@ -1278,7 +1278,7 @@
             </div>
 
             <div class="form-group">
-                <label>Guardar version actual como:</label>
+                <label>Guardar versión actual como:</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="versionName" placeholder="Ej: Banner v1 - Octubre" style="flex: 1;" />
                     <button class="btn-form" onclick="saveVersion()" style="width: auto;">Guardar</button>
@@ -1287,7 +1287,7 @@
 
             <h3 style="color: #1a4d7e; margin: 20px 0 15px; font-size: 16px;">Versiones Guardadas</h3>
             <div class="versions-list" id="versionsList">
-                <p style="color: #999; text-align: center;">No hay versiones guardadas aun</p>
+                <p style="color: #999; text-align: center;">No hay versiones guardadas aún</p>
             </div>
 
             <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full" style="margin-top: 20px;">Cerrar</button>
@@ -1305,8 +1305,8 @@
             try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'Educacion': 'Escuela de Educacion',
-            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnologia',
+            'Educacion': 'Escuela de Educación',
+            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnología',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1320,6 +1320,23 @@
             'sunset': { primary: '#ff6f00', accent: '#ff1744' }
         };
 
+        // Safe storage wrapper: use real localStorage if available, fallback to in-memory to avoid sandbox errors
+        const STORAGE = (() => {
+            try {
+                const testKey = '__storage_test__';
+                window.localStorage.setItem(testKey, '1');
+                window.localStorage.removeItem(testKey);
+                return window.localStorage;
+            } catch (e) {
+                const memory = {};
+                return {
+                    getItem: (k) => Object.prototype.hasOwnProperty.call(memory, k) ? memory[k] : null,
+                    setItem: (k, v) => { memory[k] = String(v); },
+                    removeItem: (k) => { delete memory[k]; }
+                };
+            }
+        })();
+
         // MODO DE EJECUCION (config / preview)
         const params = new URLSearchParams(window.location.search);
         const MODE = params.get("mode") || "config";
@@ -1328,13 +1345,13 @@
 
         // Drag & Drop
         function loadData() {
-            const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
 
             // Set default theme to "sunset" if none stored
-            let theme = JSON.parse(localStorage.getItem('themeConfig') || '{}');
+            let theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             if (!theme.primaryColor || !theme.accentColor) {
                 theme = { primaryColor: THEMES['sunset'].primary, accentColor: THEMES['sunset'].accent };
-                localStorage.setItem('themeConfig', JSON.stringify(theme));
+                STORAGE.setItem('themeConfig', JSON.stringify(theme));
             }
 
             if (data.name) document.getElementById('name').value = data.name;
@@ -1361,7 +1378,7 @@
                 if (photoPreview) photoPreview.src = '';
                 if (photoWrapper) photoWrapper.style.display = 'none';
                 if (photoInputStatus) {
-                    photoInputStatus.textContent = 'Ningun archivo seleccionado';
+                    photoInputStatus.textContent = 'Ningún archivo seleccionado';
                     photoInputStatus.classList.remove('has-file');
                 }
             }
@@ -1394,7 +1411,7 @@
                 comments: document.getElementById('comments').value,
                 photo: photoPreview && photoPreview.src ? photoPreview.src : ''
             };
-            localStorage.setItem('bannerData', JSON.stringify(data));
+            STORAGE.setItem('bannerData', JSON.stringify(data));
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
 
@@ -1403,8 +1420,8 @@
                 window.parent.postMessage({
                     type: "BANNER_UPDATE",
                     payload: {
-                        data: JSON.parse(localStorage.getItem('bannerData') || '{}'),
-                        theme: JSON.parse(localStorage.getItem('themeConfig') || '{}')
+                        data: JSON.parse(STORAGE.getItem('bannerData') || '{}'),
+                        theme: JSON.parse(STORAGE.getItem('themeConfig') || '{}')
                     }
                 }, "*");
             } catch (e) {}
@@ -1460,7 +1477,7 @@
             photoInput.value = '';
             photoPreview.src = '';
             photoWrapper.style.display = 'none';
-            photoInputStatus.textContent = 'Ningun archivo seleccionado';
+            photoInputStatus.textContent = 'Ningún archivo seleccionado';
             photoInputStatus.classList.remove('has-file');
             saveData();
         }
@@ -1471,7 +1488,7 @@
                 primaryColor: document.getElementById('primaryColor').value,
                 accentColor: document.getElementById('accentColor').value
             };
-            localStorage.setItem('themeConfig', JSON.stringify(theme));
+            STORAGE.setItem('themeConfig', JSON.stringify(theme));
             updateBanner();
         }
 
@@ -1521,7 +1538,7 @@
                     qr.addData(value);
                     qr.make();
                     const cellSize = Math.max(2, Math.floor(size / 40));
-                    return qr.createDataURL(cellSize, 2); // margen pequeno
+                    return qr.createDataURL(cellSize, 2); // margen pequeño
                 } catch (e) {
                     console.error('Error al generar el QR con qrcode-generator', e);
                 }
@@ -1564,13 +1581,13 @@
         // Device selection removed - always show desktop preview
 
         async function updateBanner() {
-            const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
-            const theme = JSON.parse(localStorage.getItem('themeConfig') || '{}');
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             const primaryColor = theme.primaryColor || THEMES['sunset'].primary;
             const accentColor = theme.accentColor || THEMES['sunset'].accent;
             const qrImage = data.whatsappGroup ? await generateQrDataUrl(data.whatsappGroup, 200) : '';
 
-            // marcar tarjeta activa segun colores actuales
+            // marcar tarjeta activa según colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             if (primaryColor === THEMES['sunset'].primary && accentColor === THEMES['sunset'].accent) {
                 const card = document.querySelector('.theme-card[data-theme=\"sunset\"]');
@@ -1642,7 +1659,7 @@
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
-                                    ${data.comments ? `<h4>Informacion Adicional</h4><p>${data.comments.replace(/\n/g, '<br>' )}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el codigo para unirte al grupo.</p>`}
+                                    ${data.comments ? `<h4>Información Adicional</h4><p>${data.comments.replace(/\n/g, '<br>' )}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el código para unirte al grupo.</p>`}
                                 </div>
                                 ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
                             </div>
@@ -1701,7 +1718,7 @@
                 emailError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                emailError.textContent = 'Ingrese un correo valido.';
+                emailError.textContent = 'Ingrese un correo válido.';
                 isValid = false;
             }
 
@@ -1724,7 +1741,7 @@
                 wpGroupError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
-                wpGroupError.textContent = 'Ingrese un enlace valido (http o https).';
+                wpGroupError.textContent = 'Ingrese un enlace válido (http o https).';
                 isValid = false;
             }
 
@@ -1746,7 +1763,7 @@
                 return;
             }
 
-            const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
             const btn = document.activeElement;
             btn.disabled = true;
             const originalText = btn.innerHTML;
@@ -1788,12 +1805,12 @@
         function saveVersion() {
             const versionName = document.getElementById('versionName').value.trim();
             if (!versionName) {
-                alert('Ingresa un nombre para la version.');
+                alert('Ingresa un nombre para la versión.');
                 return;
             }
 
-            const data = JSON.parse(localStorage.getItem('bannerData') || '{}');
-            const theme = JSON.parse(localStorage.getItem('themeConfig') || '{}');
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             
             const version = {
                 id: Date.now(),
@@ -1803,21 +1820,21 @@
                 theme: theme
             };
 
-            const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
+            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
             versions.push(version);
-            localStorage.setItem('bannerVersions', JSON.stringify(versions));
+            STORAGE.setItem('bannerVersions', JSON.stringify(versions));
 
             document.getElementById('versionName').value = '';
-            alert('Version guardada correctamente');
+            alert('Versión guardada correctamente');
             loadVersionsList();
         }
 
         function loadVersionsList() {
-            const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
+            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
             const listContainer = document.getElementById('versionsList');
 
             if (versions.length === 0) {
-                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aun</p>';
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aún</p>';
                 return;
             }
 
@@ -1834,25 +1851,25 @@
         }
 
         function loadVersion(versionId) {
-            const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
+            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
             const version = versions.find(v => v.id === versionId);
 
             if (!version) return;
 
-            localStorage.setItem('bannerData', JSON.stringify(version.data));
-            localStorage.setItem('themeConfig', JSON.stringify(version.theme));
+            STORAGE.setItem('bannerData', JSON.stringify(version.data));
+            STORAGE.setItem('themeConfig', JSON.stringify(version.theme));
 
             loadData();
             closeVersionsModal();
-            alert('Version cargada correctamente');
+            alert('Versión cargada correctamente');
         }
 
         function deleteVersion(versionId) {
-            if (!confirm('Estas seguro de que deseas eliminar esta version?')) return;
+            if (!confirm('¿Estás seguro de que deseas eliminar esta versión?')) return;
 
-            const versions = JSON.parse(localStorage.getItem('bannerVersions') || '[]');
+            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
             const filtered = versions.filter(v => v.id !== versionId);
-            localStorage.setItem('bannerVersions', JSON.stringify(filtered));
+            STORAGE.setItem('bannerVersions', JSON.stringify(filtered));
 
             loadVersionsList();
         }
@@ -1885,24 +1902,22 @@
         }
 
         function openEmbedModal() {
-            const base = window.location.origin + window.location.pathname;
-            const code = `<iframe src="${base}?mode=preview" width="900" height="450" style="border:0; overflow:hidden;" allowfullscreen loading="lazy"></iframe>`;
+            const placeholderSrc = 'https://tuservidor.com/banner.html';
+            const code = `<iframe src="${placeholderSrc}" width="900" height="450" style="border:0; overflow:hidden;" allowfullscreen loading="lazy"></iframe>`;
             const textarea = document.getElementById('embedCode');
             if (textarea) textarea.value = code;
             document.getElementById('embedModal').classList.add('active');
         }
 
         function openEmbedConfig() {
-            const base = window.location.origin + window.location.pathname;
-            const src = `${base}?mode=config`;
+            const src = "https://edgarcastillo083dv.github.io/Banner_Docente/?mode=config";
             const code = `<iframe src="${src}" width="100%" height="650" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
             showEmbedCode(code);
         }
 
         function openEmbedPreview() {
-            const base = window.location.origin + window.location.pathname;
             const version = Date.now(); // cache-buster para LMS (Moodle)
-            const src = `${base}?mode=preview&v=${version}`;
+            const src = `https://edgarcastillo083dv.github.io/Banner_Docente/?mode=preview&v=${version}`;
             const code = `<iframe src="${src}" width="900" height="450" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
             showEmbedCode(code);
         }
@@ -1981,12 +1996,12 @@
             window.addEventListener("message", (event) => {
                 if (!event.data || event.data.type !== "BANNER_UPDATE") return;
 
-                localStorage.setItem(
+                STORAGE.setItem(
                     "bannerData",
                     JSON.stringify(event.data.payload.data)
                 );
 
-                localStorage.setItem(
+                STORAGE.setItem(
                     "themeConfig",
                     JSON.stringify(event.data.payload.theme)
                 );
@@ -2019,18 +2034,6 @@
 </body>
 </html>
            
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
