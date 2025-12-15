@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V3 Banner Facilitador - Aula Digital RD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./qr/qrcode-generator.min.js"></script>
     <style>
         * {
@@ -1343,16 +1344,27 @@
 
         let currentDeviceSize = 'mobile';
 
-        // Drag & Drop
-        function loadData() {
-            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+        const SUPABASE_URL = 'https://zvsxqtohahpabhwlmnnx.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_De-ddtmdrdZY82DNuymR3Q_kNFEkWlP';
+        const SUPABASE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_KEY);
+        const SUPABASE_BUCKET = 'fotos-banners';
+        const SUPABASE_CLIENT = SUPABASE_ENABLED ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        if (SUPABASE_CLIENT) {
+            console.log('[v0] Supabase inicializado correctamente');
+        } else {
+            console.warn('[v0] Supabase deshabilitado: faltan credenciales');
+        }
 
+        function hydrateUI(data = {}, theme = {}) {
             // Set default theme to "sunset" if none stored
-            let theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
-            if (!theme.primaryColor || !theme.accentColor) {
-                theme = { primaryColor: THEMES['sunset'].primary, accentColor: THEMES['sunset'].accent };
-                STORAGE.setItem('themeConfig', JSON.stringify(theme));
+            let themeConfig = theme && theme.primaryColor && theme.accentColor
+                ? theme
+                : JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+            if (!themeConfig.primaryColor || !themeConfig.accentColor) {
+                themeConfig = { primaryColor: THEMES['sunset'].primary, accentColor: THEMES['sunset'].accent };
             }
+            STORAGE.setItem('themeConfig', JSON.stringify(themeConfig));
+            STORAGE.setItem('bannerData', JSON.stringify(data));
 
             if (data.name) document.getElementById('name').value = data.name;
             if (data.school) document.getElementById('school').value = data.school;
@@ -1383,8 +1395,8 @@
                 }
             }
 
-            if (theme.primaryColor) document.getElementById('primaryColor').value = theme.primaryColor;
-            if (theme.accentColor) document.getElementById('accentColor').value = theme.accentColor;
+            if (themeConfig.primaryColor) document.getElementById('primaryColor').value = themeConfig.primaryColor;
+            if (themeConfig.accentColor) document.getElementById('accentColor').value = themeConfig.accentColor;
             if (document.getElementById('primarySwatch')) document.getElementById('primarySwatch').style.background = document.getElementById('primaryColor').value;
             if (document.getElementById('accentSwatch')) document.getElementById('accentSwatch').style.background = document.getElementById('accentColor').value;
             if (document.getElementById('primaryHex')) document.getElementById('primaryHex').value = document.getElementById('primaryColor').value;
@@ -1394,6 +1406,94 @@
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
             
+        }
+
+        async function fetchBannerFromSupabase() {
+            if (!SUPABASE_CLIENT) return null;
+            const storedId = STORAGE.getItem('bannerId');
+            let query;
+            if (storedId) {
+                query = SUPABASE_CLIENT.from('banners').select('*').eq('id', storedId).limit(1);
+            } else {
+                query = SUPABASE_CLIENT.from('banners').select('*').order('created_at', { ascending: false }).limit(1);
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                console.warn('Supabase fetch error', error.message);
+                return null;
+            }
+
+            const row = Array.isArray(data) ? data[0] : data;
+            if (!row) return null;
+
+            const mapped = {
+                name: row.nombre || '',
+                school: row.escuela || '',
+                email: row.email || '',
+                phone: row.telefono || '',
+                cedula: row.cedula || '',
+                whatsappPersonal: row.whatsapp || '',
+                whatsappGroup: row.grupo_whatsapp || '',
+                comments: row.informacion_adicional || '',
+                photo: row.foto_url || ''
+            };
+
+            const theme = {
+                primaryColor: row.color_primario || THEMES['sunset'].primary,
+                accentColor: row.color_secundario || THEMES['sunset'].accent
+            };
+
+            STORAGE.setItem('bannerId', row.id);
+            hydrateUI(mapped, theme);
+            return { mapped, theme };
+        }
+
+        async function syncToSupabase(data, theme) {
+            if (!SUPABASE_CLIENT) return;
+            const payload = {
+                id: STORAGE.getItem('bannerId') || undefined,
+                nombre: data.name || null,
+                escuela: data.school || null,
+                email: data.email || null,
+                telefono: data.phone || null,
+                cedula: data.cedula || null,
+                whatsapp: data.whatsappPersonal || null,
+                grupo_whatsapp: data.whatsappGroup || null,
+                informacion_adicional: data.comments || null,
+                foto_url: data.photo || null,
+                color_primario: theme.primaryColor || null,
+                color_secundario: theme.accentColor || null
+            };
+
+            const { data: upserted, error } = await SUPABASE_CLIENT
+                .from('banners')
+                .upsert(payload, { onConflict: 'id' })
+                .select()
+                .limit(1);
+
+            if (error) {
+                console.warn('Supabase sync error', error.message);
+                return;
+            }
+
+            const row = Array.isArray(upserted) ? upserted[0] : upserted;
+            if (row && row.id) STORAGE.setItem('bannerId', row.id);
+        }
+
+        // Drag & Drop
+        async function loadData() {
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+            hydrateUI(data, theme);
+
+            if (SUPABASE_CLIENT) {
+                try {
+                    await fetchBannerFromSupabase();
+                } catch (e) {
+                    console.warn('No se pudo sincronizar con Supabase en el arranque', e);
+                }
+            }
         }
 
         function saveData() {
@@ -1414,6 +1514,11 @@
             STORAGE.setItem('bannerData', JSON.stringify(data));
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
+
+            if (SUPABASE_CLIENT) {
+                const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+                syncToSupabase(data, theme).catch(err => console.warn('Supabase sync error', err));
+            }
 
             // ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
             try {
@@ -1490,6 +1595,11 @@
             };
             STORAGE.setItem('themeConfig', JSON.stringify(theme));
             updateBanner();
+
+            if (SUPABASE_CLIENT) {
+                const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+                syncToSupabase(data, theme).catch(err => console.warn('Supabase sync error', err));
+            }
         }
 
         function applyTheme(themeName) {
@@ -2034,11 +2144,6 @@
 </body>
 </html>
            
-
-
-
-
-
 
 
 
