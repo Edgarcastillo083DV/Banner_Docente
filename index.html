@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -235,11 +235,6 @@
             font-size: 14px;
             padding: 10px 16px;
             flex: 1;
-        }
-
-        .photo-input-status.has-file {
-            color: #2e7d32;
-            font-weight: 600;
         }
 
         .photo-input-status.has-file {
@@ -718,6 +713,35 @@
             color: #000;
         }
 
+        .modal-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-edit {
+            border: 1px solid #c7d3dd;
+            background: #eef6ff;
+            color: #1a4d7e;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        .btn-edit:hover {
+            background: #e6f0fb;
+        }
+
+        .btn-edit:focus-visible {
+            outline: 3px solid #1a4d7e;
+            outline-offset: 2px;
+        }
+
+        .app-modal-close:focus-visible,
+        .close-btn:focus-visible {
+            outline: 3px solid #1a4d7e;
+            outline-offset: 2px;
+        }
         .color-picker-group {
             margin-bottom: 20px;
         }
@@ -1056,10 +1080,13 @@
         </div>
     </div>
     <div id="formModal" class="modal">
-        <div class="modal-content">
+            <div class="modal-content">
             <div class="modal-header">
                 <h2>Datos del Facilitador</h2>
-                <button class="close-btn" type="button" onclick="closeFormModal()">&times;</button>
+                <div class="modal-header-actions">
+                    <button class="btn-edit" type="button" onclick="populateFormFromSavedData()">Editar datos guardados</button>
+                    <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeFormModal()">&times;</button>
+                </div>
             </div>
 
                 <div class="form-section" style="box-shadow: none; padding: 0;">
@@ -1067,19 +1094,19 @@
 
                     <div class="form-group">
                         <label class="required">Cedula</label>
-                        <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" onchange="saveData()" />
+                        <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" />
                         <div class="error" id="cedulaError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Nombre Completo</label>
-                        <input type="text" id="name" placeholder="Ej: Prof. Maria Garcia" onchange="saveData()" />
+                        <input type="text" id="name" placeholder="Ej: Prof. Maria Garcia" />
                         <div class="error" id="nameError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Escuela</label>
-                        <select id="school" onchange="saveData()">
+                        <select id="school">
                             <option value="">Seleccionar Escuela</option>
                         <option value="educacion">Escuela de Educación</option>
                         <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnología</option>
@@ -1093,25 +1120,25 @@
 
                     <div class="form-group">
                         <label class="required">Correo Electronico</label>
-                        <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" onchange="saveData()" />
+                        <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" />
                         <div class="error" id="emailError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Teléfono / Celular</label>
-                        <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
+                        <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Número de WhatsApp personal</label>
-                        <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" onchange="saveData()" />
+                        <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="required">Link del Grupo de WhatsApp</label>
-                        <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." onchange="saveData()" />
+                        <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." />
                         <div class="error" id="whatsappGroupError"></div>
                     </div>
 
@@ -1136,7 +1163,7 @@
 
                     <div class="form-group">
                         <label>Información Adicional</label>
-                        <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc." onchange="saveData()"></textarea>
+                        <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc."></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
 
@@ -1152,7 +1179,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Exportar Banner</h2>
-                <button class="close-btn" type="button" onclick="closeExportModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeExportModal()">&times;</button>
             </div>
 
             <p style="color: #666; margin-bottom: 20px;">Selecciona el formato en el que deseas descargar tu banner:</p>
@@ -1191,7 +1218,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Insertar en Moodle / Web</h2>
-                <button class="close-btn" type="button" onclick="closeEmbedModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeEmbedModal()">&times;</button>
             </div>
             <p style="color: #666; margin-bottom: 12px;">Copia este código e insértalo en un bloque HTML de Moodle o en tu página.</p>
             <textarea id="embedCode" style="width:100%; min-height: 140px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
@@ -1208,7 +1235,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Configuración del Banner</h2>
-                <button class="close-btn" type="button" onclick="closeConfigModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeConfigModal()">&times;</button>
             </div>
 
             <div class="config-row">
@@ -1275,7 +1302,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Historial de Banners</h2>
-                <button class="close-btn" type="button" onclick="closeVersionsModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeVersionsModal()">&times;</button>
             </div>
 
             <div class="form-group">
@@ -1563,7 +1590,6 @@
                     photoWrapper.style.display = 'inline-block';
                     photoInputStatus.textContent = 'Foto cargada: ' + file.name;
                     photoInputStatus.classList.add('has-file');
-                    saveData();
                 };
                 img.onerror = () => {
                     photoError.textContent = 'El archivo no es una imagen valida.';
@@ -1690,12 +1716,45 @@
 
         // Device selection removed - always show desktop preview
 
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatMultiline(value) {
+            return escapeHtml(value).replace(/\n/g, '<br>');
+        }
+
+        function sanitizeUrl(value) {
+            if (!value) return '';
+            try {
+                const url = new URL(value, window.location.href);
+                return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : '';
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function safeOpen(url) {
+            const safeUrl = sanitizeUrl(url);
+            if (!safeUrl) return;
+            const win = window.open(safeUrl, '_blank', 'noopener,noreferrer');
+            if (win) win.opener = null;
+        }
+
         async function updateBanner() {
             const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
             const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             const primaryColor = theme.primaryColor || THEMES['sunset'].primary;
             const accentColor = theme.accentColor || THEMES['sunset'].accent;
-            const qrImage = data.whatsappGroup ? await generateQrDataUrl(data.whatsappGroup, 200) : '';
+            const whatsappPersonalNumber = (data.whatsappPersonal || '').replace(/[^0-9]/g, '');
+            const whatsappPersonalUrl = whatsappPersonalNumber ? `https://wa.me/${whatsappPersonalNumber}` : '';
+            const whatsappGroupUrl = sanitizeUrl(data.whatsappGroup);
+            const qrImage = whatsappGroupUrl ? await generateQrDataUrl(whatsappGroupUrl, 200) : '';
 
             // marcar tarjeta activa según colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
@@ -1705,6 +1764,7 @@
             }
 
             const initial = data.name ? data.name.charAt(0).toUpperCase() : '?';
+            const safeInitial = escapeHtml(initial);
 
             const hasRequiredFields =
                 data.name &&
@@ -1723,6 +1783,16 @@
             }
 
             const schoolLabel = SCHOOL_LABELS[data.school] || 'Facilitador Docente';
+            const safeName = escapeHtml(data.name || '');
+            const safeSchoolLabel = escapeHtml(schoolLabel);
+            const safeEmail = escapeHtml(data.email || '');
+            const safePhoneText = escapeHtml(data.phone || '');
+            const phoneForLink = (data.phone || '').replace(/[^0-9+]/g, '');
+            const phoneHref = phoneForLink ? `tel:${phoneForLink}` : '#';
+            const emailHref = data.email ? `mailto:${encodeURIComponent(data.email)}` : '#';
+            const safePhoto = escapeHtml(data.photo || '');
+            const hasComments = Boolean(data.comments && data.comments.trim());
+            const safeComments = hasComments ? formatMultiline(data.comments) : '';
 
                         banner.innerHTML = `
                 <div class="banner-content">
@@ -1731,14 +1801,14 @@
                             <div class="banner-photo-wrapper">
                                 ${
                                     data.photo
-                                        ? `<img src="${data.photo}" alt="${data.name}" class="banner-photo" />`
-                                        : `<div class="banner-photo-placeholder">${initial}</div>`
+                                        ? `<img src="${safePhoto}" alt="${safeName}" class="banner-photo" />`
+                                        : `<div class="banner-photo-placeholder">${safeInitial}</div>`
                                 }
                                 <span class="status-dot" title="Activo"></span>
                             </div>
                             <div>
-                                <div class="banner-title">${data.name}</div>
-                                <div class="banner-school">${schoolLabel}</div>
+                                <div class="banner-title">${safeName}</div>
+                                <div class="banner-school">${safeSchoolLabel}</div>
                             </div>
                         </div>
                         <img class="banner-logo" src="./recursos/img/logo-blanco-uapa.png" alt="Logo UAPA" loading="lazy" />
@@ -1747,29 +1817,29 @@
                     <div class="banner-contact">
                         <div class="contact-item">
                             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"></path><path d="m4 7 8 5 8-5"></path></svg>
-                            <a href="mailto:${data.email}" style="color: white; text-decoration: none;">${data.email}</a>
+                            <a href="${emailHref}" style="color: white; text-decoration: none;">${safeEmail}</a>
                         </div>
                         <div class="contact-item">
                             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h2.7c.2 0 .4.15.45.35l.7 3a.5.5 0 0 1-.14.47L8.6 8.87a9.5 9.5 0 0 0 6.53 6.53l1.05-1.61a.5.5 0 0 1 .47-.14l3 .7c.2.05.35.25.35.46v2.7a1 1 0 0 1-1 1A12.5 12.5 0 0 1 5.5 4a1 1 0 0 1 1-1z"></path></svg>
-                            <a href="tel:${data.phone}" style="color: white; text-decoration: none;">${data.phone}</a>
+                            <a href="${phoneHref}" style="color: white; text-decoration: none;">${safePhoneText}</a>
                         </div>
-                        <button class="banner-button whatsapp-personal" onclick="window.open('https://wa.me/${data.whatsappPersonal.replace(/[^0-9]/g, '')}')">
+                        <button class="banner-button whatsapp-personal" onclick="safeOpen('${whatsappPersonalUrl}')">
                             Chat Personal
                             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" fill="none"></path><path d="M9.5 8.8c.2-.3.3-.5.5-.5.1 0 .3-.1.5.1.1.1.9 1 .9 1.1 0 .1.1.3 0 .5-.2.2-.3.3-.5.5-.1.1-.3.2-.2.4.1.2.5.9 1.2 1.5.8.6 1.4.8 1.6.9.1.1.3 0 .4-.1s.5-.6.7-.8.3-.1.5-.1.3 0 .4 0 .4.2.4.3.4 1.1.4 1.3-.1.3-.3.4c-.1.1-.7.4-1.4.4-.3 0-.9-.1-1.6-.4-.9-.3-1.8-1-2.5-1.8-.3-.4-.8-1-1-1.6-.4-.8-.3-1.4-.2-1.5z" fill="none"></path></svg>
                         </button>
-                        <button class="banner-button whatsapp-group" onclick="window.open('${data.whatsappGroup}')">
+                        <button class="banner-button whatsapp-group" onclick="safeOpen('${whatsappGroupUrl}')">
                             Unirse al Grupo
                             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" fill="none"></path><path d="M9.5 8.8c.2-.3.3-.5.5-.5.1 0 .3-.1.5.1.1.1.9 1 .9 1.1 0 .1.1.3 0 .5-.2.2-.3.3-.5.5-.1.1-.3.2-.2.4.1.2.5.9 1.2 1.5.8.6 1.4.8 1.6.9.1.1.3 0 .4-.1s.5-.6.7-.8.3-.1.5-.1.3 0 .4 0 .4.2.4.3.4 1.1.4 1.3-.1.3-.3.4c-.1.1-.7.4-1.4.4-.3 0-.9-.1-1.6-.4-.9-.3-1.8-1-2.5-1.8-.3-.4-.8-1-1-1.6-.4-.8-.3-1.4-.2-1.5z" fill="none"></path></svg>
                         </button>
                     </div>
 
                                         ${
-                        data.comments || qrImage
+                        hasComments || qrImage
                             ? `
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
-                                    ${data.comments ? `<h4>Información Adicional</h4><p>${data.comments.replace(/\n/g, '<br>' )}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el código para unirte al grupo.</p>`}
+                                    ${hasComments ? `<h4>Información Adicional</h4><p>${safeComments}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el código para unirte al grupo.</p>`}
                                 </div>
                                 ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
                             </div>
@@ -1862,8 +1932,85 @@
             if (!validateForm()) {
                 return;
             }
-            saveData();
             closeFormModal();
+            clearFormModal();
+        }
+
+        function clearFormModal() {
+            const fields = [
+                'cedula',
+                'name',
+                'email',
+                'phone',
+                'whatsappPersonal',
+                'whatsappGroup',
+                'comments'
+            ];
+
+            fields.forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+
+            const school = document.getElementById('school');
+            if (school) school.value = '';
+
+            const errorIds = [
+                'nameError',
+                'schoolError',
+                'emailError',
+                'phoneError',
+                'cedulaError',
+                'whatsappPersonalError',
+                'whatsappGroupError',
+                'photoError'
+            ];
+            errorIds.forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = '';
+            });
+
+            const photoInput = document.getElementById('photo');
+            const photoPreview = document.getElementById('photoPreview');
+            const photoWrapper = document.getElementById('photoWrapper');
+            const photoInputStatus = document.getElementById('photoInputStatus');
+
+            if (photoInput) photoInput.value = '';
+            if (photoPreview) photoPreview.src = '';
+            if (photoWrapper) photoWrapper.style.display = 'none';
+                if (photoInputStatus) {
+                    photoInputStatus.textContent = 'Ningún archivo seleccionado';
+                    photoInputStatus.classList.remove('has-file');
+                }
+        }
+
+        function populateFormFromSavedData() {
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+
+            if (data.cedula) document.getElementById('cedula').value = data.cedula;
+            if (data.name) document.getElementById('name').value = data.name;
+            if (data.email) document.getElementById('email').value = data.email;
+            if (data.phone) document.getElementById('phone').value = data.phone;
+            if (data.whatsappPersonal) document.getElementById('whatsappPersonal').value = data.whatsappPersonal;
+            if (data.whatsappGroup) document.getElementById('whatsappGroup').value = data.whatsappGroup;
+            if (data.comments) document.getElementById('comments').value = data.comments;
+            if (data.school) document.getElementById('school').value = data.school;
+
+            const photoPreview = document.getElementById('photoPreview');
+            const photoWrapper = document.getElementById('photoWrapper');
+            const photoInputStatus = document.getElementById('photoInputStatus');
+
+            if (data.photo) {
+                photoPreview.src = data.photo;
+                photoWrapper.style.display = 'inline-block';
+                photoInputStatus.textContent = 'Foto cargada';
+                photoInputStatus.classList.add('has-file');
+            } else {
+                photoPreview.src = '';
+                photoWrapper.style.display = 'none';
+                photoInputStatus.textContent = 'Ningún archivo seleccionado';
+                photoInputStatus.classList.remove('has-file');
+            }
         }
 
         async function downloadBanner(format) {
@@ -1992,6 +2139,7 @@
 
         function openFormModal() {
             document.getElementById('formModal').classList.add('active');
+            clearFormModal();
         }
 
         function closeFormModal() {
