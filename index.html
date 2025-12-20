@@ -2253,79 +2253,185 @@
             }
         }
 
-        function saveVersion() {
-            const versionName = document.getElementById('versionName').value.trim();
-            if (!versionName) {
-                alert('Ingresa un nombre para la versión.');
-                return;
-            }
+        function getHistoryFilter() {
+    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+    const bannerId = STORAGE.getItem('bannerId') || null;
+    const cedula = data.cedula ? (formatCedula(data.cedula) || data.cedula) : null;
+    return { bannerId, cedula };
+}
 
-            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
-            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
-            
-            const version = {
-                id: Date.now(),
-                name: versionName,
-                date: new Date().toLocaleDateString('es-ES'),
-                data: data,
-                theme: theme
-            };
+async function saveVersion() {
+    const versionName = document.getElementById('versionName').value.trim();
+    if (!versionName) {
+        alert('Ingresa un nombre para la versión.');
+        return;
+    }
 
-            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
-            versions.push(version);
-            STORAGE.setItem('bannerVersions', JSON.stringify(versions));
+    if (!validateForm()) {
+        alert('Completa los campos obligatorios antes de guardar una versión.');
+        return;
+    }
 
-            document.getElementById('versionName').value = '';
-            alert('Versión guardada correctamente');
-            loadVersionsList();
-        }
+    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+    const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+    const bannerId = STORAGE.getItem('bannerId') || null;
 
-        function loadVersionsList() {
-            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
-            const listContainer = document.getElementById('versionsList');
+    if (!SUPABASE_CLIENT) {
+        alert('Base de datos deshabilitada.');
+        return;
+    }
 
-            if (versions.length === 0) {
-                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aún</p>';
-                return;
-            }
+    const payload = {
+        banner_id: bannerId,
+        version_name: versionName,
+        cedula: data.cedula || null,
+        nombre: data.name || null,
+        escuela: data.school || null,
+        email: data.email || null,
+        telefono: data.phone || null,
+        whatsapp: data.whatsappPersonal || null,
+        grupo_whatsapp: data.whatsappGroup || null,
+        foto_url: data.photo || null,
+        informacion_adicional: data.comments || null,
+        color_primario: theme.primaryColor || null,
+        color_secundario: theme.accentColor || null
+    };
 
-            listContainer.innerHTML = versions.reverse().map(version => `
-                <div class="version-item">
-                    <div class="version-name">${version.name}</div>
-                    <div class="version-date">${version.date}</div>
-                    <div class="version-buttons">
-                        <button class="version-btn" onclick="loadVersion(${version.id})">Cargar</button>
-                        <button class="version-btn delete" onclick="deleteVersion(${version.id})">Eliminar</button>
-                    </div>
-                </div>
-            `).join('');
-        }
+    const { error } = await SUPABASE_CLIENT
+        .from('banners_historial')
+        .insert(payload)
+        .select()
+        .limit(1);
 
-        function loadVersion(versionId) {
-            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
-            const version = versions.find(v => v.id === versionId);
+    if (error) {
+        console.warn('Supabase history save error', error.message);
+        alert('No se pudo guardar el historial.');
+        return;
+    }
 
-            if (!version) return;
+    document.getElementById('versionName').value = '';
+    alert('Versión guardada correctamente');
+    loadVersionsList();
+}
 
-            STORAGE.setItem('bannerData', JSON.stringify(version.data));
-            STORAGE.setItem('themeConfig', JSON.stringify(version.theme));
+async function loadVersionsList() {
+    const listContainer = document.getElementById('versionsList');
+    listContainer.innerHTML = '<p style="color: #999; text-align: center;">Cargando historial...</p>';
 
-            loadData();
-            closeVersionsModal();
-            alert('Versión cargada correctamente');
-        }
+    if (!SUPABASE_CLIENT) {
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Base de datos deshabilitada.</p>';
+        return;
+    }
 
-        function deleteVersion(versionId) {
-            if (!confirm('¿Estás seguro de que deseas eliminar esta versión?')) return;
+    const { bannerId, cedula } = getHistoryFilter();
+    if (!bannerId && !cedula) {
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con cédula para ver el historial.</p>';
+        return;
+    }
 
-            const versions = JSON.parse(STORAGE.getItem('bannerVersions') || '[]');
-            const filtered = versions.filter(v => v.id !== versionId);
-            STORAGE.setItem('bannerVersions', JSON.stringify(filtered));
+    let query = SUPABASE_CLIENT
+        .from('banners_historial')
+        .select('id, created_at, version_name, banner_id, cedula')
+        .order('created_at', { ascending: false })
+        .limit(50);
 
-            loadVersionsList();
-        }
+    if (bannerId) {
+        query = query.eq('banner_id', bannerId);
+    } else {
+        query = query.eq('cedula', cedula);
+    }
 
-        function showSaveStatus() {
+    const { data, error } = await query;
+    if (error) {
+        console.warn('Supabase history fetch error', error.message);
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No se pudo cargar el historial.</p>';
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aún.</p>';
+        return;
+    }
+
+    listContainer.innerHTML = data.map(version => {
+        const date = version.created_at ? new Date(version.created_at).toLocaleDateString('es-ES') : '';
+        return 
+        <div class="version-item">
+            <div class="version-name"></div>
+            <div class="version-date"></div>
+            <div class="version-buttons">
+                <button class="version-btn" onclick="loadVersion('')">Cargar</button>
+                <button class="version-btn delete" onclick="deleteVersion('')">Eliminar</button>
+            </div>
+        </div>
+    ;
+    }).join('');
+}
+
+async function loadVersion(versionId) {
+    if (!SUPABASE_CLIENT) return;
+
+    const { data, error } = await SUPABASE_CLIENT
+        .from('banners_historial')
+        .select('*')
+        .eq('id', versionId)
+        .limit(1);
+
+    if (error) {
+        console.warn('Supabase history load error', error.message);
+        alert('No se pudo cargar la versión.');
+        return;
+    }
+
+    const row = Array.isArray(data) ? data[0] : data;
+    if (!row) return;
+
+    const mapped = {
+        name: row.nombre || '',
+        school: row.escuela || '',
+        email: row.email || '',
+        phone: row.telefono || '',
+        cedula: row.cedula || '',
+        whatsappPersonal: row.whatsapp || '',
+        whatsappGroup: row.grupo_whatsapp || '',
+        comments: row.informacion_adicional || '',
+        photo: row.foto_url || ''
+    };
+
+    const theme = {
+        primaryColor: row.color_primario || THEMES['sunset'].primary,
+        accentColor: row.color_secundario || THEMES['sunset'].accent
+    };
+
+    if (row.banner_id) {
+        STORAGE.setItem('bannerId', row.banner_id);
+    } else {
+        STORAGE.removeItem('bannerId');
+    }
+
+    hydrateUI(mapped, theme);
+    closeVersionsModal();
+    alert('Versión cargada correctamente');
+}
+
+async function deleteVersion(versionId) {
+    if (!confirm('¿Estás seguro de que deseas eliminar esta versión?')) return;
+    if (!SUPABASE_CLIENT) return;
+
+    const { error } = await SUPABASE_CLIENT
+        .from('banners_historial')
+        .delete()
+        .eq('id', versionId);
+
+    if (error) {
+        console.warn('Supabase history delete error', error.message);
+        alert('No se pudo eliminar la versión.');
+        return;
+    }
+
+    loadVersionsList();
+}
+function showSaveStatus() {
             const status = document.getElementById('saveStatus');
             status.classList.add('show');
             setTimeout(() => status.classList.remove('show'), 2000);
@@ -2420,6 +2526,7 @@
 
         function openVersionsModal() {
             document.getElementById('versionsModal').classList.add('active');
+            loadVersionsList();
         }
 
         function closeVersionsModal() {
