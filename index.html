@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1176,7 +1176,7 @@
                     </button>
                     <button class="btn-config" onclick="openConfigModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
-                        ConfiguraciÃ³n
+                        Configuración
                     </button>
                     <button class="btn-versions" onclick="openVersionsModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
@@ -1229,8 +1229,8 @@
                         <label class="required">Escuela</label>
                         <select id="school">
                             <option value="">Seleccionar Escuela</option>
-                        <option value="educacion">Escuela de EducaciÃ³n</option>
-                        <option value="ciencia-tecnologia">Escuela de Ciencia y TecnologÃ­a</option>
+                        <option value="educacion">Escuela de Educación</option>
+                        <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnología</option>
                             <option value="humanidades">Escuela de Humanidades</option>
                             <option value="negocios">Escuela de Negocios</option>
                             <option value="salud">Escuela de Salud</option>
@@ -1246,13 +1246,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="required">TelÃ©fono / Celular</label>
+                        <label class="required">Teléfono / Celular</label>
                         <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="required">NÃºmero de WhatsApp personal</label>
+                        <label class="required">Número de WhatsApp personal</label>
                         <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
@@ -1271,7 +1271,7 @@
                                     <label for="photo" class="photo-input-label" id="photoInputLabel">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
-                                <div class="photo-input-status" id="photoInputStatus">NingÃºn archivo seleccionado</div>
+                                <div class="photo-input-status" id="photoInputStatus">Ningún archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
@@ -1283,7 +1283,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>InformaciÃ³n Adicional</label>
+                        <label>Información Adicional</label>
                         <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc."></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
@@ -1319,13 +1319,9 @@
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg></div>
                     WebP (Moderno)
                 </button>
-                <button class="export-btn" onclick="openEmbedConfig()">
+                <button class="export-btn" onclick="openEmbedGenerator()">
                     <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg></div>
-                    Embed / ConfiguraciÃ³n
-                </button>
-                <button class="export-btn" onclick="openEmbedPreview()">
-                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 3-12"></path><path d="m5 14-3-2 3-2"></path><path d="m15 10 3 2-3 2"></path></svg></div>
-                    Embed / Vista
+                    Generar Embed
                 </button>
                     <!-- Embed removed: embed functionality deleted -->
             </div>
@@ -1334,20 +1330,25 @@
         </div>
     </div>
 
-    <!-- Embed Modal -->
+        <!-- Embed Modal -->
     <div id="embedModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Insertar en Moodle / Web</h2>
                 <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeEmbedModal()">&times;</button>
             </div>
-            <p style="color: #666; margin-bottom: 12px;">Copia este cÃ³digo e insÃ©rtalo en un bloque HTML de Moodle o en tu pÃ¡gina.</p>
-            <textarea id="embedCode" style="width:100%; min-height: 140px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
+            <p style="color: #666; margin-bottom: 12px;">Genera un embed unico y copia el codigo en tu pagina.</p>
+            <div class="form-group">
+                <label>Creado por (opcional)</label>
+                <input type="text" id="embedCreatedBy" placeholder="Ej: Coordinador de escuela" />
+            </div>
+            <textarea id="embedCode" style="width:100%; min-height: 160px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
             <div style="display:flex; gap:10px; margin-top:12px;">
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar cÃ³digo</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="generateEmbed()">Generar embed</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar codigo</button>
                 <button class="btn-form" style="flex:1; justify-content:center;" onclick="closeEmbedModal()">Cerrar</button>
             </div>
-            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">CÃ³digo copiado al portapapeles</div>
+            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">Codigo copiado al portapapeles</div>
         </div>
     </div>
 
@@ -1355,7 +1356,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>ConfiguraciÃ³n del Banner</h2>
+                <h2>Configuración del Banner</h2>
                 <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeConfigModal()">&times;</button>
             </div>
 
@@ -1373,7 +1374,7 @@
                 <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
                     <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
                     <div>
-                        <div class="theme-label">OcÃ©ano</div>
+                        <div class="theme-label">Océano</div>
                     </div>
                 </div>
 
@@ -1454,8 +1455,8 @@
             try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'Educacion': 'Escuela de EducaciÃ³n',
-            'ciencia-tecnologia': 'Escuela de Ciencia y TecnologÃ­a',
+            'Educacion': 'Escuela de Educación',
+            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnología',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1469,26 +1470,33 @@
             'sunset': { primary: '#ff6f00', accent: '#ff1744' }
         };
 
+        // MODO DE EJECUCION (config / preview / view)
+        const params = new URLSearchParams(window.location.search);
+        const MODE = params.get("mode") || "config";
+        const CONTEXT_ID = params.get("contextId") || '';
+        const EMBED_MODE = Boolean(CONTEXT_ID);
+
+        function createMemoryStorage() {
+            const memory = {};
+            return {
+                getItem: (k) => Object.prototype.hasOwnProperty.call(memory, k) ? memory[k] : null,
+                setItem: (k, v) => { memory[k] = String(v); },
+                removeItem: (k) => { delete memory[k]; }
+            };
+        }
+
         // Safe storage wrapper: use real localStorage if available, fallback to in-memory to avoid sandbox errors
         const STORAGE = (() => {
+            if (EMBED_MODE) return createMemoryStorage();
             try {
                 const testKey = '__storage_test__';
                 window.localStorage.setItem(testKey, '1');
                 window.localStorage.removeItem(testKey);
                 return window.localStorage;
             } catch (e) {
-                const memory = {};
-                return {
-                    getItem: (k) => Object.prototype.hasOwnProperty.call(memory, k) ? memory[k] : null,
-                    setItem: (k, v) => { memory[k] = String(v); },
-                    removeItem: (k) => { delete memory[k]; }
-                };
+                return createMemoryStorage();
             }
         })();
-
-        // MODO DE EJECUCION (config / preview)
-        const params = new URLSearchParams(window.location.search);
-        const MODE = params.get("mode") || "config";
 
         let currentDeviceSize = 'mobile';
 
@@ -1497,6 +1505,8 @@
         const SUPABASE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_KEY);
         const SUPABASE_BUCKET = 'fotos-banners';
         const SUPABASE_CLIENT = SUPABASE_ENABLED ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const EMBED_CONTEXT_TABLE = 'facilitador_contextos';
+        const EMBED_HISTORY_TABLE = 'banners_historial';
         if (SUPABASE_CLIENT) {
             console.log('[v0] Supabase inicializado correctamente');
         } else {
@@ -1566,7 +1576,7 @@
                 if (photoPreview) photoPreview.src = '';
                 if (photoWrapper) photoWrapper.style.display = 'none';
                 if (photoInputStatus) {
-                    photoInputStatus.textContent = 'NingÃºn archivo seleccionado';
+                    photoInputStatus.textContent = 'Ningún archivo seleccionado';
                     photoInputStatus.classList.remove('has-file');
                 }
             }
@@ -1578,7 +1588,9 @@
             if (document.getElementById('primaryHex')) document.getElementById('primaryHex').value = document.getElementById('primaryColor').value;
             if (document.getElementById('accentHex')) document.getElementById('accentHex').value = document.getElementById('accentColor').value;
 
-            loadVersionsList();
+            if (!EMBED_MODE) {
+                loadVersionsList();
+            }
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
             
@@ -1602,6 +1614,7 @@
 
             const row = Array.isArray(data) ? data[0] : data;
             if (!row) return null;
+            await clearAdditionalInfoIfWhatsApp(row);
 
             const mapped = {
                 name: row.nombre || '',
@@ -1611,7 +1624,7 @@
                 cedula: row.cedula || '',
                 whatsappPersonal: row.whatsapp || '',
                 whatsappGroup: row.grupo_whatsapp || '',
-                comments: row.informacion_adicional || '',
+                comments: sanitizeAdditionalInfo(row.informacion_adicional, row),
                 photo: row.foto_url || ''
             };
 
@@ -1624,6 +1637,99 @@
             hydrateUI(mapped, theme);
             STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
             return { mapped, theme };
+        }
+
+        async function fetchEmbedContext() {
+            if (!SUPABASE_CLIENT || !CONTEXT_ID) return null;
+            const { data, error } = await SUPABASE_CLIENT
+                .from(EMBED_CONTEXT_TABLE)
+                .select('*')
+                .eq('context_id', CONTEXT_ID)
+                .limit(1);
+            if (error) {
+                console.warn('Supabase embed context fetch error', error.message);
+                return null;
+            }
+            const row = Array.isArray(data) ? data[0] : data;
+            return row || null;
+        }
+
+        async function fetchActiveEmbedVersion(contextRow) {
+            if (!SUPABASE_CLIENT || !CONTEXT_ID) return null;
+            let query;
+            if (contextRow && contextRow.active_version_id) {
+                query = SUPABASE_CLIENT
+                    .from(EMBED_HISTORY_TABLE)
+                    .select('*')
+                    .eq('id', contextRow.active_version_id)
+                    .limit(1);
+            } else {
+                query = SUPABASE_CLIENT
+                    .from(EMBED_HISTORY_TABLE)
+                    .select('*')
+                    .eq('context_id', CONTEXT_ID)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+            }
+            const { data, error } = await query;
+            if (error) {
+                console.warn('Supabase embed version fetch error', error.message);
+                return null;
+            }
+            const row = Array.isArray(data) ? data[0] : data;
+            return row || null;
+        }
+
+        function setEmptyEmbedState() {
+            const emptyData = {
+                name: '',
+                school: '',
+                email: '',
+                phone: '',
+                cedula: '',
+                whatsappPersonal: '',
+                whatsappGroup: '',
+                comments: '',
+                photo: ''
+            };
+            const theme = {
+                primaryColor: THEMES['sunset'].primary,
+                accentColor: THEMES['sunset'].accent
+            };
+            hydrateUI(emptyData, theme);
+        }
+
+        async function loadEmbedContext() {
+            if (!SUPABASE_CLIENT) {
+                setEmptyEmbedState();
+                return;
+            }
+            const contextRow = await fetchEmbedContext();
+            if (!contextRow || contextRow.status === 'empty') {
+                setEmptyEmbedState();
+                return;
+            }
+            const versionRow = await fetchActiveEmbedVersion(contextRow);
+            if (!versionRow) {
+                setEmptyEmbedState();
+                return;
+            }
+            const mapped = {
+                name: versionRow.nombre || '',
+                school: versionRow.escuela || '',
+                email: versionRow.email || '',
+                phone: versionRow.telefono || '',
+                cedula: versionRow.cedula || '',
+                whatsappPersonal: versionRow.whatsapp || '',
+                whatsappGroup: versionRow.grupo_whatsapp || '',
+                comments: sanitizeAdditionalInfo(versionRow.informacion_adicional, versionRow),
+                photo: versionRow.foto_url || ''
+            };
+            const theme = {
+                primaryColor: versionRow.color_primario || THEMES['sunset'].primary,
+                accentColor: versionRow.color_secundario || THEMES['sunset'].accent
+            };
+            hydrateUI(mapped, theme);
         }
 
         async function syncToSupabase(data, theme) {
@@ -1674,6 +1780,54 @@
             return true;
         }
 
+        async function saveEmbedVersion(data, theme) {
+            if (!SUPABASE_CLIENT || !CONTEXT_ID) return false;
+            const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
+            const payload = {
+                context_id: CONTEXT_ID,
+                banner_id: null,
+                version_name: versionName,
+                nombre: data.name || null,
+                escuela: data.school || null,
+                email: data.email || null,
+                telefono: data.phone || null,
+                cedula: data.cedula || null,
+                whatsapp: data.whatsappPersonal || null,
+                grupo_whatsapp: data.whatsappGroup || null,
+                informacion_adicional: data.comments || null,
+                foto_url: data.photo || null,
+                color_primario: theme.primaryColor || null,
+                color_secundario: theme.accentColor || null,
+                created_at: new Date().toISOString()
+            };
+
+            const { data: inserted, error } = await SUPABASE_CLIENT
+                .from(EMBED_HISTORY_TABLE)
+                .insert(payload)
+                .select()
+                .limit(1);
+            if (error) {
+                console.warn('Supabase embed save error', error.message);
+                return false;
+            }
+
+            const row = Array.isArray(inserted) ? inserted[0] : inserted;
+            const updatePayload = {
+                status: 'configured',
+                updated_at: new Date().toISOString()
+            };
+            if (row && row.id) updatePayload.active_version_id = row.id;
+
+            const { error: contextError } = await SUPABASE_CLIENT
+                .from(EMBED_CONTEXT_TABLE)
+                .update(updatePayload)
+                .eq('context_id', CONTEXT_ID);
+            if (contextError) {
+                console.warn('Supabase embed context update error', contextError.message);
+            }
+            return true;
+        }
+
         // Drag & Drop
         async function loadData() {
             const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
@@ -1683,10 +1837,16 @@
             if (SUPABASE_CLIENT) {
                 try {
                     await checkSupabaseConnection();
-                    await fetchBannerFromSupabase();
+                    if (EMBED_MODE) {
+                        await loadEmbedContext();
+                    } else {
+                        await fetchBannerFromSupabase();
+                    }
                 } catch (e) {
                     console.warn('No se pudo sincronizar con Supabase en el arranque', e);
                 }
+            } else if (EMBED_MODE) {
+                setEmptyEmbedState();
             }
         }
 
@@ -1713,21 +1873,25 @@
 
             const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             let syncOk = true;
-            if (SUPABASE_CLIENT) {
+            if (EMBED_MODE) {
+                syncOk = await saveEmbedVersion(data, theme);
+            } else if (SUPABASE_CLIENT) {
                 syncOk = await syncToSupabase(data, theme);
             }
 
             // ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
-            try {
-                window.parent.postMessage({
-                    type: "BANNER_UPDATE",
-                    payload: {
-                        data: JSON.parse(STORAGE.getItem('bannerData') || '{}'),
-                        theme: JSON.parse(STORAGE.getItem('themeConfig') || '{}')
-                    }
-                }, "*");
-            } catch (e) {}
-            if (syncOk) {
+            if (!EMBED_MODE) {
+                try {
+                    window.parent.postMessage({
+                        type: "BANNER_UPDATE",
+                        payload: {
+                            data: JSON.parse(STORAGE.getItem('bannerData') || '{}'),
+                            theme: JSON.parse(STORAGE.getItem('themeConfig') || '{}')
+                        }
+                    }, "*");
+                } catch (e) {}
+            }
+            if (syncOk && !EMBED_MODE) {
                 await saveHistoryVersionIfChanged(data, theme);
             }
             showToast('Formulario guardado correctamente', 'success');
@@ -1781,7 +1945,7 @@
             photoInput.value = '';
             photoPreview.src = '';
             photoWrapper.style.display = 'none';
-            photoInputStatus.textContent = 'NingÃºn archivo seleccionado';
+            photoInputStatus.textContent = 'Ningún archivo seleccionado';
             photoInputStatus.classList.remove('has-file');
             saveData();
         }
@@ -1795,7 +1959,7 @@
             STORAGE.setItem('themeConfig', JSON.stringify(theme));
             updateBanner();
 
-            if (SUPABASE_CLIENT) {
+            if (SUPABASE_CLIENT && !EMBED_MODE) {
                 const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
                 syncToSupabase(data, theme).catch(err => console.warn('Supabase sync error', err));
             }
@@ -1847,7 +2011,7 @@
                     qr.addData(value);
                     qr.make();
                     const cellSize = Math.max(2, Math.floor(size / 40));
-                    return qr.createDataURL(cellSize, 2); // margen pequeÃ±o
+                    return qr.createDataURL(cellSize, 2); // margen pequeño
                 } catch (e) {
                     console.error('Error al generar el QR con qrcode-generator', e);
                 }
@@ -1912,6 +2076,89 @@
             }
         }
 
+        function formatEmbedCode(contextId) {
+            const baseUrl = 'https://edgarcastillo083dv.github.io/Banner_Docente/';
+            const configSrc = `${baseUrl}?mode=config&contextId=${encodeURIComponent(contextId)}`;
+            const viewSrc = `${baseUrl}?mode=view&contextId=${encodeURIComponent(contextId)}`;
+            return [
+                `Embed de Configuracion:`,
+                `<iframe src="${configSrc}" width="100%" height="650" style="border:0; overflow:hidden;" loading="lazy"></iframe>`,
+                '',
+                `Embed de Vista (solo lectura):`,
+                `<iframe src="${viewSrc}" width="900" height="450" style="border:0; overflow:hidden;" loading="lazy"></iframe>`
+            ].join('\n');
+        }
+
+        async function createEmbedContext(contextId, createdBy) {
+            if (!SUPABASE_CLIENT) return { ok: false, error: 'Base de datos deshabilitada.' };
+            const payload = {
+                context_id: contextId,
+                status: 'empty',
+                created_at: new Date().toISOString(),
+                created_by: createdBy || null
+            };
+            const { error } = await SUPABASE_CLIENT
+                .from(EMBED_CONTEXT_TABLE)
+                .insert(payload)
+                .select()
+                .limit(1);
+            if (error) {
+                console.warn('Supabase embed context error', error.message);
+                return { ok: false, error: error.message };
+            }
+            return { ok: true };
+        }
+
+        async function generateEmbed() {
+            const contextId = crypto.randomUUID();
+            const createdByInput = document.getElementById('embedCreatedBy');
+            const createdBy = createdByInput && createdByInput.value.trim()
+                ? createdByInput.value.trim()
+                : null;
+            const created = await createEmbedContext(contextId, createdBy);
+            if (!created.ok) {
+                showToast('No se pudo generar el embed.', 'error');
+                return;
+            }
+            const textarea = document.getElementById('embedCode');
+            if (textarea) textarea.value = formatEmbedCode(contextId);
+            showToast('Embed generado', 'success');
+        }
+
+        function openEmbedGenerator() {
+            const textarea = document.getElementById('embedCode');
+            if (textarea) textarea.value = '';
+            const createdByInput = document.getElementById('embedCreatedBy');
+            if (createdByInput) createdByInput.value = '';
+            document.getElementById('embedModal').classList.add('active');
+        }
+
+        function isWhatsAppAdditionalInfo(info, row) {
+            const text = String(info || '').trim();
+            if (!text) return false;
+            const personal = String(row?.whatsapp || '').trim();
+            const group = String(row?.grupo_whatsapp || '').trim();
+            if (personal && text === personal) return true;
+            if (group && text === group) return true;
+            return false;
+        }
+
+        function sanitizeAdditionalInfo(info, row) {
+            return isWhatsAppAdditionalInfo(info, row) ? '' : String(info || '').trim();
+        }
+
+        async function clearAdditionalInfoIfWhatsApp(row) {
+            if (!SUPABASE_CLIENT || !row || !row.id) return;
+            if (!isWhatsAppAdditionalInfo(row.informacion_adicional, row)) return;
+            const { error } = await SUPABASE_CLIENT
+                .from('banners')
+                .update({ informacion_adicional: null })
+                .eq('id', row.id);
+            if (error) {
+                console.warn('Supabase update error', error.message);
+            }
+        }
+
         function safeOpen(url) {
             const safeUrl = sanitizeUrl(url);
             if (!safeUrl) return;
@@ -1929,7 +2176,7 @@
             const whatsappGroupUrl = sanitizeUrl(data.whatsappGroup);
             const qrImage = whatsappGroupUrl ? await generateQrDataUrl(whatsappGroupUrl, 200) : '';
 
-            // marcar tarjeta activa segÃºn colores actuales
+            // marcar tarjeta activa según colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             if (primaryColor === THEMES['sunset'].primary && accentColor === THEMES['sunset'].accent) {
                 const card = document.querySelector('.theme-card[data-theme=\"sunset\"]');
@@ -1950,7 +2197,10 @@
 
             const banner = document.getElementById('bannerPreview');
             if (!hasRequiredFields) {
-                banner.innerHTML = '<div class="empty-state"><p>El Facilitador no ha actualizado</p><p>Debe contactar con Encargado de Escuela</p></div>';
+                const emptyMessage = EMBED_MODE
+                    ? '<div class="empty-state"><p>Este banner a\u00fan no ha sido configurado</p></div>'
+                    : '<div class="empty-state"><p>El Facilitador no ha actualizado</p><p>Debe contactar con Encargado de Escuela</p></div>';
+                banner.innerHTML = emptyMessage;
                 banner.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${accentColor} 100%)`;
                 return;
             }
@@ -2012,7 +2262,7 @@
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
-                                    ${hasComments ? `<h4>InformaciÃ³n Adicional</h4><p>${safeComments}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el cÃ³digo para unirte al grupo.</p>`}
+                                    ${hasComments ? `<h4>Información Adicional</h4><p>${safeComments}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el código para unirte al grupo.</p>`}
                                 </div>
                                 ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
                             </div>
@@ -2075,7 +2325,7 @@
                 isValid = false;
                 missing.push('email');
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                emailError.textContent = 'Ingrese un correo vÃ¡lido.';
+                emailError.textContent = 'Ingrese un correo válido.';
                 isValid = false;
             }
 
@@ -2102,7 +2352,7 @@
                 isValid = false;
                 missing.push('whatsappGroup');
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
-                wpGroupError.textContent = 'Ingrese un enlace vÃ¡lido (http o https).';
+                wpGroupError.textContent = 'Ingrese un enlace válido (http o https).';
                 isValid = false;
             }
 
@@ -2119,7 +2369,9 @@
             }
             await saveData();
             closeFormModal();
-            clearFormModal();
+            if (!EMBED_MODE) {
+                clearFormModal();
+            }
         }
 
         function clearFormModal(options = {}) {
@@ -2174,7 +2426,7 @@
             if (photoPreview) photoPreview.src = '';
             if (photoWrapper) photoWrapper.style.display = 'none';
                 if (photoInputStatus) {
-                    photoInputStatus.textContent = 'NingÃºn archivo seleccionado';
+                    photoInputStatus.textContent = 'Ningún archivo seleccionado';
                     photoInputStatus.classList.remove('has-file');
                 }
         }
@@ -2237,10 +2489,11 @@
 
         function enableFacilitatorEditing() {
             setFacilitatorFieldsReadOnly(false);
-            showToast('EdiciÃ³n habilitada', 'success');
+            showToast('Edición habilitada', 'success');
         }
 
         async function lookupCedulaAndFill(rawValue) {
+            if (EMBED_MODE) return;
             const raw = String(rawValue || '').trim();
             const normalized = normalizeCedula(raw);
 
@@ -2259,7 +2512,7 @@
                 return;
             }
 
-            setCedulaStatus('', 'Buscando cÃ©dula...');
+            setCedulaStatus('', 'Buscando cédula...');
 
             const formatted = formatCedula(normalized);
             const filters = [
@@ -2276,7 +2529,7 @@
 
             if (error) {
                 console.warn('Supabase lookup error', error.message);
-                setCedulaStatus('error', 'No se pudo consultar la cÃ©dula.');
+                setCedulaStatus('error', 'No se pudo consultar la cédula.');
                 lastCedulaLookup = '';
                 return;
             }
@@ -2285,9 +2538,10 @@
             if (!row) {
                 STORAGE.removeItem('bannerId');
                 clearFormModal({ keepCedula: true });
-                setCedulaStatus('error', 'CÃ©dula no encontrada. Completa los datos.');
+                setCedulaStatus('error', 'Cédula no encontrada. Completa los datos.');
                 return;
             }
+            await clearAdditionalInfoIfWhatsApp(row);
 
             const mapped = {
                 name: row.nombre || '',
@@ -2297,7 +2551,7 @@
                 cedula: row.cedula || '',
                 whatsappPersonal: row.whatsapp || '',
                 whatsappGroup: row.grupo_whatsapp || '',
-                comments: row.informacion_adicional || '',
+                comments: sanitizeAdditionalInfo(row.informacion_adicional, row),
                 photo: row.foto_url || ''
             };
 
@@ -2310,7 +2564,7 @@
             hydrateUI(mapped, theme);
             STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
             setFacilitatorFieldsReadOnly(true);
-            setCedulaStatus('success', 'CÃ©dula encontrada. Puedes editar los datos.');
+            setCedulaStatus('success', 'Cédula encontrada. Puedes editar los datos.');
         }
 
         function populateFormFromSavedData() {
@@ -2341,7 +2595,7 @@
             } else {
                 photoPreview.src = '';
                 photoWrapper.style.display = 'none';
-                photoInputStatus.textContent = 'NingÃºn archivo seleccionado';
+                photoInputStatus.textContent = 'Ningún archivo seleccionado';
                 photoInputStatus.classList.remove('has-file');
             }
         }
@@ -2424,7 +2678,7 @@ async function saveHistoryVersionIfChanged(data, theme) {
     const lastSnapshot = STORAGE.getItem('historySnapshot');
     if (snapshot === lastSnapshot) return;
 
-    const versionName = `Auto ${new Date().toLocaleString('es-ES')}`;
+    const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
     const payload = createHistoryPayload(versionName, data, theme);
 
     const { error } = await SUPABASE_CLIENT
@@ -2442,7 +2696,7 @@ async function saveHistoryVersionIfChanged(data, theme) {
 }
 
 async function saveVersion() {
-    const versionName = document.getElementById('versionName').value.trim();
+    const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
     if (!versionName) {
         alert('Ingresa un nombre para la versi\u00f3n.');
         return;
@@ -2471,13 +2725,18 @@ async function saveVersion() {
 
     document.getElementById('versionName').value = '';
     STORAGE.setItem('historySnapshot', JSON.stringify({ data, theme }));
-    showToast('VersiÃ³n guardada correctamente', 'success');
+    showToast('Versión guardada correctamente', 'success');
     loadVersionsList();
 }
 
 async function loadVersionsList() {
     const listContainer = document.getElementById('versionsList');
     listContainer.innerHTML = '<p style="color: #999; text-align: center;">Cargando historial...</p>';
+
+    if (EMBED_MODE) {
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Historial no disponible en embeds.</p>';
+        return;
+    }
 
     if (!SUPABASE_CLIENT) {
         listContainer.innerHTML = '<p style="color: #999; text-align: center;">Base de datos deshabilitada.</p>';
@@ -2486,7 +2745,7 @@ async function loadVersionsList() {
 
     const { bannerId, cedula } = getHistoryFilter();
     if (!bannerId && !cedula) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con cÃ©dula para ver el historial.</p>';
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con cédula para ver el historial.</p>';
         return;
     }
 
@@ -2540,7 +2799,7 @@ async function loadVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history load error', error.message);
-        showToast('No se pudo cargar la versiÃ³n.', 'error');
+        showToast('No se pudo cargar la versión.', 'error');
         return;
     }
 
@@ -2555,7 +2814,7 @@ async function loadVersion(versionId) {
         cedula: row.cedula || '',
         whatsappPersonal: row.whatsapp || '',
         whatsappGroup: row.grupo_whatsapp || '',
-        comments: row.informacion_adicional || '',
+        comments: sanitizeAdditionalInfo(row.informacion_adicional, row),
         photo: row.foto_url || ''
     };
 
@@ -2573,11 +2832,11 @@ async function loadVersion(versionId) {
     hydrateUI(mapped, theme);
     STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
     closeVersionsModal();
-    showToast('VersiÃ³n cargada correctamente', 'success');
+    showToast('Versión cargada correctamente', 'success');
 }
 
 async function deleteVersion(versionId) {
-    if (!confirm('Â¿Est\u00e1s seguro de que deseas eliminar esta versi\u00f3n?')) return;
+    if (!confirm('¿Est\u00e1s seguro de que deseas eliminar esta versi\u00f3n?')) return;
     if (!SUPABASE_CLIENT) return;
 
     const { error } = await SUPABASE_CLIENT
@@ -2587,7 +2846,7 @@ async function deleteVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history delete error', error.message);
-        showToast('No se pudo eliminar la versiÃ³n.', 'error');
+        showToast('No se pudo eliminar la versión.', 'error');
         return;
     }
 
@@ -2613,6 +2872,9 @@ async function deleteVersion(versionId) {
 
         function openFormModal() {
             document.getElementById('formModal').classList.add('active');
+            if (EMBED_MODE) {
+                return;
+            }
             const currentId = STORAGE.getItem('bannerId');
             if (currentId) STORAGE.setItem('lastBannerId', currentId);
             STORAGE.removeItem('bannerId');
@@ -2624,11 +2886,6 @@ async function deleteVersion(versionId) {
         }
 
         function openExportModal() {
-            const banner = document.getElementById('bannerPreview');
-            if (banner.querySelector('.empty-state')) {
-                alert('Completa todos los campos obligatorios primero.');
-                return;
-            }
             document.getElementById('exportModal').classList.add('active');
         }
 
@@ -2637,31 +2894,7 @@ async function deleteVersion(versionId) {
         }
 
         function openEmbedModal() {
-            const placeholderSrc = 'https://tuservidor.com/banner.html';
-            const code = `<iframe src="${placeholderSrc}" width="900" height="450" style="border:0; overflow:hidden;" allowfullscreen loading="lazy"></iframe>`;
-            const textarea = document.getElementById('embedCode');
-            if (textarea) textarea.value = code;
-            document.getElementById('embedModal').classList.add('active');
-        }
-
-        function openEmbedConfig() {
-            const src = "https://edgarcastillo083dv.github.io/Banner_Docente/?mode=config";
-            const code = `<iframe src="${src}" width="100%" height="650" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
-            showEmbedCode(code);
-        }
-
-        function openEmbedPreview() {
-            const version = Date.now(); // cache-buster para LMS (Moodle)
-            const src = `https://edgarcastillo083dv.github.io/Banner_Docente/?mode=preview&v=${version}`;
-            const code = `<iframe src="${src}" width="900" height="450" style="border:0; overflow:hidden;" loading="lazy"></iframe>`;
-            showEmbedCode(code);
-        }
-
-        function showEmbedCode(code) {
-            const textarea = document.getElementById("embedCode");
-            const modal = document.getElementById("embedModal");
-            textarea.value = code;
-            modal.classList.add("active");
+            openEmbedGenerator();
         }
 
         function closeEmbedModal() {
@@ -2726,6 +2959,7 @@ async function deleteVersion(versionId) {
         let lastCedulaLookup = '';
 
         function scheduleCedulaLookup(value) {
+            if (EMBED_MODE) return;
             const normalized = normalizeCedula(value);
             if (normalized.length === 0) {
                 setCedulaStatus('', '');
@@ -2749,11 +2983,14 @@ async function deleteVersion(versionId) {
         }
 
         // Initialize
+        if (EMBED_MODE) {
+            document.querySelector('.btn-versions')?.setAttribute('style', 'display:none;');
+        }
         loadData();
         try { updateBanner(); } catch (e) { console.error(e); }
 
         // SOLO EN MODO PREVIEW: ESCUCHAR ACTUALIZACIONES
-        if (MODE === "preview") {
+        if (MODE === "preview" || MODE === "view") {
             window.addEventListener("message", (event) => {
                 if (!event.data || event.data.type !== "BANNER_UPDATE") return;
 
@@ -2795,6 +3032,14 @@ async function deleteVersion(versionId) {
 </body>
 </html>
            
+
+
+
+
+
+
+
+
 
 
 
