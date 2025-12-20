@@ -35,6 +35,37 @@
             margin: 0 0 32px 0;
         }
 
+        .db-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #eef1f6;
+            color: #4a5b6a;
+        }
+
+        .db-status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #9e9e9e;
+        }
+
+        .db-status.ok .dot {
+            background: #2e7d32;
+        }
+
+        .db-status.error .dot {
+            background: #e53935;
+        }
+
+        .db-status.warn .dot {
+            background: #f9a825;
+        }
+
         button {
             display: flex;
             align-items: center;
@@ -1067,6 +1098,10 @@
                         <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
                         Historial
                     </button>
+                    <div id="dbStatus" class="db-status warn" aria-live="polite">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span class="text">Base de datos: verificando...</span>
+                    </div>
                 </div>
                 <div class="preview-container">
                     <div id="bannerPreview" class="desktop">
@@ -1096,6 +1131,7 @@
                         <label class="required">Cedula</label>
                         <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" />
                         <div class="error" id="cedulaError"></div>
+                        <div class="success" id="cedulaStatus"></div>
                     </div>
 
                     <div class="form-group">
@@ -1382,6 +1418,34 @@
             console.warn('[v0] Supabase deshabilitado: faltan credenciales');
         }
 
+        function setDbStatus(state, text) {
+            const status = document.getElementById('dbStatus');
+            if (!status) return;
+            status.classList.remove('ok', 'error', 'warn');
+            status.classList.add(state);
+            const label = status.querySelector('.text');
+            if (label) label.textContent = text;
+        }
+
+        async function checkSupabaseConnection() {
+            if (!SUPABASE_CLIENT) {
+                setDbStatus('error', 'Base de datos: deshabilitada');
+                return;
+            }
+            setDbStatus('warn', 'Base de datos: verificando...');
+            const { error } = await SUPABASE_CLIENT
+                .from('banners')
+                .select('id', { head: true, count: 'exact' })
+                .limit(1);
+
+            if (error) {
+                console.warn('[v0] Supabase sin conexion', error);
+                setDbStatus('error', 'Base de datos: sin conexion');
+            } else {
+                setDbStatus('ok', 'Base de datos: conectada');
+            }
+        }
+
         function hydrateUI(data = {}, theme = {}) {
             // Set default theme to "sunset" if none stored
             let themeConfig = theme && theme.primaryColor && theme.accentColor
@@ -1478,8 +1542,8 @@
 
         async function syncToSupabase(data, theme) {
             if (!SUPABASE_CLIENT) return;
+            const bannerId = STORAGE.getItem('bannerId');
             const payload = {
-                id: STORAGE.getItem('bannerId') || undefined,
                 nombre: data.name || null,
                 escuela: data.school || null,
                 email: data.email || null,
@@ -1493,11 +1557,26 @@
                 color_secundario: theme.accentColor || null
             };
 
-            const { data: upserted, error } = await SUPABASE_CLIENT
-                .from('banners')
-                .upsert(payload, { onConflict: 'id' })
-                .select()
-                .limit(1);
+            let response;
+            if (bannerId) {
+                console.log('[v0] Supabase update ->', { id: bannerId, payload });
+                response = await SUPABASE_CLIENT
+                    .from('banners')
+                    .update(payload)
+                    .eq('id', bannerId)
+                    .select()
+                    .limit(1);
+            } else {
+                console.log('[v0] Supabase insert ->', { payload });
+                response = await SUPABASE_CLIENT
+                    .from('banners')
+                    .insert(payload)
+                    .select()
+                    .limit(1);
+            }
+
+            const { data: upserted, error } = response;
+            console.log('[v0] Supabase response ->', { data: upserted, error });
 
             if (error) {
                 console.warn('Supabase sync error', error.message);
@@ -1516,6 +1595,7 @@
 
             if (SUPABASE_CLIENT) {
                 try {
+                    await checkSupabaseConnection();
                     await fetchBannerFromSupabase();
                 } catch (e) {
                     console.warn('No se pudo sincronizar con Supabase en el arranque', e);
@@ -1524,15 +1604,17 @@
         }
 
         function saveData() {
+            console.log('[v0] saveData called');
             showSaveStatus();
             const photoPreview = document.getElementById('photoPreview');
+            const cedulaRaw = document.getElementById('cedula').value.trim();
 
             const data = {
                 name: document.getElementById('name').value.trim(),
                 school: document.getElementById('school').value,
                 email: document.getElementById('email').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
-                cedula: document.getElementById('cedula').value.trim(),
+                cedula: formatCedula(cedulaRaw) || cedulaRaw,
                 whatsappPersonal: document.getElementById('whatsappPersonal').value.trim(),
                 whatsappGroup: document.getElementById('whatsappGroup').value.trim(),
                 comments: document.getElementById('comments').value,
@@ -1856,6 +1938,7 @@
 
         function validateForm() {
             let isValid = true;
+            const missing = [];
 
             const name = document.getElementById('name').value.trim();
             const school = document.getElementById('school').value;
@@ -1887,16 +1970,19 @@
             if (!name) {
                 nameError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('name');
             }
 
             if (!school) {
                 schoolError.textContent = 'Seleccione una escuela.';
                 isValid = false;
+                missing.push('school');
             }
 
             if (!email) {
                 emailError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('email');
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
                 emailError.textContent = 'Ingrese un correo válido.';
                 isValid = false;
@@ -1905,40 +1991,49 @@
             if (!phone) {
                 phoneError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('phone');
             }
 
             if (!cedula) {
                 cedulaError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('cedula');
             }
 
             if (!whatsappPersonal) {
                 wpPersonalError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('whatsappPersonal');
             }
 
             if (!whatsappGroup) {
                 wpGroupError.textContent = 'Este campo es obligatorio.';
                 isValid = false;
+                missing.push('whatsappGroup');
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
                 wpGroupError.textContent = 'Ingrese un enlace válido (http o https).';
                 isValid = false;
             }
 
+            if (!isValid) {
+                console.warn('[v0] Validacion fallida', missing);
+            }
             return isValid;
         }
 
         function submitFormModal() {
+            console.log('[v0] submitFormModal');
             if (!validateForm()) {
                 return;
             }
+            saveData();
             closeFormModal();
             clearFormModal();
         }
 
-        function clearFormModal() {
+        function clearFormModal(options = {}) {
+            const keepCedula = Boolean(options.keepCedula);
             const fields = [
-                'cedula',
                 'name',
                 'email',
                 'phone',
@@ -1951,6 +2046,11 @@
                 const el = document.getElementById(id);
                 if (el) el.value = '';
             });
+
+            if (!keepCedula) {
+                const cedula = document.getElementById('cedula');
+                if (cedula) cedula.value = '';
+            }
 
             const school = document.getElementById('school');
             if (school) school.value = '';
@@ -1970,6 +2070,9 @@
                 if (el) el.textContent = '';
             });
 
+            setCedulaStatus('', '');
+            lastCedulaLookup = '';
+
             const photoInput = document.getElementById('photo');
             const photoPreview = document.getElementById('photoPreview');
             const photoWrapper = document.getElementById('photoWrapper');
@@ -1984,8 +2087,99 @@
                 }
         }
 
+        function normalizeCedula(value) {
+            return String(value || '').replace(/\D/g, '');
+        }
+
+        function formatCedula(value) {
+            const digits = normalizeCedula(value);
+            if (digits.length !== 11) return '';
+            return `${digits.slice(0, 3)}-${digits.slice(3, 10)}-${digits.slice(10)}`;
+        }
+
+        function setCedulaStatus(type, message) {
+            const status = document.getElementById('cedulaStatus');
+            if (!status) return;
+            status.classList.remove('success', 'error');
+            status.textContent = message || '';
+            if (message && type) status.classList.add(type);
+        }
+
+        async function lookupCedulaAndFill(rawValue) {
+            const raw = String(rawValue || '').trim();
+            const normalized = normalizeCedula(raw);
+
+            if (normalized.length < 11) {
+                setCedulaStatus('', '');
+                return;
+            }
+
+            if (normalized === lastCedulaLookup) return;
+            lastCedulaLookup = normalized;
+
+            if (!SUPABASE_CLIENT) {
+                setCedulaStatus('error', 'Base de datos deshabilitada.');
+                lastCedulaLookup = '';
+                return;
+            }
+
+            setCedulaStatus('', 'Buscando cédula...');
+
+            const formatted = formatCedula(normalized);
+            const filters = [
+                `cedula.eq.${raw}`,
+                `cedula.eq.${normalized}`
+            ];
+            if (formatted) filters.push(`cedula.eq.${formatted}`);
+
+            const { data, error } = await SUPABASE_CLIENT
+                .from('banners')
+                .select('*')
+                .or(filters.join(','))
+                .limit(1);
+
+            if (error) {
+                console.warn('Supabase lookup error', error.message);
+                setCedulaStatus('error', 'No se pudo consultar la cédula.');
+                lastCedulaLookup = '';
+                return;
+            }
+
+            const row = Array.isArray(data) ? data[0] : data;
+            if (!row) {
+                STORAGE.removeItem('bannerId');
+                clearFormModal({ keepCedula: true });
+                setCedulaStatus('error', 'Cédula no encontrada. Completa los datos.');
+                return;
+            }
+
+            const mapped = {
+                name: row.nombre || '',
+                school: row.escuela || '',
+                email: row.email || '',
+                phone: row.telefono || '',
+                cedula: row.cedula || '',
+                whatsappPersonal: row.whatsapp || '',
+                whatsappGroup: row.grupo_whatsapp || '',
+                comments: row.informacion_adicional || '',
+                photo: row.foto_url || ''
+            };
+
+            const theme = {
+                primaryColor: row.color_primario || THEMES['sunset'].primary,
+                accentColor: row.color_secundario || THEMES['sunset'].accent
+            };
+
+            STORAGE.setItem('bannerId', row.id);
+            hydrateUI(mapped, theme);
+            setCedulaStatus('success', 'Cédula encontrada. Puedes editar los datos.');
+        }
+
         function populateFormFromSavedData() {
             const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const storedId = STORAGE.getItem('lastBannerId');
+            if (storedId) STORAGE.setItem('bannerId', storedId);
+            setCedulaStatus('', '');
 
             if (data.cedula) document.getElementById('cedula').value = data.cedula;
             if (data.name) document.getElementById('name').value = data.name;
@@ -2139,6 +2333,9 @@
 
         function openFormModal() {
             document.getElementById('formModal').classList.add('active');
+            const currentId = STORAGE.getItem('bannerId');
+            if (currentId) STORAGE.setItem('lastBannerId', currentId);
+            STORAGE.removeItem('bannerId');
             clearFormModal();
         }
 
@@ -2238,12 +2435,37 @@
             const versionsModal = document.getElementById('versionsModal');
             const embedModal = document.getElementById('embedModal');
             
-            if (event.target === formModal) formModal.classList.remove('active');
             if (event.target === exportModal) exportModal.classList.remove('active');
             if (event.target === configModal) configModal.classList.remove('active');
             if (event.target === versionsModal) versionsModal.classList.remove('active');
             if (event.target === embedModal) embedModal.classList.remove('active');
         };
+
+        let cedulaLookupTimer = null;
+        let lastCedulaLookup = '';
+
+        function scheduleCedulaLookup(value) {
+            const normalized = normalizeCedula(value);
+            if (normalized.length === 0) {
+                setCedulaStatus('', '');
+                return;
+            }
+            if (normalized === lastCedulaLookup) return;
+            if (cedulaLookupTimer) clearTimeout(cedulaLookupTimer);
+            cedulaLookupTimer = setTimeout(() => {
+                lookupCedulaAndFill(value);
+            }, 500);
+        }
+
+        const cedulaInput = document.getElementById('cedula');
+        if (cedulaInput) {
+            cedulaInput.addEventListener('input', (event) => {
+                scheduleCedulaLookup(event.target.value);
+            });
+            cedulaInput.addEventListener('blur', (event) => {
+                lookupCedulaAndFill(event.target.value);
+            });
+        }
 
         // Initialize
         loadData();
