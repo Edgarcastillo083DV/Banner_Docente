@@ -66,6 +66,39 @@
             background: #f9a825;
         }
 
+        .toast {
+            position: fixed;
+            right: 24px;
+            top: 24px;
+            background: #ffffff;
+            color: #1f2937;
+            padding: 14px 18px;
+            border-radius: 12px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            opacity: 0;
+            transform: translateY(-6px);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 2000;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 220px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success {
+            border-left: 4px solid #22c55e;
+        }
+
+        .toast.error {
+            border-left: 4px solid #ef4444;
+        }
+
         button {
             display: flex;
             align-items: center;
@@ -327,6 +360,23 @@
             color: #2e7d32;
             font-size: 12px;
             margin-top: 4px;
+        }
+
+        .field-locked {
+            background: #f3f4f6;
+            color: #6b7280;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+        }
+
+        .field-locked.photo-input-label {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .field-locked .remove-photo-icon {
+            pointer-events: none;
+            opacity: 0.6;
         }
 
         /* Launcher  modal wrapper */
@@ -763,6 +813,11 @@
             background: #e6f0fb;
         }
 
+        .btn-edit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .btn-edit:focus-visible {
             outline: 3px solid #1a4d7e;
             outline-offset: 2px;
@@ -884,28 +939,57 @@
             background: #f9f9f9;
         }
 
+        .versions-modal-content {
+            background: #f7f9fc;
+        }
+
+        .versions-modal-content .modal-header {
+            border-bottom: none;
+            margin-bottom: 8px;
+        }
+
+        .versions-save {
+            background: #fff;
+            border: 1px solid #e6e9ef;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 8px 20px rgba(20, 40, 80, 0.06);
+            margin-bottom: 18px;
+        }
+
+        .versions-title {
+            color: #1a4d7e;
+            margin: 18px 0 12px;
+            font-size: 16px;
+        }
+
         .versions-list {
-            max-height: 400px;
+            max-height: 320px;
             overflow-y: auto;
+            background: #fff;
+            border: 1px solid #e6e9ef;
+            border-radius: 12px;
+            padding: 12px;
         }
 
         .version-item {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 2px solid #eee;
-            transition: all 0.3s ease;
+            background: #fff;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #e6e9ef;
+            box-shadow: 0 6px 16px rgba(20, 40, 80, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .version-item:hover {
-            border-color: #1a4d7e;
-            background: #f0f7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(20, 40, 80, 0.12);
         }
 
         .version-item.active {
             border-color: #1a4d7e;
-            background: #e3f2fd;
+            box-shadow: 0 12px 24px rgba(20, 40, 80, 0.14);
         }
 
         .version-name {
@@ -1114,12 +1198,13 @@
             </div>
         </div>
     </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <div id="formModal" class="modal">
             <div class="modal-content">
             <div class="modal-header">
                 <h2>Datos del Facilitador</h2>
                 <div class="modal-header-actions">
-                    <button class="btn-edit" type="button" onclick="populateFormFromSavedData()">Editar datos guardados</button>
+                    <button class="btn-edit" id="editFacilitatorBtn" type="button" onclick="enableFacilitatorEditing()" disabled>Editar facilitador</button>
                     <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeFormModal()">&times;</button>
                 </div>
             </div>
@@ -1183,15 +1268,15 @@
                         <div class="photo-row">
                             <div class="photo-input-container">
                                 <div class="photo-input-wrapper">
-                                    <label for="photo" class="photo-input-label">Seleccionar archivo</label>
+                                    <label for="photo" class="photo-input-label" id="photoInputLabel">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
                                 <div class="photo-input-status" id="photoInputStatus">Ningún archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
-                                <img id="photoPreview" class="photo-preview" alt="Foto del facilitador" />
-                                <button type="button" class="remove-photo-icon" onclick="removePhoto()">&times;</button>
+                                <img id="photoPreview" class="photo-preview" alt="Foto del facilitador" onerror="this.src=''" />
+                                <button type="button" class="remove-photo-icon" id="removePhotoBtn" onclick="removePhoto()">&times;</button>
                             </div>
                         </div>
                         <div class="error" id="photoError"></div>
@@ -1335,23 +1420,23 @@
 
     <!-- Versions Modal -->
     <div id="versionsModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content versions-modal-content">
             <div class="modal-header">
                 <h2>Historial de Banners</h2>
                 <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeVersionsModal()">&times;</button>
             </div>
 
-            <div class="form-group">
-                <label>Guardar versión actual como:</label>
+            <div class="form-group versions-save">
+                <label>Guardar versi&oacute;n actual como:</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="versionName" placeholder="Ej: Banner v1 - Octubre" style="flex: 1;" />
                     <button class="btn-form" onclick="saveVersion()" style="width: auto;">Guardar</button>
                 </div>
             </div>
 
-            <h3 style="color: #1a4d7e; margin: 20px 0 15px; font-size: 16px;">Versiones Guardadas</h3>
+            <h3 class="versions-title">Versiones Guardadas</h3>
             <div class="versions-list" id="versionsList">
-                <p style="color: #999; text-align: center;">No hay versiones guardadas aún</p>
+                <p style="color: #999; text-align: center;">No hay versiones guardadas a&uacute;n.</p>
             </div>
 
             <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full" style="margin-top: 20px;">Cerrar</button>
@@ -1537,11 +1622,12 @@
 
             STORAGE.setItem('bannerId', row.id);
             hydrateUI(mapped, theme);
+            STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
             return { mapped, theme };
         }
 
         async function syncToSupabase(data, theme) {
-            if (!SUPABASE_CLIENT) return;
+            if (!SUPABASE_CLIENT) return false;
             const bannerId = STORAGE.getItem('bannerId');
             const payload = {
                 nombre: data.name || null,
@@ -1580,11 +1666,12 @@
 
             if (error) {
                 console.warn('Supabase sync error', error.message);
-                return;
+                return false;
             }
 
             const row = Array.isArray(upserted) ? upserted[0] : upserted;
             if (row && row.id) STORAGE.setItem('bannerId', row.id);
+            return true;
         }
 
         // Drag & Drop
@@ -1603,7 +1690,7 @@
             }
         }
 
-        function saveData() {
+        async function saveData() {
             console.log('[v0] saveData called');
             showSaveStatus();
             const photoPreview = document.getElementById('photoPreview');
@@ -1624,9 +1711,10 @@
             updateBanner();
             try{ updateConfigPreview(); }catch(e){}
 
+            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+            let syncOk = true;
             if (SUPABASE_CLIENT) {
-                const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
-                syncToSupabase(data, theme).catch(err => console.warn('Supabase sync error', err));
+                syncOk = await syncToSupabase(data, theme);
             }
 
             // ENVIAR CAMBIOS EN TIEMPO REAL AL CONTENEDOR
@@ -1639,7 +1727,10 @@
                     }
                 }, "*");
             } catch (e) {}
-            
+            if (syncOk) {
+                await saveHistoryVersionIfChanged(data, theme);
+            }
+            showToast('Formulario guardado correctamente', 'success');
         }
 
         function handlePhotoUpload() {
@@ -2021,12 +2112,12 @@
             return isValid;
         }
 
-        function submitFormModal() {
+        async function submitFormModal() {
             console.log('[v0] submitFormModal');
             if (!validateForm()) {
                 return;
             }
-            saveData();
+            await saveData();
             closeFormModal();
             clearFormModal();
         }
@@ -2072,6 +2163,7 @@
 
             setCedulaStatus('', '');
             lastCedulaLookup = '';
+            setFacilitatorFieldsReadOnly(false);
 
             const photoInput = document.getElementById('photo');
             const photoPreview = document.getElementById('photoPreview');
@@ -2105,12 +2197,56 @@
             if (message && type) status.classList.add(type);
         }
 
+        const FACILITATOR_FIELDS = ['name', 'school', 'email', 'phone', 'whatsappPersonal'];
+        const FACILITATOR_PHOTO_IDS = ['photo', 'removePhotoBtn', 'photoInputLabel'];
+        let facilitatorLocked = false;
+
+        function updateEditFacilitatorButton() {
+            const btn = document.getElementById('editFacilitatorBtn');
+            if (!btn) return;
+            btn.disabled = !facilitatorLocked;
+        }
+
+        function setFacilitatorFieldsReadOnly(locked) {
+            facilitatorLocked = locked;
+            FACILITATOR_FIELDS.forEach((id) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (el.tagName === 'SELECT') {
+                    el.disabled = locked;
+                } else {
+                    el.readOnly = locked;
+                }
+                el.classList.toggle('field-locked', locked);
+            });
+            FACILITATOR_PHOTO_IDS.forEach((id) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (locked) {
+                    el.setAttribute('disabled', 'disabled');
+                    el.classList.add('field-locked');
+                } else {
+                    el.removeAttribute('disabled');
+                    el.classList.remove('field-locked');
+                }
+            });
+            const photoWrapper = document.getElementById('photoWrapper');
+            if (photoWrapper) photoWrapper.classList.toggle('field-locked', locked);
+            updateEditFacilitatorButton();
+        }
+
+        function enableFacilitatorEditing() {
+            setFacilitatorFieldsReadOnly(false);
+            showToast('Edición habilitada', 'success');
+        }
+
         async function lookupCedulaAndFill(rawValue) {
             const raw = String(rawValue || '').trim();
             const normalized = normalizeCedula(raw);
 
             if (normalized.length < 11) {
                 setCedulaStatus('', '');
+                setFacilitatorFieldsReadOnly(false);
                 return;
             }
 
@@ -2172,6 +2308,8 @@
 
             STORAGE.setItem('bannerId', row.id);
             hydrateUI(mapped, theme);
+            STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
+            setFacilitatorFieldsReadOnly(true);
             setCedulaStatus('success', 'Cédula encontrada. Puedes editar los datos.');
         }
 
@@ -2180,6 +2318,7 @@
             const storedId = STORAGE.getItem('lastBannerId');
             if (storedId) STORAGE.setItem('bannerId', storedId);
             setCedulaStatus('', '');
+            setFacilitatorFieldsReadOnly(false);
 
             if (data.cedula) document.getElementById('cedula').value = data.cedula;
             if (data.name) document.getElementById('name').value = data.name;
@@ -2253,35 +2392,16 @@
             }
         }
 
-        function getHistoryFilter() {
+function getHistoryFilter() {
     const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
     const bannerId = STORAGE.getItem('bannerId') || null;
     const cedula = data.cedula ? (formatCedula(data.cedula) || data.cedula) : null;
     return { bannerId, cedula };
 }
 
-async function saveVersion() {
-    const versionName = document.getElementById('versionName').value.trim();
-    if (!versionName) {
-        alert('Ingresa un nombre para la versión.');
-        return;
-    }
-
-    if (!validateForm()) {
-        alert('Completa los campos obligatorios antes de guardar una versión.');
-        return;
-    }
-
-    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
-    const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+function createHistoryPayload(versionName, data, theme) {
     const bannerId = STORAGE.getItem('bannerId') || null;
-
-    if (!SUPABASE_CLIENT) {
-        alert('Base de datos deshabilitada.');
-        return;
-    }
-
-    const payload = {
+    return {
         banner_id: bannerId,
         version_name: versionName,
         cedula: data.cedula || null,
@@ -2296,6 +2416,46 @@ async function saveVersion() {
         color_primario: theme.primaryColor || null,
         color_secundario: theme.accentColor || null
     };
+}
+
+async function saveHistoryVersionIfChanged(data, theme) {
+    if (!SUPABASE_CLIENT) return;
+    const snapshot = JSON.stringify({ data, theme });
+    const lastSnapshot = STORAGE.getItem('historySnapshot');
+    if (snapshot === lastSnapshot) return;
+
+    const versionName = `Auto ${new Date().toLocaleString('es-ES')}`;
+    const payload = createHistoryPayload(versionName, data, theme);
+
+    const { error } = await SUPABASE_CLIENT
+        .from('banners_historial')
+        .insert(payload)
+        .select()
+        .limit(1);
+
+    if (error) {
+        console.warn('Supabase history auto save error', error.message);
+        return;
+    }
+
+    STORAGE.setItem('historySnapshot', snapshot);
+}
+
+async function saveVersion() {
+    const versionName = document.getElementById('versionName').value.trim();
+    if (!versionName) {
+        alert('Ingresa un nombre para la versi\u00f3n.');
+        return;
+    }
+
+    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+    const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+    if (!SUPABASE_CLIENT) {
+        alert('Base de datos deshabilitada.');
+        return;
+    }
+
+    const payload = createHistoryPayload(versionName, data, theme);
 
     const { error } = await SUPABASE_CLIENT
         .from('banners_historial')
@@ -2305,12 +2465,13 @@ async function saveVersion() {
 
     if (error) {
         console.warn('Supabase history save error', error.message);
-        alert('No se pudo guardar el historial.');
+        showToast('No se pudo guardar el historial.', 'error');
         return;
     }
 
     document.getElementById('versionName').value = '';
-    alert('Versión guardada correctamente');
+    STORAGE.setItem('historySnapshot', JSON.stringify({ data, theme }));
+    showToast('Versión guardada correctamente', 'success');
     loadVersionsList();
 }
 
@@ -2349,22 +2510,22 @@ async function loadVersionsList() {
     }
 
     if (!data || data.length === 0) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas aún.</p>';
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a\u00fan.</p>';
         return;
     }
 
     listContainer.innerHTML = data.map(version => {
         const date = version.created_at ? new Date(version.created_at).toLocaleDateString('es-ES') : '';
-        return 
+        return `
         <div class="version-item">
-            <div class="version-name"></div>
-            <div class="version-date"></div>
+            <div class="version-name">${version.version_name || 'Versi\u00f3n'}</div>
+            <div class="version-date">${date}</div>
             <div class="version-buttons">
-                <button class="version-btn" onclick="loadVersion('')">Cargar</button>
-                <button class="version-btn delete" onclick="deleteVersion('')">Eliminar</button>
+                <button class="version-btn" onclick="loadVersion('${version.id}')">Cargar</button>
+                <button class="version-btn delete" onclick="deleteVersion('${version.id}')">Eliminar</button>
             </div>
         </div>
-    ;
+    `;
     }).join('');
 }
 
@@ -2379,7 +2540,7 @@ async function loadVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history load error', error.message);
-        alert('No se pudo cargar la versión.');
+        showToast('No se pudo cargar la versión.', 'error');
         return;
     }
 
@@ -2410,12 +2571,13 @@ async function loadVersion(versionId) {
     }
 
     hydrateUI(mapped, theme);
+    STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
     closeVersionsModal();
-    alert('Versión cargada correctamente');
+    showToast('Versión cargada correctamente', 'success');
 }
 
 async function deleteVersion(versionId) {
-    if (!confirm('¿Estás seguro de que deseas eliminar esta versión?')) return;
+    if (!confirm('¿Est\u00e1s seguro de que deseas eliminar esta versi\u00f3n?')) return;
     if (!SUPABASE_CLIENT) return;
 
     const { error } = await SUPABASE_CLIENT
@@ -2425,16 +2587,28 @@ async function deleteVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history delete error', error.message);
-        alert('No se pudo eliminar la versión.');
+        showToast('No se pudo eliminar la versión.', 'error');
         return;
     }
 
     loadVersionsList();
 }
-function showSaveStatus() {
+        function showSaveStatus() {
             const status = document.getElementById('saveStatus');
             status.classList.add('show');
             setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        function showToast(message, type = '') {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.remove('show', 'success', 'error');
+            if (type) toast.classList.add(type);
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2200);
         }
 
         function openFormModal() {
