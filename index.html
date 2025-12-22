@@ -1544,7 +1544,17 @@
         const SUPABASE_KEY = 'sb_publishable_De-ddtmdrdZY82DNuymR3Q_kNFEkWlP';
         const SUPABASE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_KEY);
         const SUPABASE_BUCKET = 'fotos-banners';
-        const SUPABASE_CLIENT = SUPABASE_ENABLED ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const SUPABASE_REQUEST_TIMEOUT_MS = 8000;
+
+        function fetchWithTimeout(url, options = {}) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), SUPABASE_REQUEST_TIMEOUT_MS);
+            const opts = Object.assign({}, options, { signal: controller.signal });
+            return fetch(url, opts).finally(() => clearTimeout(timeoutId));
+        }
+        const SUPABASE_CLIENT = SUPABASE_ENABLED
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { global: { fetch: fetchWithTimeout } })
+            : null;
         const EMBED_CONTEXT_TABLE = 'facilitador_contextos';
         const EMBED_HISTORY_TABLE = 'banners_historial';
         if (SUPABASE_CLIENT) {
@@ -1879,7 +1889,9 @@
 
             if (SUPABASE_CLIENT) {
                 try {
-                    await checkSupabaseConnection();
+                    if (MODE !== "view") {
+                        await checkSupabaseConnection();
+                    }
                     if (EMBED_MODE) {
                         await loadEmbedContext();
                     } else {
@@ -2770,7 +2782,9 @@ async function saveHistoryVersionIfChanged(data, theme) {
 }
 
 async function saveVersion() {
-    const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
+    const input = document.getElementById('versionName');
+    const trimmedName = input ? (input.value || '').trim() : '';
+    const versionName = trimmedName || `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
     if (!versionName) {
         alert('Ingresa un nombre para la versi\u00f3n.');
         return;
