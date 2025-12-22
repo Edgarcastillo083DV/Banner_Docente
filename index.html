@@ -1905,7 +1905,10 @@
                     if (EMBED_MODE) {
                         await loadEmbedContext();
                     } else {
-                        await fetchBannerFromSupabase();
+                        const skipAutoload = STORAGE.getItem('skipAutoload') === '1';
+                        if (!skipAutoload) {
+                            await fetchBannerFromSupabase();
+                        }
                         stopPendingLoadInView();
                     }
                 } catch (e) {
@@ -1919,6 +1922,7 @@
         async function saveData() {
             console.log('[v0] saveData called');
             showSaveStatus();
+            STORAGE.removeItem('skipAutoload');
             const photoPreview = document.getElementById('photoPreview');
             const cedulaRaw = document.getElementById('cedula').value.trim();
 
@@ -2472,7 +2476,22 @@
 
         async function clearFormAndClose() {
             clearFormModal();
-            await saveData();
+            const emptyData = {
+                name: '',
+                school: '',
+                email: '',
+                phone: '',
+                cedula: '',
+                whatsappPersonal: '',
+                whatsappGroup: '',
+                comments: '',
+                photo: ''
+            };
+            STORAGE.setItem('bannerData', JSON.stringify(emptyData));
+            STORAGE.setItem('skipAutoload', '1');
+            STORAGE.removeItem('bannerId');
+            updateBanner();
+            try { updateConfigPreview(); } catch (e) {}
             closeFormModal();
         }
 
