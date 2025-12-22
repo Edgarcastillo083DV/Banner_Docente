@@ -1515,7 +1515,7 @@
         const params = new URLSearchParams(window.location.search);
         const REQUESTED_MODE = params.get("mode") || "config";
         const STANDBY_MODE = params.get("standby") === "1";
-        const MODE = STANDBY_MODE ? "view" : REQUESTED_MODE;
+        const MODE = REQUESTED_MODE;
         const CONTEXT_ID = params.get("contextId") || '';
         const EMBED_MODE = Boolean(CONTEXT_ID);
 
@@ -1548,7 +1548,7 @@
         const SUPABASE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_KEY);
         const SUPABASE_BUCKET = 'fotos-banners';
         const SUPABASE_REQUEST_TIMEOUT_MS = 8000;
-        const VIEW_IDLE_STOP_MS = 6000;
+        const VIEW_IDLE_STOP_MS = 4000;
 
         function fetchWithTimeout(url, options = {}) {
             const controller = new AbortController();
@@ -1756,12 +1756,12 @@
         }
 
         function stopPendingLoadInView() {
-            if (MODE !== 'view' && !STANDBY_MODE) return;
+            if (MODE !== 'view' && MODE !== 'config' && !STANDBY_MODE) return;
             try { window.stop(); } catch (e) {}
         }
 
         function armViewIdleStop() {
-            if (MODE !== 'view' && !STANDBY_MODE) return;
+            if (MODE !== 'view' && MODE !== 'config' && !STANDBY_MODE) return;
             const timerId = setTimeout(() => {
                 stopPendingLoadInView();
             }, VIEW_IDLE_STOP_MS);
