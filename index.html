@@ -1236,6 +1236,7 @@
                 <h2>Datos del Facilitador</h2>
                 <div class="modal-header-actions">
                     <button class="btn-edit" id="editFacilitatorBtn" type="button" onclick="enableFacilitatorEditing()" disabled>Editar facilitador</button>
+                    <button class="btn-edit" type="button" onclick="clearFormAndClose()">Limpiar</button>
                     <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeFormModal()">&times;</button>
                 </div>
             </div>
@@ -1751,19 +1752,27 @@
             hydrateUI(emptyData, theme);
         }
 
+        function stopPendingLoadInView() {
+            if (MODE !== 'view') return;
+            try { window.stop(); } catch (e) {}
+        }
+
         async function loadEmbedContext() {
             if (!SUPABASE_CLIENT) {
                 setEmptyEmbedState();
+                stopPendingLoadInView();
                 return;
             }
             const contextRow = await fetchEmbedContext();
             if (!contextRow || contextRow.status === 'empty') {
                 setEmptyEmbedState();
+                stopPendingLoadInView();
                 return;
             }
             const versionRow = await fetchActiveEmbedVersion(contextRow);
             if (!versionRow) {
                 setEmptyEmbedState();
+                stopPendingLoadInView();
                 return;
             }
             const mapped = {
@@ -1782,6 +1791,7 @@
                 accentColor: versionRow.color_secundario || THEMES['sunset'].accent
             };
             hydrateUI(mapped, theme);
+            stopPendingLoadInView();
         }
 
         async function syncToSupabase(data, theme) {
@@ -1896,6 +1906,7 @@
                         await loadEmbedContext();
                     } else {
                         await fetchBannerFromSupabase();
+                        stopPendingLoadInView();
                     }
                 } catch (e) {
                     console.warn('No se pudo sincronizar con Supabase en el arranque', e);
@@ -2457,6 +2468,12 @@
             if (!EMBED_MODE) {
                 clearFormModal();
             }
+        }
+
+        async function clearFormAndClose() {
+            clearFormModal();
+            await saveData();
+            closeFormModal();
         }
 
         function clearFormModal(options = {}) {
