@@ -1546,6 +1546,7 @@
         const SUPABASE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_KEY);
         const SUPABASE_BUCKET = 'fotos-banners';
         const SUPABASE_REQUEST_TIMEOUT_MS = 8000;
+        const VIEW_IDLE_STOP_MS = 6000;
 
         function fetchWithTimeout(url, options = {}) {
             const controller = new AbortController();
@@ -1757,6 +1758,17 @@
             try { window.stop(); } catch (e) {}
         }
 
+        function armViewIdleStop() {
+            if (MODE !== 'view') return;
+            const timerId = setTimeout(() => {
+                stopPendingLoadInView();
+            }, VIEW_IDLE_STOP_MS);
+            window.addEventListener('load', () => {
+                stopPendingLoadInView();
+                clearTimeout(timerId);
+            }, { once: true });
+        }
+
         async function loadEmbedContext() {
             if (!SUPABASE_CLIENT) {
                 setEmptyEmbedState();
@@ -1896,6 +1908,7 @@
             const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
             const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             hydrateUI(data, theme);
+            armViewIdleStop();
 
             if (SUPABASE_CLIENT) {
                 try {
