@@ -1513,7 +1513,9 @@
 
         // MODO DE EJECUCION (config / preview / view)
         const params = new URLSearchParams(window.location.search);
-        const MODE = params.get("mode") || "config";
+        const REQUESTED_MODE = params.get("mode") || "config";
+        const STANDBY_MODE = params.get("standby") === "1";
+        const MODE = STANDBY_MODE ? "view" : REQUESTED_MODE;
         const CONTEXT_ID = params.get("contextId") || '';
         const EMBED_MODE = Boolean(CONTEXT_ID);
 
@@ -1754,12 +1756,12 @@
         }
 
         function stopPendingLoadInView() {
-            if (MODE !== 'view') return;
+            if (MODE !== 'view' && !STANDBY_MODE) return;
             try { window.stop(); } catch (e) {}
         }
 
         function armViewIdleStop() {
-            if (MODE !== 'view') return;
+            if (MODE !== 'view' && !STANDBY_MODE) return;
             const timerId = setTimeout(() => {
                 stopPendingLoadInView();
             }, VIEW_IDLE_STOP_MS);
