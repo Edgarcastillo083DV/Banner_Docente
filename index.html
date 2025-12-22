@@ -1207,7 +1207,7 @@
                     </button>
                     <button class="btn-config" onclick="openConfigModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
-                        Configuraci�n
+                        Configuraci&oacute;n
                     </button>
                     <button class="btn-versions" onclick="openVersionsModal()">
                         <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
@@ -1261,8 +1261,8 @@
                         <label class="required">Escuela</label>
                         <select id="school">
                             <option value="">Seleccionar Escuela</option>
-                        <option value="educacion">Escuela de Educaci�n</option>
-                        <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnolog�a</option>
+                        <option value="educacion">Escuela de Educaci&oacute;n</option>
+                        <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnolog&iacute;a</option>
                             <option value="humanidades">Escuela de Humanidades</option>
                             <option value="negocios">Escuela de Negocios</option>
                             <option value="salud">Escuela de Salud</option>
@@ -1278,13 +1278,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="required">Tel�fono / Celular</label>
+                        <label class="required">Tel&eacute;fono / Celular</label>
                         <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="phoneError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="required">N�mero de WhatsApp personal</label>
+                        <label class="required">N&uacute;mero de WhatsApp personal</label>
                         <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" />
                         <div class="error" id="whatsappPersonalError"></div>
                     </div>
@@ -1303,7 +1303,7 @@
                                     <label for="photo" class="photo-input-label" id="photoInputLabel">Seleccionar archivo</label>
                                     <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                                 </div>
-                                <div class="photo-input-status" id="photoInputStatus">Ning�n archivo seleccionado</div>
+                                <div class="photo-input-status" id="photoInputStatus">Ning&uacute;n archivo seleccionado</div>
                             </div>
 
                             <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
@@ -1315,7 +1315,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Informaci�n Adicional</label>
+                        <label>Informaci&oacute;n Adicional</label>
                         <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc."></textarea>
                         <div class="textarea-help">Este campo es opcional.</div>
                     </div>
@@ -1388,7 +1388,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Configuraci�n del Banner</h2>
+                <h2>Configuraci&oacute;n del Banner</h2>
                 <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeConfigModal()">&times;</button>
             </div>
 
@@ -1406,7 +1406,7 @@
                 <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
                     <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
                     <div>
-                        <div class="theme-label">Oc�ano</div>
+                        <div class="theme-label">Oc&eacute;ano</div>
                     </div>
                 </div>
 
@@ -1496,8 +1496,8 @@
             try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
         });
         const SCHOOL_LABELS = {
-            'Educacion': 'Escuela de Educaci�n',
-            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnolog�a',
+            'Educacion': 'Escuela de Educaci\\u00f3n',
+            'ciencia-tecnologia': 'Escuela de Ciencia y Tecnolog\\u00eda',
             'humanidades': 'Escuela de Humanidades',
             'negocios': 'Escuela de Negocios',
             'salud': 'Escuela de Salud',
@@ -1589,8 +1589,8 @@
 
             if (error) {
                 console.warn('[v0] Supabase sin conexion', error);
-                setDbStatus('error', 'Base de datos: sin conexion');
-                try { showToast('Sin conexi�n a Supabase. Revisa tu Internet o bloqueos DNS.', 'error'); } catch(e) {}
+                setDbStatus('error', 'Base de datos: sin conexi\\u00f3n');
+                showToast('Sin conexi\\u00f3n a Supabase. Revisa tu Internet o bloqueos DNS.', 'error');
             } else {
                 setDbStatus('ok', 'Base de datos: conectada');
             }
@@ -1631,7 +1631,7 @@
                 if (photoPreview) photoPreview.src = '';
                 if (photoWrapper) photoWrapper.style.display = 'none';
                 if (photoInputStatus) {
-                    photoInputStatus.textContent = 'Ning�n archivo seleccionado';
+                    photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
                     photoInputStatus.classList.remove('has-file');
                 }
             }
@@ -2030,7 +2030,7 @@
             photoInput.value = '';
             photoPreview.src = '';
             photoWrapper.style.display = 'none';
-            photoInputStatus.textContent = 'Ning�n archivo seleccionado';
+            photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
             photoInputStatus.classList.remove('has-file');
             saveData();
         }
@@ -2096,7 +2096,7 @@
                     qr.addData(value);
                     qr.make();
                     const cellSize = Math.max(2, Math.floor(size / 40));
-                    return qr.createDataURL(cellSize, 2); // margen peque�o
+                    return qr.createDataURL(cellSize, 2); // margen pequeno
                 } catch (e) {
                     console.error('Error al generar el QR con qrcode-generator', e);
                 }
@@ -2291,7 +2291,7 @@
             const whatsappGroupUrl = sanitizeUrl(data.whatsappGroup);
             const qrImage = whatsappGroupUrl ? await generateQrDataUrl(whatsappGroupUrl, 200) : '';
 
-            // marcar tarjeta activa seg�n colores actuales
+            // marcar tarjeta activa segun colores actuales
             document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             if (primaryColor === THEMES['sunset'].primary && accentColor === THEMES['sunset'].accent) {
                 const card = document.querySelector('.theme-card[data-theme=\"sunset\"]');
@@ -2377,7 +2377,7 @@
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
-                                    ${hasComments ? `<h4>Informaci�n Adicional</h4><p>${safeComments}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el c�digo para unirte al grupo.</p>`}
+                                    ${hasComments ? `<h4>Informaci&oacute;n Adicional</h4><p>${safeComments}</p>` : `<h4>Grupo de WhatsApp</h4><p>Escanea el c&oacute;digo para unirte al grupo.</p>`}
                                 </div>
                                 ${qrImage ? `<div class="banner-qr"><img src="${qrImage}" alt="QR del grupo de WhatsApp" width="96" height="96" /></div>` : ''}
                             </div>
@@ -2416,11 +2416,11 @@
 
             nameError.textContent = '';
             schoolError.textContent = '';
-            emailError.textContent = '';
+            emailError.textContent = 'Ingrese un correo v\\u00e1lido.';
             phoneError.textContent = '';
             cedulaError.textContent = '';
             wpPersonalError.textContent = '';
-            wpGroupError.textContent = '';
+            wpGroupError.textContent = 'Ingrese un enlace v\\u00e1lido (http o https).';
             if (photoError) photoError.textContent = '';
 
             if (!name) {
@@ -2436,11 +2436,11 @@
             }
 
             if (!email) {
-                emailError.textContent = 'Este campo es obligatorio.';
+                emailError.textContent = 'Ingrese un correo v\\u00e1lido.';
                 isValid = false;
                 missing.push('email');
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                emailError.textContent = 'Ingrese un correo v�lido.';
+                emailError.textContent = 'Ingrese un correo v\\u00e1lido.';
                 isValid = false;
             }
 
@@ -2463,11 +2463,11 @@
             }
 
             if (!whatsappGroup) {
-                wpGroupError.textContent = 'Este campo es obligatorio.';
+                wpGroupError.textContent = 'Ingrese un enlace v\\u00e1lido (http o https).';
                 isValid = false;
                 missing.push('whatsappGroup');
             } else if (!/^https?:\/\//i.test(whatsappGroup)) {
-                wpGroupError.textContent = 'Ingrese un enlace v�lido (http o https).';
+                wpGroupError.textContent = 'Ingrese un enlace v\\u00e1lido (http o https).';
                 isValid = false;
             }
 
@@ -2562,7 +2562,7 @@
             if (photoPreview) photoPreview.src = '';
             if (photoWrapper) photoWrapper.style.display = 'none';
                 if (photoInputStatus) {
-                    photoInputStatus.textContent = 'Ning�n archivo seleccionado';
+                    photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
                     photoInputStatus.classList.remove('has-file');
                 }
         }
@@ -2625,7 +2625,7 @@
 
         function enableFacilitatorEditing() {
             setFacilitatorFieldsReadOnly(false);
-            showToast('Edici�n habilitada', 'success');
+            showToast('Edici\\u00f3n habilitada', 'success');
         }
 
         async function lookupCedulaAndFill(rawValue) {
@@ -2648,7 +2648,7 @@
                 return;
             }
 
-            setCedulaStatus('', 'Buscando c�dula...');
+            setCedulaStatus('', 'Buscando c\\u00e9dula...');
 
             const formatted = formatCedula(normalized);
             const filters = [
@@ -2665,7 +2665,7 @@
 
             if (error) {
                 console.warn('Supabase lookup error', error.message);
-                setCedulaStatus('error', 'No se pudo consultar la c�dula.');
+                setCedulaStatus('error', 'No se pudo consultar la c\\u00e9dula.');
                 lastCedulaLookup = '';
                 return;
             }
@@ -2674,7 +2674,7 @@
             if (!row) {
                 STORAGE.removeItem('bannerId');
                 clearFormModal({ keepCedula: true });
-                setCedulaStatus('error', 'C�dula no encontrada. Completa los datos.');
+                setCedulaStatus('error', 'C\\u00e9dula no encontrada. Completa los datos.');
                 return;
             }
             await clearAdditionalInfoIfWhatsApp(row);
@@ -2701,7 +2701,7 @@
             hydrateUI(mapped, theme);
             STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
             setFacilitatorFieldsReadOnly(true);
-            setCedulaStatus('success', 'C�dula encontrada. Puedes editar los datos.');
+            setCedulaStatus('success', 'C\\u00e9dula encontrada. Puedes editar los datos.');
         }
 
         function populateFormFromSavedData() {
@@ -2732,7 +2732,7 @@
             } else {
                 photoPreview.src = '';
                 photoWrapper.style.display = 'none';
-                photoInputStatus.textContent = 'Ning�n archivo seleccionado';
+                photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
                 photoInputStatus.classList.remove('has-file');
             }
         }
@@ -2864,7 +2864,7 @@ async function saveVersion() {
 
     document.getElementById('versionName').value = '';
     STORAGE.setItem('historySnapshot', JSON.stringify({ data, theme }));
-    showToast('Versi�n guardada correctamente', 'success');
+    showToast('Versi\\u00f3n guardada correctamente', 'success');
     loadVersionsList();
 }
 
@@ -2886,7 +2886,7 @@ async function loadVersionsList() {
 
     const { bannerId, cedula } = getHistoryFilter();
     if (!bannerId && !cedula) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con c�dula para ver el historial.</p>';
+        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con c\u00e9dula para ver el historial.</p>';
         return;
     }
 
@@ -2906,8 +2906,8 @@ async function loadVersionsList() {
     if (error) {
         console.warn('Supabase history fetch error', error.message);
         listContainer.innerHTML = '<p style="color: #999; text-align: center;">No se pudo cargar el historial.</p>';
-        try { showToast('Sin conexi�n a Supabase. Verifica tu red o dominio bloqueado.', 'error'); } catch(e) {}
-        try { setDbStatus('error', 'Base de datos: sin conexi�n'); } catch(e) {}
+        showToast('Sin conexi\\u00f3n a Supabase. Revisa tu Internet o bloqueos DNS.', 'error');
+        setDbStatus('error', 'Base de datos: sin conexi\\u00f3n');
         return;
     }
 
@@ -2946,7 +2946,7 @@ async function loadVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history load error', error.message);
-        showToast('No se pudo cargar la versi�n.', 'error');
+        showToast('No se pudo cargar la versi\\u00f3n.', 'error');
         return;
     }
 
@@ -2979,7 +2979,7 @@ async function loadVersion(versionId) {
     hydrateUI(mapped, theme);
     STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
     closeVersionsModal();
-    showToast('Versi�n cargada correctamente', 'success');
+    showToast('Versi\\u00f3n cargada correctamente', 'success');
 }
 
 function renameVersionFromButton(btn) {
@@ -3025,13 +3025,13 @@ async function renameVersion(versionId = '') {
     const save = document.getElementById('renameVersionSave');
     const targetId = versionId || (save ? save.dataset.id : '');
     if (!input || !save || !targetId) {
-        showToast('No se pudo identificar la versi�n.', 'error');
+        showToast('No se pudo identificar la versi\\u00f3n.', 'error');
         return;
     }
 
     const trimmed = (input.value || '').trim();
     if (!trimmed) {
-        alert('El nombre no puede estar vac�o.');
+        alert('El nombre no puede estar vac\\u00edo.');
         return;
     }
 
@@ -3049,17 +3049,17 @@ async function renameVersion(versionId = '') {
 
     if (error) {
         console.warn('Supabase history rename error', error.message);
-        showToast('No se pudo renombrar la versi�n.', 'error');
+        showToast('No se pudo renombrar la versi\\u00f3n.', 'error');
         return;
     }
 
-    showToast('Versi�n renombrada', 'success');
+    showToast('Versi\\u00f3n renombrada', 'success');
     cancelRenameVersion();
     loadVersionsList();
 }
 
 async function deleteVersion(versionId) {
-    if (!confirm('�Est\u00e1s seguro de que deseas eliminar esta versi\u00f3n?')) return;
+    if (!confirm('\\u00bfEst\\u00e1s seguro de que deseas eliminar esta versi\\u00f3n?')) return;
     if (!SUPABASE_CLIENT) return;
 
     const { error } = await SUPABASE_CLIENT
@@ -3069,7 +3069,7 @@ async function deleteVersion(versionId) {
 
     if (error) {
         console.warn('Supabase history delete error', error.message);
-        showToast('No se pudo eliminar la versi�n.', 'error');
+        showToast('No se pudo eliminar la versi\\u00f3n.', 'error');
         return;
     }
 
