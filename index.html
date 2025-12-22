@@ -1762,12 +1762,21 @@
 
         function armViewIdleStop() {
             if (MODE !== 'view' && MODE !== 'config' && !STANDBY_MODE) return;
-            const timerId = setTimeout(() => {
-                stopPendingLoadInView();
-            }, VIEW_IDLE_STOP_MS);
+            let idleTimerId = null;
+            const resetIdleTimer = () => {
+                if (idleTimerId) clearTimeout(idleTimerId);
+                idleTimerId = setTimeout(() => {
+                    stopPendingLoadInView();
+                }, VIEW_IDLE_STOP_MS);
+            };
+            const activityEvents = ['keydown', 'input', 'pointerdown', 'mousedown', 'touchstart', 'scroll'];
+            activityEvents.forEach((evt) => {
+                window.addEventListener(evt, resetIdleTimer, { passive: true });
+            });
+            resetIdleTimer();
             window.addEventListener('load', () => {
                 stopPendingLoadInView();
-                clearTimeout(timerId);
+                if (idleTimerId) clearTimeout(idleTimerId);
             }, { once: true });
         }
 
