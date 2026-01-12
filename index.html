@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3 Banner Facilitador - Aula Digital RD</title>
+    <title>V4 Banner Facilitador - Aula Digital RD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./qr/qrcode-generator.min.js"></script>
@@ -110,12 +111,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         button:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         button:disabled {
@@ -126,7 +127,10 @@
         .icon {
             width: 18px;
             height: 18px;
-            display: inline-flex;             align-items: center;             justify-content: center;             overflow: visible;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
             fill: none;
             stroke: currentColor;
             stroke-width: 1.8;
@@ -195,7 +199,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .form-section h2 {
@@ -283,7 +287,7 @@
             font-weight: 600;
             font-size: 14px;
             display: inline-block;
-            border-right: 1px solid rgba(0,0,0,0.06);
+            border-right: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .photo-input-label:hover {
@@ -319,7 +323,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #e53935;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .remove-photo-icon {
@@ -337,7 +341,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         .remove-photo-icon:hover {
@@ -391,7 +395,7 @@
             color: #fff;
             padding: 12px 14px;
             border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
             cursor: pointer;
             z-index: 1200;
             font-weight: 700;
@@ -404,7 +408,7 @@
         .app-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.45);
+            background: rgba(0, 0, 0, 0.45);
             display: none;
             align-items: center;
             justify-content: center;
@@ -423,7 +427,7 @@
             max-height: 92vh;
             overflow-y: auto;
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
             padding: 16px;
         }
 
@@ -439,7 +443,7 @@
             color: #fff;
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -449,12 +453,12 @@
             background: #c62828;
         }
 
-  .preview-section {
-    background: white;
-    padding: 32px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
+        .preview-section {
+            background: white;
+            padding: 32px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
 
         .device-selector {
@@ -495,7 +499,7 @@
         #bannerPreview {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             min-height: 400px;
             display: flex;
             align-items: center;
@@ -540,7 +544,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .banner-photo-wrapper {
@@ -554,7 +558,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -562,7 +566,7 @@
             font-weight: 700;
             color: white;
             border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .status-dot {
@@ -574,7 +578,7 @@
             border-radius: 50%;
             background: #25d366;
             border: 2px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
         }
 
         .banner-logo {
@@ -594,12 +598,12 @@
         }
 
         .banner-contact {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .contact-item {
@@ -641,12 +645,12 @@
         }
 
         .banner-button.whatsapp-group {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .banner-button.whatsapp-group:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .banner-button .icon {
@@ -668,11 +672,11 @@
         }
 
         .banner-additional {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .banner-additional h4 {
@@ -699,10 +703,10 @@
         }
 
         .banner-qr {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             padding: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             flex-shrink: 0;
         }
 
@@ -744,7 +748,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             overflow-y: auto;
         }
 
@@ -762,7 +766,7 @@
             width: 95%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .modal-header {
@@ -828,6 +832,7 @@
             outline: 3px solid #1a4d7e;
             outline-offset: 2px;
         }
+
         .color-picker-group {
             margin-bottom: 20px;
         }
@@ -887,33 +892,129 @@
             padding: 12px;
             border-radius: 10px;
             background: #fff;
-            border: 1px solid #c7d3dd; /* slightly darker border */
+            border: 1px solid #c7d3dd;
+            /* slightly darker border */
             cursor: pointer;
             transition: box-shadow .15s ease, transform .08s ease;
         }
 
-        .theme-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(20,40,80,0.06); }
+        .theme-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(20, 40, 80, 0.06);
+        }
 
-        .theme-card.active { box-shadow: 0 10px 30px rgba(20,40,80,0.08); border-color: #1a4d7e; }
+        .theme-card.active {
+            box-shadow: 0 10px 30px rgba(20, 40, 80, 0.08);
+            border-color: #1a4d7e;
+        }
 
-        .theme-swatches { display:flex; gap:8px; align-items:center; }
-        .theme-swatch { width:34px; height:28px; border-radius:6px; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); }
+        .theme-swatches {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
 
-        .theme-label { font-size: 14px; color:#163a57; font-weight:700; }
-        .theme-sub { display:block; font-size:12px; color:#666; font-weight:600; }
+        .theme-swatch {
+            width: 34px;
+            height: 28px;
+            border-radius: 6px;
+            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
 
-        .color-row { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
-        .color-swatch-input { width:48px; height:36px; border-radius:8px; border:1px solid #e6eef7; cursor:pointer; }
-        .color-hex-input { flex:1; padding:10px 12px; border-radius:8px; border:1px solid #e6eef7; font-size:14px; }
+        .theme-label {
+            font-size: 14px;
+            color: #163a57;
+            font-weight: 700;
+        }
 
-        .apply-btn { width:100%; padding:14px; background:#1a4d7e; color:white; border:none; border-radius:10px; font-weight:800; font-size:15px; cursor:pointer; }
-        .apply-btn:hover { background:#153d65; }
+        .theme-sub {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .color-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .color-swatch-input {
+            width: 48px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #e6eef7;
+            cursor: pointer;
+        }
+
+        .color-hex-input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #e6eef7;
+            font-size: 14px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 14px;
+            background: #1a4d7e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #153d65;
+        }
 
         /* Config preview styles */
-        .config-row { display:flex; gap:20px; align-items:flex-start; margin-bottom:12px; }
-        .config-preview { width: 260px; height: 140px; border-radius: 10px; overflow: hidden; border: 1px solid #c7d3dd; box-shadow: 0 8px 24px rgba(16,40,80,0.06); background: #fff; flex-shrink:0; }
-        .preview-scale { transform: scale(0.33); transform-origin: top left; width: 800px; height: 420px; }
-        @media (max-width: 768px) { .config-row { flex-direction: column-reverse; } .config-preview { width:100%; height:160px; } .preview-scale { transform: scale(0.28); width:700px; } }
+        .config-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .config-preview {
+            width: 260px;
+            height: 140px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #c7d3dd;
+            box-shadow: 0 8px 24px rgba(16, 40, 80, 0.06);
+            background: #fff;
+            flex-shrink: 0;
+        }
+
+        .preview-scale {
+            transform: scale(0.33);
+            transform-origin: top left;
+            width: 800px;
+            height: 420px;
+        }
+
+        @media (max-width: 768px) {
+            .config-row {
+                flex-direction: column-reverse;
+            }
+
+            .config-preview {
+                width: 100%;
+                height: 160px;
+            }
+
+            .preview-scale {
+                transform: scale(0.28);
+                width: 700px;
+            }
+        }
 
         .export-options {
             display: grid;
@@ -1079,7 +1180,7 @@
             display: block;
         }
 
-        
+
 
         .form-footer {
             margin-top: 20px;
@@ -1154,6 +1255,7 @@
         }
     </style>
 </head>
+
 <body>
     <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
         <symbol id="icon-form" viewBox="0 0 24 24">
@@ -1169,7 +1271,9 @@
         </symbol>
         <symbol id="icon-gear" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path>
+            <path
+                d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z">
+            </path>
         </symbol>
         <symbol id="icon-history" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9"></circle>
@@ -1185,32 +1289,44 @@
             <path d="m4 7 8 5 8-5"></path>
         </symbol>
         <symbol id="icon-phone" viewBox="0 0 24 24">
-            <path d="M6.5 3h2.7c.2 0 .4.15.45.35l.7 3a.5.5 0 0 1-.14.47L8.6 8.87a9.5 9.5 0 0 0 6.53 6.53l1.05-1.61a.5.5 0 0 1 .47-.14l3 .7c.2.05.35.25.35.46v2.7a1 1 0 0 1-1 1A12.5 12.5 0 0 1 5.5 4a1 1 0 0 1 1-1z"></path>
+            <path
+                d="M6.5 3h2.7c.2 0 .4.15.45.35l.7 3a.5.5 0 0 1-.14.47L8.6 8.87a9.5 9.5 0 0 0 6.53 6.53l1.05-1.61a.5.5 0 0 1 .47-.14l3 .7c.2.05.35.25.35.46v2.7a1 1 0 0 1-1 1A12.5 12.5 0 0 1 5.5 4a1 1 0 0 1 1-1z">
+            </path>
         </symbol>
-                <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24">
             <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" fill="none"></path>
-            <path d="M9.5 8.8c.2-.3.3-.5.5-.5.1 0 .3-.1.5.1.1.1.9 1 .9 1.1 0 .1.1.3 0 .5-.2.2-.3.3-.5.5-.1.1-.3.2-.2.4.1.2.5.9 1.2 1.5.8.6 1.4.8 1.6.9.1.1.3 0 .4-.1s.5-.6.7-.8.3-.1.5-.1.3 0 .4 0 .4.2.4.3.4 1.1.4 1.3-.1.3-.3.4c-.1.1-.7.4-1.4.4-.3 0-.9-.1-1.6-.4-.9-.3-1.8-1-2.5-1.8-.3-.4-.8-1-1-1.6-.4-.8-.3-1.4-.2-1.5z" fill="none"></path>
+            <path
+                d="M9.5 8.8c.2-.3.3-.5.5-.5.1 0 .3-.1.5.1.1.1.9 1 .9 1.1 0 .1.1.3 0 .5-.2.2-.3.3-.5.5-.1.1-.3.2-.2.4.1.2.5.9 1.2 1.5.8.6 1.4.8 1.6.9.1.1.3 0 .4-.1s.5-.6.7-.8.3-.1.5-.1.3 0 .4 0 .4.2.4.3.4 1.1.4 1.3-.1.3-.3.4c-.1.1-.7.4-1.4.4-.3 0-.9-.1-1.6-.4-.9-.3-1.8-1-2.5-1.8-.3-.4-.8-1-1-1.6-.4-.8-.3-1.4-.2-1.5z"
+                fill="none"></path>
         </symbol>
-	    </svg>
+    </svg>
 
     <div class="container">
         <div class="content">
             <div class="preview-section">
                 <div class="button-group">
                     <button class="btn-form" onclick="openFormModal()">
-                        <svg class="icon" aria-hidden="true"><use href="#icon-form"></use></svg>
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#icon-form"></use>
+                        </svg>
                         Formulario
                     </button>
                     <button class="btn-download" onclick="openExportModal()" id="downloadBtn">
-                        <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#icon-download"></use>
+                        </svg>
                         Exportar
                     </button>
                     <button class="btn-config" onclick="openConfigModal()">
-                        <svg class="icon" aria-hidden="true"><use href="#icon-gear"></use></svg>
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#icon-gear"></use>
+                        </svg>
                         Configuraci&oacute;n
                     </button>
                     <button class="btn-versions" onclick="openVersionsModal()">
-                        <svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg>
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#icon-history"></use>
+                        </svg>
                         Historial
                     </button>
                     <div id="dbStatus" class="db-status warn" aria-live="polite">
@@ -1231,98 +1347,105 @@
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <div id="formModal" class="modal">
-            <div class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2>Datos del Facilitador</h2>
                 <div class="modal-header-actions">
-                    <button class="btn-edit" id="editFacilitatorBtn" type="button" onclick="enableFacilitatorEditing()" disabled>Editar facilitador</button>
+                    <button class="btn-edit" id="editFacilitatorBtn" type="button" onclick="enableFacilitatorEditing()"
+                        disabled>Editar facilitador</button>
                     <button class="btn-edit" type="button" onclick="clearFormAndClose()">Limpiar</button>
-                    <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeFormModal()">&times;</button>
+                    <button class="close-btn" type="button" aria-label="Cerrar"
+                        onclick="closeFormModal()">&times;</button>
                 </div>
             </div>
 
-                <div class="form-section" style="box-shadow: none; padding: 0;">
-                    <div class="save-status" id="saveStatus">Datos guardados autom&aacute;ticamente</div>
+            <div class="form-section" style="box-shadow: none; padding: 0;">
+                <div class="save-status" id="saveStatus">Datos guardados autom&aacute;ticamente</div>
 
-                    <div class="form-group">
-                        <label class="required">Cedula</label>
-                        <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" />
-                        <div class="error" id="cedulaError"></div>
-                        <div class="success" id="cedulaStatus"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">Cedula</label>
+                    <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" />
+                    <div class="error" id="cedulaError"></div>
+                    <div class="success" id="cedulaStatus"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Nombre Completo</label>
-                        <input type="text" id="name" placeholder="Ej: Prof. Maria Garcia" />
-                        <div class="error" id="nameError"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">Nombre Completo</label>
+                    <input type="text" id="name" placeholder="Ej: Prof. Maria Garcia" />
+                    <div class="error" id="nameError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Escuela</label>
-                        <select id="school">
-                            <option value="">Seleccionar Escuela</option>
+                <div class="form-group">
+                    <label class="required">Escuela</label>
+                    <select id="school">
+                        <option value="">Seleccionar Escuela</option>
                         <option value="educacion">Escuela de Educaci&oacute;n</option>
                         <option value="ciencia-tecnologia">Escuela de Ciencia y Tecnolog&iacute;a</option>
-                            <option value="humanidades">Escuela de Humanidades</option>
-                            <option value="negocios">Escuela de Negocios</option>
-                            <option value="salud">Escuela de Salud</option>
-                            <option value="artes">Escuela de Artes</option>
-                        </select>
-                        <div class="error" id="schoolError"></div>
-                    </div>
+                        <option value="humanidades">Escuela de Humanidades</option>
+                        <option value="negocios">Escuela de Negocios</option>
+                        <option value="salud">Escuela de Salud</option>
+                        <option value="artes">Escuela de Artes</option>
+                    </select>
+                    <div class="error" id="schoolError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Correo Electronico</label>
-                        <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" />
-                        <div class="error" id="emailError"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">Correo Electronico</label>
+                    <input type="email" id="email" placeholder="Ej: maria.garcia@auladigitalrd.edu.do" />
+                    <div class="error" id="emailError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Tel&eacute;fono / Celular</label>
-                        <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" />
-                        <div class="error" id="phoneError"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">Tel&eacute;fono / Celular</label>
+                    <input type="tel" id="phone" placeholder="Ej: 1 809-555-1234" />
+                    <div class="error" id="phoneError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">N&uacute;mero de WhatsApp personal</label>
-                        <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" />
-                        <div class="error" id="whatsappPersonalError"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">N&uacute;mero de WhatsApp personal</label>
+                    <input type="tel" id="whatsappPersonal" placeholder="Ej: 1 809-555-1234" />
+                    <div class="error" id="whatsappPersonalError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Link del Grupo de WhatsApp</label>
-                        <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." />
-                        <div class="error" id="whatsappGroupError"></div>
-                    </div>
+                <div class="form-group">
+                    <label class="required">Link del Grupo de WhatsApp</label>
+                    <input type="url" id="whatsappGroup" placeholder="Ej: https://chat.whatsapp.com/..." />
+                    <div class="error" id="whatsappGroupError"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="required">Foto del Facilitador</label>
-                        <div class="photo-row">
-                            <div class="photo-input-container">
-                                <div class="photo-input-wrapper">
-                                    <label for="photo" class="photo-input-label" id="photoInputLabel">Seleccionar archivo</label>
-                                    <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
-                                </div>
-                                <div class="photo-input-status" id="photoInputStatus">Ning&uacute;n archivo seleccionado</div>
+                <div class="form-group">
+                    <label class="required">Foto del Facilitador</label>
+                    <div class="photo-row">
+                        <div class="photo-input-container">
+                            <div class="photo-input-wrapper">
+                                <label for="photo" class="photo-input-label" id="photoInputLabel">Seleccionar
+                                    archivo</label>
+                                <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload()" />
                             </div>
-
-                            <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
-                                <img id="photoPreview" class="photo-preview" alt="Foto del facilitador" onerror="this.src=''" />
-                                <button type="button" class="remove-photo-icon" id="removePhotoBtn" onclick="removePhoto()">&times;</button>
+                            <div class="photo-input-status" id="photoInputStatus">Ning&uacute;n archivo seleccionado
                             </div>
                         </div>
-                        <div class="error" id="photoError"></div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Informaci&oacute;n Adicional</label>
-                        <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc."></textarea>
-                        <div class="textarea-help">Este campo es opcional.</div>
+                        <div id="photoWrapper" class="photo-wrapper" style="margin:0;">
+                            <img id="photoPreview" class="photo-preview" alt="Foto del facilitador"
+                                onerror="this.src=''" />
+                            <button type="button" class="remove-photo-icon" id="removePhotoBtn"
+                                onclick="removePhoto()">&times;</button>
+                        </div>
                     </div>
+                    <div class="error" id="photoError"></div>
+                </div>
 
-                    <div class="form-footer">
-                        <button type="button" class="btn-form btn-primary-full" onclick="submitFormModal()">Guardar y Cerrar</button>
-                    </div>
+                <div class="form-group">
+                    <label>Informaci&oacute;n Adicional</label>
+                    <textarea id="comments" placeholder="Mensaje de bienvenida, horario, etc."></textarea>
+                    <div class="textarea-help">Este campo es opcional.</div>
+                </div>
+
+                <div class="form-footer">
+                    <button type="button" class="btn-form btn-primary-full" onclick="submitFormModal()">Guardar y
+                        Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1332,37 +1455,63 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Exportar Banner</h2>
-                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeExportModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar"
+                    onclick="closeExportModal()">&times;</button>
             </div>
 
             <p style="color: #666; margin-bottom: 20px;">Selecciona el formato en el que deseas descargar tu banner:</p>
 
             <div class="export-options">
                 <button class="export-btn" onclick="downloadBanner('png')">
-                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg></div>
+                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v12"></path>
+                            <path d="m7 11 5 5 5-5"></path>
+                            <path d="M5 19h14"></path>
+                        </svg></div>
                     PNG (Transparencia)
                 </button>
                 <button class="export-btn" onclick="downloadBanner('jpg')">
-                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg></div>
+                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v12"></path>
+                            <path d="m7 11 5 5 5-5"></path>
+                            <path d="M5 19h14"></path>
+                        </svg></div>
                     JPG (Comprimido)
                 </button>
                 <!-- PDF export removed; export as image formats only -->
                 <button class="export-btn" onclick="downloadBanner('webp')">
-                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 19h14"></path></svg></div>
+                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v12"></path>
+                            <path d="m7 11 5 5 5-5"></path>
+                            <path d="M5 19h14"></path>
+                        </svg></div>
                     WebP (Moderno)
                 </button>
                 <button class="export-btn" onclick="openEmbedGenerator()">
-                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z"></path></svg></div>
+                    <div style="font-size: 24px; margin-bottom: 8px;"><svg class="icon" aria-hidden="true"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 12a7.5 7.5 0 0 0-.06-.98l2.02-1.53-2-3.46-2.46.61a7.1 7.1 0 0 0-1.7-.99L14.7 3h-5.4l-.5 2.65a7.1 7.1 0 0 0-1.7.99l-2.46-.61-2 3.46L4.2 11c-.04.32-.06.65-.06.98 0 .33.02.66.06.98l-2.02 1.53 2 3.46 2.46-.61a7.1 7.1 0 0 0 1.7.99l.5 2.65h5.4l.5-2.65a7.1 7.1 0 0 0 1.7-.99l2.46.61 2-3.46L19.34 13c.04-.32.06-.65.06-.98z">
+                            </path>
+                        </svg></div>
                     Generar Embed
                 </button>
-                    <!-- Embed removed: embed functionality deleted -->
+                <!-- Embed removed: embed functionality deleted -->
             </div>
 
             <button type="button" onclick="closeExportModal()" class="btn-form btn-primary-full">Cancelar</button>
         </div>
     </div>
 
-        <!-- Embed Modal -->
+    <!-- Embed Modal -->
     <div id="embedModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1374,13 +1523,19 @@
                 <label>Creado por (opcional)</label>
                 <input type="text" id="embedCreatedBy" placeholder="Ej: Coordinador de escuela" />
             </div>
-            <textarea id="embedCode" style="width:100%; min-height: 160px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;" readonly></textarea>
+            <textarea id="embedCode"
+                style="width:100%; min-height: 160px; padding:12px; border:1px solid #dde3eb; border-radius:10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; resize: vertical;"
+                readonly></textarea>
             <div style="display:flex; gap:10px; margin-top:12px;">
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="generateEmbed()">Generar embed</button>
-                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar codigo</button>
-                <button class="btn-form" style="flex:1; justify-content:center;" onclick="closeEmbedModal()">Cerrar</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="generateEmbed()">Generar
+                    embed</button>
+                <button class="btn-embed" style="flex:1; justify-content:center;" onclick="copyEmbedCode()">Copiar
+                    codigo</button>
+                <button class="btn-form" style="flex:1; justify-content:center;"
+                    onclick="closeEmbedModal()">Cerrar</button>
             </div>
-            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">Codigo copiado al portapapeles</div>
+            <div id="embedStatus" style="display:none; margin-top:10px; font-size:13px; color:#2e7d32;">Codigo copiado
+                al portapapeles</div>
         </div>
     </div>
 
@@ -1389,60 +1544,82 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Configuraci&oacute;n del Banner</h2>
-                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeConfigModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar"
+                    onclick="closeConfigModal()">&times;</button>
             </div>
 
             <div class="config-row">
                 <div style="flex:1;">
                     <h3 style="color: #1a4d7e; margin-bottom: 12px; font-size: 16px;">Temas Predefinidos</h3>
                     <div class="theme-grid" id="themeGrid">
-                <div class="theme-card" data-theme="sunset" onclick="selectThemeCard(this,'sunset')">
-                    <div class="theme-swatches"><div class="theme-swatch" style="background:#ff6f00"></div><div class="theme-swatch" style="background:#ff1744"></div></div>
-                    <div>
-                        <div class="theme-label">Atardecer <span class="theme-sub">(Predeterminado)</span></div>
-                    </div>
-                </div>
+                        <div class="theme-card" data-theme="sunset" onclick="selectThemeCard(this,'sunset')">
+                            <div class="theme-swatches">
+                                <div class="theme-swatch" style="background:#ff6f00"></div>
+                                <div class="theme-swatch" style="background:#ff1744"></div>
+                            </div>
+                            <div>
+                                <div class="theme-label">Atardecer <span class="theme-sub">(Predeterminado)</span></div>
+                            </div>
+                        </div>
 
-                <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
-                    <div class="theme-swatches"><div class="theme-swatch" style="background:#006994"></div><div class="theme-swatch" style="background:#00bcd4"></div></div>
-                    <div>
-                        <div class="theme-label">Oc&eacute;ano</div>
-                    </div>
-                </div>
+                        <div class="theme-card" data-theme="ocean" onclick="selectThemeCard(this,'ocean')">
+                            <div class="theme-swatches">
+                                <div class="theme-swatch" style="background:#006994"></div>
+                                <div class="theme-swatch" style="background:#00bcd4"></div>
+                            </div>
+                            <div>
+                                <div class="theme-label">Oc&eacute;ano</div>
+                            </div>
+                        </div>
 
-                <div class="theme-card" data-theme="forest" onclick="selectThemeCard(this,'forest')">
-                    <div class="theme-swatches"><div class="theme-swatch" style="background:#1b5e20"></div><div class="theme-swatch" style="background:#66bb6a"></div></div>
-                    <div>
-                        <div class="theme-label">Bosque</div>
-                    </div>
-                </div>
+                        <div class="theme-card" data-theme="forest" onclick="selectThemeCard(this,'forest')">
+                            <div class="theme-swatches">
+                                <div class="theme-swatch" style="background:#1b5e20"></div>
+                                <div class="theme-swatch" style="background:#66bb6a"></div>
+                            </div>
+                            <div>
+                                <div class="theme-label">Bosque</div>
+                            </div>
+                        </div>
 
-                <div class="theme-card" data-theme="auladigital" onclick="selectThemeCard(this,'auladigital')">
-                    <div class="theme-swatches"><div class="theme-swatch" style="background:#1a4d7e"></div><div class="theme-swatch" style="background:#e53935"></div></div>
-                    <div>
-                        <div class="theme-label">Aula Digital</div>
-                    </div>
-                </div>
+                        <div class="theme-card" data-theme="auladigital" onclick="selectThemeCard(this,'auladigital')">
+                            <div class="theme-swatches">
+                                <div class="theme-swatch" style="background:#1a4d7e"></div>
+                                <div class="theme-swatch" style="background:#e53935"></div>
+                            </div>
+                            <div>
+                                <div class="theme-label">Aula Digital</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div>
                     <div style="font-size:13px; color:#23445a; font-weight:700; margin-bottom:8px;">Mini preview</div>
-                    <div id="configPreview" class="config-preview"><div id="previewScale" class="preview-scale"></div></div>
+                    <div id="configPreview" class="config-preview">
+                        <div id="previewScale" class="preview-scale"></div>
+                    </div>
                 </div>
             </div>
 
-            <h3 style="color: #1a4d7e; margin-bottom: 12px; font-size: 16px; margin-top: 10px;">Colores Personalizados</h3>
+            <h3 style="color: #1a4d7e; margin-bottom: 12px; font-size: 16px; margin-top: 10px;">Colores Personalizados
+            </h3>
             <div class="color-row">
-                <div class="color-swatch-input" id="primarySwatch" onclick="document.getElementById('primaryColor').click()" style="background:#ff6f00"></div>
-                <input type="color" id="primaryColor" value="#ff6f00" onchange="onPrimaryColorChange(this.value)" style="display:none;" />
-                <input class="color-hex-input" id="primaryHex" value="#ff6f00" onchange="onPrimaryHexChange(this.value)" />
+                <div class="color-swatch-input" id="primarySwatch"
+                    onclick="document.getElementById('primaryColor').click()" style="background:#ff6f00"></div>
+                <input type="color" id="primaryColor" value="#ff6f00" onchange="onPrimaryColorChange(this.value)"
+                    style="display:none;" />
+                <input class="color-hex-input" id="primaryHex" value="#ff6f00"
+                    onchange="onPrimaryHexChange(this.value)" />
             </div>
 
             <div class="color-row">
-                <div class="color-swatch-input" id="accentSwatch" onclick="document.getElementById('accentColor').click()" style="background:#ff1744"></div>
-                <input type="color" id="accentColor" value="#ff1744" onchange="onAccentColorChange(this.value)" style="display:none;" />
-                <input class="color-hex-input" id="accentHex" value="#ff1744" onchange="onAccentHexChange(this.value)" />
+                <div class="color-swatch-input" id="accentSwatch"
+                    onclick="document.getElementById('accentColor').click()" style="background:#ff1744"></div>
+                <input type="color" id="accentColor" value="#ff1744" onchange="onAccentColorChange(this.value)"
+                    style="display:none;" />
+                <input class="color-hex-input" id="accentHex" value="#ff1744"
+                    onchange="onAccentHexChange(this.value)" />
             </div>
 
             <div style="margin-top:14px;">
@@ -1456,7 +1633,8 @@
         <div class="modal-content versions-modal-content">
             <div class="modal-header">
                 <h2>Historial de Banners</h2>
-                <button class="close-btn" type="button" aria-label="Cerrar" onclick="closeVersionsModal()">&times;</button>
+                <button class="close-btn" type="button" aria-label="Cerrar"
+                    onclick="closeVersionsModal()">&times;</button>
             </div>
 
             <div class="form-group versions-save">
@@ -1477,11 +1655,13 @@
                 <input type="text" id="renameVersionInput" placeholder="Nuevo nombre..." />
                 <div class="actions">
                     <button class="version-btn delete" type="button" onclick="cancelRenameVersion()">Cancelar</button>
-                    <button class="version-btn" type="button" id="renameVersionSave" onclick="renameVersion()">Guardar</button>
+                    <button class="version-btn" type="button" id="renameVersionSave"
+                        onclick="renameVersion()">Guardar</button>
                 </div>
             </div>
 
-            <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full" style="margin-top: 20px;">Cerrar</button>
+            <button type="button" onclick="closeVersionsModal()" class="btn-form btn-primary-full"
+                style="margin-top: 20px;">Cerrar</button>
         </div>
     </div>
 
@@ -1489,11 +1669,11 @@
         // Global error handlers to capture and report JS errors (helps debugging)
         window.addEventListener('error', function (e) {
             console.error('Global error caught:', e.message, 'at', e.filename + ':' + e.lineno);
-            try { alert('Error JavaScript: ' + e.message + ' Archivo: ' + e.filename + ':' + e.lineno); } catch (err) {}
+            try { alert('Error JavaScript: ' + e.message + ' Archivo: ' + e.filename + ':' + e.lineno); } catch (err) { }
         });
         window.addEventListener('unhandledrejection', function (e) {
             console.error('Unhandled promise rejection:', e.reason);
-            try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) {}
+            try { alert('Error (promise): ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason))); } catch (err) { }
         });
         const SCHOOL_LABELS = {
             'Educacion': 'Escuela de Educaci\\u00f3n',
@@ -1616,7 +1796,7 @@
             if (data.whatsappGroup) document.getElementById('whatsappGroup').value = data.whatsappGroup;
             if (data.comments) document.getElementById('comments').value = data.comments;
 
-                        if (data.photo) {
+            if (data.photo) {
                 const photoPreview = document.getElementById('photoPreview');
                 const photoWrapper = document.getElementById('photoWrapper');
                 const photoInputStatus = document.getElementById('photoInputStatus');
@@ -1647,8 +1827,8 @@
                 loadVersionsList();
             }
             updateBanner();
-            try{ updateConfigPreview(); }catch(e){}
-            
+            try { updateConfigPreview(); } catch (e) { }
+
         }
 
         async function fetchBannerFromSupabase() {
@@ -1757,7 +1937,7 @@
 
         function stopPendingLoadInView() {
             if (MODE !== 'view' && MODE !== 'config' && !STANDBY_MODE) return;
-            try { window.stop(); } catch (e) {}
+            try { window.stop(); } catch (e) { }
         }
 
         function armViewIdleStop() {
@@ -1963,7 +2143,7 @@
             };
             STORAGE.setItem('bannerData', JSON.stringify(data));
             updateBanner();
-            try{ updateConfigPreview(); }catch(e){}
+            try { updateConfigPreview(); } catch (e) { }
 
             const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
             let syncOk = true;
@@ -1983,7 +2163,7 @@
                             theme: JSON.parse(STORAGE.getItem('themeConfig') || '{}')
                         }
                     }, "*");
-                } catch (e) {}
+                } catch (e) { }
             }
             if (syncOk && !EMBED_MODE) {
                 await saveHistoryVersionIfChanged(data, theme);
@@ -2071,27 +2251,27 @@
                     document.getElementById('accentSwatch').style.background = theme.accent;
                     if (document.getElementById('primaryHex')) document.getElementById('primaryHex').value = theme.primary;
                     if (document.getElementById('accentHex')) document.getElementById('accentHex').value = theme.accent;
-                } catch(e){}
+                } catch (e) { }
 
-                document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('active'));
-                try { event.currentTarget && event.currentTarget.classList.add('active'); } catch(e){}
+                document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+                try { event.currentTarget && event.currentTarget.classList.add('active'); } catch (e) { }
 
                 saveTheme();
             }
         }
 
         function selectThemeCard(el, themeName) {
-            document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('active'));
+            document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
             applyTheme(themeName);
         }
 
-        function onPrimaryColorChange(val) { document.getElementById('primarySwatch').style.background = val; if(document.getElementById('primaryHex')) document.getElementById('primaryHex').value = val; saveTheme(); }
-        function onAccentColorChange(val) { document.getElementById('accentSwatch').style.background = val; if(document.getElementById('accentHex')) document.getElementById('accentHex').value = val; saveTheme(); }
-        function onPrimaryHexChange(val) { try{ document.getElementById('primarySwatch').style.background = val; document.getElementById('primaryColor').value = val; saveTheme(); }catch(e){} }
-        function onAccentHexChange(val) { try{ document.getElementById('accentSwatch').style.background = val; document.getElementById('accentColor').value = val; saveTheme(); }catch(e){} }
+        function onPrimaryColorChange(val) { document.getElementById('primarySwatch').style.background = val; if (document.getElementById('primaryHex')) document.getElementById('primaryHex').value = val; saveTheme(); }
+        function onAccentColorChange(val) { document.getElementById('accentSwatch').style.background = val; if (document.getElementById('accentHex')) document.getElementById('accentHex').value = val; saveTheme(); }
+        function onPrimaryHexChange(val) { try { document.getElementById('primarySwatch').style.background = val; document.getElementById('primaryColor').value = val; saveTheme(); } catch (e) { } }
+        function onAccentHexChange(val) { try { document.getElementById('accentSwatch').style.background = val; document.getElementById('accentColor').value = val; saveTheme(); } catch (e) { } }
 
-        function applyConfigChanges(){ saveTheme(); closeConfigModal(); }
+        function applyConfigChanges() { saveTheme(); closeConfigModal(); }
 
         async function generateQrDataUrl(text, size = 200) {
             const value = (text || '').trim();
@@ -2134,15 +2314,15 @@
             return fallback;
         }
 
-        function updateConfigPreview(){
-            try{
+        function updateConfigPreview() {
+            try {
                 const banner = document.getElementById('bannerPreview');
                 const previewScale = document.getElementById('previewScale');
-                if(!banner || !previewScale) return;
+                if (!banner || !previewScale) return;
                 // copy innerHTML and background
                 previewScale.innerHTML = banner.innerHTML;
                 previewScale.style.background = banner.style.background || '';
-            }catch(e){ console.error('updateConfigPreview error', e); }
+            } catch (e) { console.error('updateConfigPreview error', e); }
         }
 
         // Device selection removed - always show desktop preview
@@ -2341,16 +2521,15 @@
             const hasComments = Boolean(data.comments && data.comments.trim());
             const safeComments = hasComments ? formatMultiline(data.comments) : '';
 
-                        banner.innerHTML = `
+            banner.innerHTML = `
                 <div class="banner-content">
                     <div class="banner-header">
                         <div style="display:flex; align-items:center; gap:16px;">
                             <div class="banner-photo-wrapper">
-                                ${
-                                    data.photo
-                                        ? `<img src="${safePhoto}" alt="${safeName}" class="banner-photo" />`
-                                        : `<div class="banner-photo-placeholder">${safeInitial}</div>`
-                                }
+                                ${data.photo
+                    ? `<img src="${safePhoto}" alt="${safeName}" class="banner-photo" />`
+                    : `<div class="banner-photo-placeholder">${safeInitial}</div>`
+                }
                                 <span class="status-dot" title="Activo"></span>
                             </div>
                             <div>
@@ -2380,9 +2559,8 @@
                         </button>
                     </div>
 
-                                        ${
-                        hasComments || qrImage
-                            ? `
+                                        ${hasComments || qrImage
+                    ? `
                         <div class="banner-additional">
                             <div class="banner-extra-row">
                                 <div class="banner-extra-text">
@@ -2392,8 +2570,8 @@
                             </div>
                         </div>
                     `
-                            : ''
-                    }
+                    : ''
+                }
                 </div>
             `;
 
@@ -2515,7 +2693,7 @@
             STORAGE.setItem('skipAutoload', '1');
             STORAGE.removeItem('bannerId');
             updateBanner();
-            try { updateConfigPreview(); } catch (e) {}
+            try { updateConfigPreview(); } catch (e) { }
             closeFormModal();
         }
 
@@ -2570,10 +2748,10 @@
             if (photoInput) photoInput.value = '';
             if (photoPreview) photoPreview.src = '';
             if (photoWrapper) photoWrapper.style.display = 'none';
-                if (photoInputStatus) {
-                    photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
-                    photoInputStatus.classList.remove('has-file');
-                }
+            if (photoInputStatus) {
+                photoInputStatus.textContent = 'Ning\\u00fan archivo seleccionado';
+                photoInputStatus.classList.remove('has-file');
+            }
         }
 
         function normalizeCedula(value) {
@@ -2770,7 +2948,7 @@
 
                 const safeName = (data.name || 'banner-facilitador').replace(/\s/g, '-').toLowerCase();
                 const link = document.createElement('a');
-                
+
                 // Export as image formats only (PNG, JPG, WebP)
                 const mimeType = format === 'jpg' ? 'image/jpeg' : format === 'webp' ? 'image/webp' : 'image/png';
                 canvas.toBlob(blob => {
@@ -2792,145 +2970,145 @@
             }
         }
 
-function getHistoryFilter() {
-    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
-    const bannerId = STORAGE.getItem('bannerId') || null;
-    const cedula = data.cedula ? (formatCedula(data.cedula) || data.cedula) : null;
-    return { bannerId, cedula };
-}
+        function getHistoryFilter() {
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const bannerId = STORAGE.getItem('bannerId') || null;
+            const cedula = data.cedula ? (formatCedula(data.cedula) || data.cedula) : null;
+            return { bannerId, cedula };
+        }
 
-function createHistoryPayload(versionName, data, theme) {
-    const bannerId = STORAGE.getItem('bannerId') || null;
-    return {
-        banner_id: bannerId,
-        version_name: versionName,
-        cedula: data.cedula || null,
-        nombre: data.name || null,
-        escuela: data.school || null,
-        email: data.email || null,
-        telefono: data.phone || null,
-        whatsapp: data.whatsappPersonal || null,
-        grupo_whatsapp: data.whatsappGroup || null,
-        foto_url: data.photo || null,
-        informacion_adicional: data.comments || null,
-        color_primario: theme.primaryColor || null,
-        color_secundario: theme.accentColor || null
-    };
-}
+        function createHistoryPayload(versionName, data, theme) {
+            const bannerId = STORAGE.getItem('bannerId') || null;
+            return {
+                banner_id: bannerId,
+                version_name: versionName,
+                cedula: data.cedula || null,
+                nombre: data.name || null,
+                escuela: data.school || null,
+                email: data.email || null,
+                telefono: data.phone || null,
+                whatsapp: data.whatsappPersonal || null,
+                grupo_whatsapp: data.whatsappGroup || null,
+                foto_url: data.photo || null,
+                informacion_adicional: data.comments || null,
+                color_primario: theme.primaryColor || null,
+                color_secundario: theme.accentColor || null
+            };
+        }
 
-async function saveHistoryVersionIfChanged(data, theme) {
-    if (!SUPABASE_CLIENT) return;
-    const snapshot = JSON.stringify({ data, theme });
-    const lastSnapshot = STORAGE.getItem('historySnapshot');
-    if (snapshot === lastSnapshot) return;
+        async function saveHistoryVersionIfChanged(data, theme) {
+            if (!SUPABASE_CLIENT) return;
+            const snapshot = JSON.stringify({ data, theme });
+            const lastSnapshot = STORAGE.getItem('historySnapshot');
+            if (snapshot === lastSnapshot) return;
 
-    const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
-    const payload = createHistoryPayload(versionName, data, theme);
+            const versionName = `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
+            const payload = createHistoryPayload(versionName, data, theme);
 
-    const { error } = await SUPABASE_CLIENT
-        .from('banners_historial')
-        .insert(payload)
-        .select()
-        .limit(1);
+            const { error } = await SUPABASE_CLIENT
+                .from('banners_historial')
+                .insert(payload)
+                .select()
+                .limit(1);
 
-    if (error) {
-        console.warn('Supabase history auto save error', error.message);
-        return;
-    }
+            if (error) {
+                console.warn('Supabase history auto save error', error.message);
+                return;
+            }
 
-    STORAGE.setItem('historySnapshot', snapshot);
-}
+            STORAGE.setItem('historySnapshot', snapshot);
+        }
 
-async function saveVersion() {
-    const input = document.getElementById('versionName');
-    const trimmedName = input ? (input.value || '').trim() : '';
-    const versionName = trimmedName || `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
-    if (!versionName) {
-        alert('Ingresa un nombre para la versi\u00f3n.');
-        return;
-    }
+        async function saveVersion() {
+            const input = document.getElementById('versionName');
+            const trimmedName = input ? (input.value || '').trim() : '';
+            const versionName = trimmedName || `Contexto ${CONTEXT_ID} - ${new Date().toLocaleString('es-ES')}`;
+            if (!versionName) {
+                alert('Ingresa un nombre para la versi\u00f3n.');
+                return;
+            }
 
-    const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
-    const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
-    if (!SUPABASE_CLIENT) {
-        alert('Base de datos deshabilitada.');
-        return;
-    }
+            const data = JSON.parse(STORAGE.getItem('bannerData') || '{}');
+            const theme = JSON.parse(STORAGE.getItem('themeConfig') || '{}');
+            if (!SUPABASE_CLIENT) {
+                alert('Base de datos deshabilitada.');
+                return;
+            }
 
-    const payload = createHistoryPayload(versionName, data, theme);
+            const payload = createHistoryPayload(versionName, data, theme);
 
-    const { error } = await SUPABASE_CLIENT
-        .from('banners_historial')
-        .insert(payload)
-        .select()
-        .limit(1);
+            const { error } = await SUPABASE_CLIENT
+                .from('banners_historial')
+                .insert(payload)
+                .select()
+                .limit(1);
 
-    if (error) {
-        console.warn('Supabase history save error', error.message);
-        showToast('No se pudo guardar el historial.', 'error');
-        return;
-    }
+            if (error) {
+                console.warn('Supabase history save error', error.message);
+                showToast('No se pudo guardar el historial.', 'error');
+                return;
+            }
 
-    document.getElementById('versionName').value = '';
-    STORAGE.setItem('historySnapshot', JSON.stringify({ data, theme }));
-    showToast('Versi\\u00f3n guardada correctamente', 'success');
-    loadVersionsList();
-}
+            document.getElementById('versionName').value = '';
+            STORAGE.setItem('historySnapshot', JSON.stringify({ data, theme }));
+            showToast('Versi\\u00f3n guardada correctamente', 'success');
+            loadVersionsList();
+        }
 
-async function loadVersionsList() {
-    const listContainer = document.getElementById('versionsList');
-    listContainer.innerHTML = '<p style="color: #999; text-align: center;">Cargando historial...</p>';
+        async function loadVersionsList() {
+            const listContainer = document.getElementById('versionsList');
+            listContainer.innerHTML = '<p style="color: #999; text-align: center;">Cargando historial...</p>';
 
-    if (EMBED_MODE) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Historial no disponible en embeds.</p>';
-        return;
-    }
+            if (EMBED_MODE) {
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">Historial no disponible en embeds.</p>';
+                return;
+            }
 
-    if (!SUPABASE_CLIENT) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Base de datos deshabilitada.</p>';
-        return;
-    }
+            if (!SUPABASE_CLIENT) {
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">Base de datos deshabilitada.</p>';
+                return;
+            }
 
-    cancelRenameVersion();
+            cancelRenameVersion();
 
-    const { bannerId, cedula } = getHistoryFilter();
-    if (!bannerId && !cedula) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con c\u00e9dula para ver el historial.</p>';
-        return;
-    }
+            const { bannerId, cedula } = getHistoryFilter();
+            if (!bannerId && !cedula) {
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">Guarda un banner con c\u00e9dula para ver el historial.</p>';
+                return;
+            }
 
-    let query = SUPABASE_CLIENT
-        .from('banners_historial')
-        .select('id, created_at, version_name, banner_id, cedula')
-        .order('created_at', { ascending: false })
-        .limit(50);
+            let query = SUPABASE_CLIENT
+                .from('banners_historial')
+                .select('id, created_at, version_name, banner_id, cedula')
+                .order('created_at', { ascending: false })
+                .limit(50);
 
-    if (bannerId) {
-        query = query.eq('banner_id', bannerId);
-    } else {
-        query = query.eq('cedula', cedula);
-    }
+            if (bannerId) {
+                query = query.eq('banner_id', bannerId);
+            } else {
+                query = query.eq('cedula', cedula);
+            }
 
-    const { data, error } = await query;
-    if (error) {
-        console.warn('Supabase history fetch error', error.message);
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No se pudo cargar el historial.</p>';
-        showToast('Sin conexi\\u00f3n a Supabase. Revisa tu Internet o bloqueos DNS.', 'error');
-        setDbStatus('error', 'Base de datos: sin conexi\\u00f3n');
-        return;
-    }
+            const { data, error } = await query;
+            if (error) {
+                console.warn('Supabase history fetch error', error.message);
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No se pudo cargar el historial.</p>';
+                showToast('Sin conexi\\u00f3n a Supabase. Revisa tu Internet o bloqueos DNS.', 'error');
+                setDbStatus('error', 'Base de datos: sin conexi\\u00f3n');
+                return;
+            }
 
-    if (!data || data.length === 0) {
-        listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a\u00fan.</p>';
-        return;
-    }
+            if (!data || data.length === 0) {
+                listContainer.innerHTML = '<p style="color: #999; text-align: center;">No hay versiones guardadas a\u00fan.</p>';
+                return;
+            }
 
-    listContainer.innerHTML = data.map(version => {
-        const date = version.created_at ? new Date(version.created_at).toLocaleDateString('es-ES') : '';
-        const name = version.version_name || 'Versi\u00f3n';
-        const safeName = escapeHtml(name);
-        const encodedName = encodeURIComponent(name);
-        return `
+            listContainer.innerHTML = data.map(version => {
+                const date = version.created_at ? new Date(version.created_at).toLocaleDateString('es-ES') : '';
+                const name = version.version_name || 'Versi\u00f3n';
+                const safeName = escapeHtml(name);
+                const encodedName = encodeURIComponent(name);
+                return `
         <div class="version-item">
             <div class="version-name">${safeName}</div>
             <div class="version-date">${date}</div>
@@ -2941,149 +3119,149 @@ async function loadVersionsList() {
             </div>
         </div>
     `;
-    }).join('');
-}
+            }).join('');
+        }
 
-async function loadVersion(versionId) {
-    if (!SUPABASE_CLIENT) return;
+        async function loadVersion(versionId) {
+            if (!SUPABASE_CLIENT) return;
 
-    const { data, error } = await SUPABASE_CLIENT
-        .from('banners_historial')
-        .select('*')
-        .eq('id', versionId)
-        .limit(1);
+            const { data, error } = await SUPABASE_CLIENT
+                .from('banners_historial')
+                .select('*')
+                .eq('id', versionId)
+                .limit(1);
 
-    if (error) {
-        console.warn('Supabase history load error', error.message);
-        showToast('No se pudo cargar la versi\\u00f3n.', 'error');
-        return;
-    }
+            if (error) {
+                console.warn('Supabase history load error', error.message);
+                showToast('No se pudo cargar la versi\\u00f3n.', 'error');
+                return;
+            }
 
-    const row = Array.isArray(data) ? data[0] : data;
-    if (!row) return;
+            const row = Array.isArray(data) ? data[0] : data;
+            if (!row) return;
 
-    const mapped = {
-        name: row.nombre || '',
-        school: row.escuela || '',
-        email: row.email || '',
-        phone: row.telefono || '',
-        cedula: row.cedula || '',
-        whatsappPersonal: row.whatsapp || '',
-        whatsappGroup: row.grupo_whatsapp || '',
-        comments: sanitizeAdditionalInfo(row.informacion_adicional, row),
-        photo: row.foto_url || ''
-    };
+            const mapped = {
+                name: row.nombre || '',
+                school: row.escuela || '',
+                email: row.email || '',
+                phone: row.telefono || '',
+                cedula: row.cedula || '',
+                whatsappPersonal: row.whatsapp || '',
+                whatsappGroup: row.grupo_whatsapp || '',
+                comments: sanitizeAdditionalInfo(row.informacion_adicional, row),
+                photo: row.foto_url || ''
+            };
 
-    const theme = {
-        primaryColor: row.color_primario || THEMES['sunset'].primary,
-        accentColor: row.color_secundario || THEMES['sunset'].accent
-    };
+            const theme = {
+                primaryColor: row.color_primario || THEMES['sunset'].primary,
+                accentColor: row.color_secundario || THEMES['sunset'].accent
+            };
 
-    if (row.banner_id) {
-        STORAGE.setItem('bannerId', row.banner_id);
-    } else {
-        STORAGE.removeItem('bannerId');
-    }
+            if (row.banner_id) {
+                STORAGE.setItem('bannerId', row.banner_id);
+            } else {
+                STORAGE.removeItem('bannerId');
+            }
 
-    hydrateUI(mapped, theme);
-    STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
-    closeVersionsModal();
-    showToast('Versi\\u00f3n cargada correctamente', 'success');
-}
+            hydrateUI(mapped, theme);
+            STORAGE.setItem('historySnapshot', JSON.stringify({ data: mapped, theme }));
+            closeVersionsModal();
+            showToast('Versi\\u00f3n cargada correctamente', 'success');
+        }
 
-function renameVersionFromButton(btn) {
-    if (!btn) return;
-    const encoded = btn.dataset.name || '';
-    startRenameVersion(btn.dataset.id, encoded);
-}
+        function renameVersionFromButton(btn) {
+            if (!btn) return;
+            const encoded = btn.dataset.name || '';
+            startRenameVersion(btn.dataset.id, encoded);
+        }
 
-function startRenameVersion(versionId, encodedName = '') {
-    const box = document.getElementById('versionRenameBox');
-    const input = document.getElementById('renameVersionInput');
-    const save = document.getElementById('renameVersionSave');
-    if (!box || !input || !save) return;
-    let decoded = '';
-    try {
-        decoded = encodedName ? decodeURIComponent(encodedName) : '';
-    } catch (e) {
-        decoded = '';
-    }
-    input.value = decoded;
-    save.dataset.id = versionId || '';
-    box.style.display = 'block';
-    input.focus();
-    try { input.select(); } catch (e) {}
-}
+        function startRenameVersion(versionId, encodedName = '') {
+            const box = document.getElementById('versionRenameBox');
+            const input = document.getElementById('renameVersionInput');
+            const save = document.getElementById('renameVersionSave');
+            if (!box || !input || !save) return;
+            let decoded = '';
+            try {
+                decoded = encodedName ? decodeURIComponent(encodedName) : '';
+            } catch (e) {
+                decoded = '';
+            }
+            input.value = decoded;
+            save.dataset.id = versionId || '';
+            box.style.display = 'block';
+            input.focus();
+            try { input.select(); } catch (e) { }
+        }
 
-function cancelRenameVersion() {
-    const box = document.getElementById('versionRenameBox');
-    const input = document.getElementById('renameVersionInput');
-    const save = document.getElementById('renameVersionSave');
-    if (box) box.style.display = 'none';
-    if (input) input.value = '';
-    if (save) save.dataset.id = '';
-}
+        function cancelRenameVersion() {
+            const box = document.getElementById('versionRenameBox');
+            const input = document.getElementById('renameVersionInput');
+            const save = document.getElementById('renameVersionSave');
+            if (box) box.style.display = 'none';
+            if (input) input.value = '';
+            if (save) save.dataset.id = '';
+        }
 
-async function renameVersion(versionId = '') {
-    if (!SUPABASE_CLIENT) {
-        showToast('Base de datos deshabilitada.', 'error');
-        return;
-    }
-    const box = document.getElementById('versionRenameBox');
-    const input = document.getElementById('renameVersionInput');
-    const save = document.getElementById('renameVersionSave');
-    const targetId = versionId || (save ? save.dataset.id : '');
-    if (!input || !save || !targetId) {
-        showToast('No se pudo identificar la versi\\u00f3n.', 'error');
-        return;
-    }
+        async function renameVersion(versionId = '') {
+            if (!SUPABASE_CLIENT) {
+                showToast('Base de datos deshabilitada.', 'error');
+                return;
+            }
+            const box = document.getElementById('versionRenameBox');
+            const input = document.getElementById('renameVersionInput');
+            const save = document.getElementById('renameVersionSave');
+            const targetId = versionId || (save ? save.dataset.id : '');
+            if (!input || !save || !targetId) {
+                showToast('No se pudo identificar la versi\\u00f3n.', 'error');
+                return;
+            }
 
-    const trimmed = (input.value || '').trim();
-    if (!trimmed) {
-        alert('El nombre no puede estar vac\\u00edo.');
-        return;
-    }
+            const trimmed = (input.value || '').trim();
+            if (!trimmed) {
+                alert('El nombre no puede estar vac\\u00edo.');
+                return;
+            }
 
-    let prevLabel = save.textContent;
-    save.textContent = 'Guardando...';
-    save.disabled = true;
+            let prevLabel = save.textContent;
+            save.textContent = 'Guardando...';
+            save.disabled = true;
 
-    const { error } = await SUPABASE_CLIENT
-        .from('banners_historial')
-        .update({ version_name: trimmed })
-        .eq('id', targetId);
+            const { error } = await SUPABASE_CLIENT
+                .from('banners_historial')
+                .update({ version_name: trimmed })
+                .eq('id', targetId);
 
-    save.textContent = prevLabel || 'Guardar';
-    save.disabled = false;
+            save.textContent = prevLabel || 'Guardar';
+            save.disabled = false;
 
-    if (error) {
-        console.warn('Supabase history rename error', error.message);
-        showToast('No se pudo renombrar la versi\\u00f3n.', 'error');
-        return;
-    }
+            if (error) {
+                console.warn('Supabase history rename error', error.message);
+                showToast('No se pudo renombrar la versi\\u00f3n.', 'error');
+                return;
+            }
 
-    showToast('Versi\\u00f3n renombrada', 'success');
-    cancelRenameVersion();
-    loadVersionsList();
-}
+            showToast('Versi\\u00f3n renombrada', 'success');
+            cancelRenameVersion();
+            loadVersionsList();
+        }
 
-async function deleteVersion(versionId) {
-    if (!confirm('\\u00bfEst\\u00e1s seguro de que deseas eliminar esta versi\\u00f3n?')) return;
-    if (!SUPABASE_CLIENT) return;
+        async function deleteVersion(versionId) {
+            if (!confirm('\\u00bfEst\\u00e1s seguro de que deseas eliminar esta versi\\u00f3n?')) return;
+            if (!SUPABASE_CLIENT) return;
 
-    const { error } = await SUPABASE_CLIENT
-        .from('banners_historial')
-        .delete()
-        .eq('id', versionId);
+            const { error } = await SUPABASE_CLIENT
+                .from('banners_historial')
+                .delete()
+                .eq('id', versionId);
 
-    if (error) {
-        console.warn('Supabase history delete error', error.message);
-        showToast('No se pudo eliminar la versi\\u00f3n.', 'error');
-        return;
-    }
+            if (error) {
+                console.warn('Supabase history delete error', error.message);
+                showToast('No se pudo eliminar la versi\\u00f3n.', 'error');
+                return;
+            }
 
-    loadVersionsList();
-}
+            loadVersionsList();
+        }
         function showSaveStatus() {
             const status = document.getElementById('saveStatus');
             status.classList.add('show');
@@ -3156,7 +3334,7 @@ async function deleteVersion(versionId) {
 
         function openConfigModal() {
             document.getElementById('configModal').classList.add('active');
-            try{ updateConfigPreview(); }catch(e){}
+            try { updateConfigPreview(); } catch (e) { }
         }
 
         function closeConfigModal() {
@@ -3173,7 +3351,7 @@ async function deleteVersion(versionId) {
             cancelRenameVersion();
         }
 
-        
+
 
         window.onclick = function (event) {
             const formModal = document.getElementById('formModal');
@@ -3181,7 +3359,7 @@ async function deleteVersion(versionId) {
             const configModal = document.getElementById('configModal');
             const versionsModal = document.getElementById('versionsModal');
             const embedModal = document.getElementById('embedModal');
-            
+
             if (event.target === exportModal) exportModal.classList.remove('active');
             if (event.target === configModal) configModal.classList.remove('active');
             if (event.target === versionsModal) versionsModal.classList.remove('active');
@@ -3259,20 +3437,9 @@ async function deleteVersion(versionId) {
                 document.body.style.padding = "20px";
                 document.querySelector(".container")?.style.setProperty("max-width", "100%");
                 document.querySelector(".container")?.style.setProperty("margin", "0");
-            } catch (e) {}
+            } catch (e) { }
         }
     </script>
 </body>
+
 </html>
-           
-
-
-
-
-
-
-
-
-
-
-
