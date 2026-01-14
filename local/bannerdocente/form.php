@@ -138,7 +138,25 @@ echo $OUTPUT->header();
 
     // Inicializar
     updatePreview();
-</script>
+
+    // ESCUCHAMOS MENSAJES DE TINYMCE (Desde el padre)
+    window.addEventListener('message', function(event) {
+        // En un entorno real se debe validar event.origin, pero en Moodle local es el mismo dominio
+
+        const request = event.data;
+        
+        // TinyMCE envía un objeto wrapper, a veces el mensaje real está dentro. se asume directo por ahora
+        if (request && request.action === 'get_data') {
+            // El padre nos pide los datos
+            const bannerData = window.getBannerData();
+            
+            // Enviamos la respuesta
+            window.parent.postMessage({
+                mceAction: 'return_data', // Clave especial para que TinyMCE lo capte
+                data: bannerData
+            }, '*');
+        }
+    });
 
 <?php
 echo $OUTPUT->footer();
