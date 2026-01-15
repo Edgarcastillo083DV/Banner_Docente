@@ -1,0 +1,226 @@
+
+/* Contenedor Principal (Tarjeta) */
+.bannerdocente-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-height: auto;
+    background: linear-gradient(135deg, #ff6f00 0%, #ff1744 100%); /* Default Sunset Theme */
+    padding: 30px;
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: white;
+}
+
+/* Header: Foto, Nombre, Escuela, Logo */
+.bannerdocente-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.bannerdocente-photo-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.bannerdocente-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.bannerdocente-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.bannerdocente-status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #25d366;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.bannerdocente-logo {
+    height: 80px;
+    max-width: 200px;
+    object-fit: contain;
+}
+
+.bannerdocente-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bannerdocente-school {
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+/* Sección de Contacto */
+.bannerdocente-contact {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bannerdocente-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.bannerdocente-contact-item a {
+    color: white; 
+    text-decoration: none;
+}
+.bannerdocente-contact-item a:hover {
+    text-decoration: underline;
+}
+
+.bannerdocente-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Botones */
+.bannerdocente-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.bannerdocente-button:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.bannerdocente-btn-whatsapp-personal {
+    background: #25d366;
+}
+.bannerdocente-btn-whatsapp-personal:hover {
+    background: #1fa854;
+}
+
+.bannerdocente-btn-whatsapp-group {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.bannerdocente-btn-whatsapp-group:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Sección Extra (QR y Texto) */
+.bannerdocente-additional {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bannerdocente-extra-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.bannerdocente-extra-text h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 0;
+    color: white;
+}
+
+.bannerdocente-extra-text p {
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin: 0;
+    color: white;
+}
+
+.bannerdocente-qr {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.bannerdocente-qr img {
+    display: block;
+    width: 96px;
+    height: 96px;
+    border-radius: 6px;
+}
+
+@media (max-width: 640px) {
+    .bannerdocente-header {
+        flex-direction: column;
+    }
+    .bannerdocente-extra-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .bannerdocente-qr {
+        align-self: flex-end;
+    }
+}
