@@ -38,18 +38,41 @@ function bannerdocente_add_instance($data, $mform = null)
  * @param mod_bannerdocente_mod_form $mform El formulario
  * @return bool True si tuvo éxito
  */
+/**
+ * Actualiza una instancia de bannerdocente.
+ *
+ * @param stdClass $data Datos del formulario
+ * @param mod_bannerdocente_mod_form $mform El formulario
+ * @return bool True si tuvo éxito
+ */
 function bannerdocente_update_instance($data, $mform = null)
 {
     global $DB;
 
-    // Actualizar registro
-    // Aseguramos que el ID sea el de la instancia (registro en la tabla)
-    $data->id = $data->instance;
-    $DB->update_record('bannerdocente', $data);
+    // Preparar objeto limpio para actualizar la base de datos
+    // Esto evita errores de "campo desconocido" si $data trae campos extra del formulario (ej. submitbutton, files)
+    $updateData = new stdClass();
+    $updateData->id = $data->instance;
+    $updateData->name = $data->name;
+    $updateData->periodo = $data->periodo;
+    $updateData->cedula = $data->cedula;
+    $updateData->nombre_docente = $data->nombre_docente;
+    $updateData->escuela = $data->escuela;
+    $updateData->email = $data->email;
+    $updateData->telefono = $data->telefono;
+    $updateData->whatsapp = $data->whatsapp;
+    $updateData->link_grupo = $data->link_grupo;
+    $updateData->info_adicional = $data->info_adicional;
+    $updateData->backgroundcolor = $data->backgroundcolor;
+    $updateData->timemodified = time();
 
-    // Actualizar imagen
+    // Actualizar registro en DB
+    $DB->update_record('bannerdocente', $updateData);
+
+    // Actualizar imagen (gestionada por separado como borrador)
     $context = \context_module::instance($data->coursemodule);
     if (isset($data->bannerimage)) {
+        // file_save_draft_area_files maneja la lógica de mover del área draft a la área final
         file_save_draft_area_files($data->bannerimage, $context->id, 'mod_bannerdocente', 'bannerimage', 0, array('subdirs' => 0, 'maxfiles' => 1));
     }
 
@@ -198,106 +221,142 @@ function bannerdocente_get_coursemodule_info($coursemodule)
 
     // --- QR Code ---
     // Usamos API pública rápida y segura para generar imagen QR del link del grupo
-    $qrImgUrl = '';
+    $qrUrl = '';
     if (!empty($linkGrupo)) {
-        $qrImgUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' . urlencode($linkGrupo);
+        $qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' . urlencode($linkGrupo);
     }
+
+    // --- Logo URL ---
+    // Intentamos buscarlo en la carpeta pix del plugin
+    $logoUrl = $CFG->wwwroot . '/mod/bannerdocente/pix/logo-uapa.png';
 
     // --- Construcción del HTML (Replicando editor-unificado.html) ---
     // Usamos clases CSS definidas en styles.css (bannerdocente-*)
 
     // Iconos SVG inline (Optimizados y con tamaño fijo)
-    // Se fuerza width/height y se asegura que la clase CSS controle el resto
-    $iconMail = '<svg class="bannerdocente-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>';
-    $iconPhone = '<svg class="bannerdocente-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>';
-    $iconWhatsapp = '<svg class="bannerdocente-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path></svg>'; // Simplified WA or keep original if valid
+    // --- GENERACIÓN DEL CONTENIDO HTML (Diseño V4 - Estilos Inline para Garantía Visual) ---
 
-    // Restauramos el icono de WhatsApp original que es más detallado, pero con atributos correctos
-    $iconWhatsapp = '<svg class="bannerdocente-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>';
+    // Iconos SVG (Uso de comillas simples para evitar conflictos)
+    $iconMail = '<svg class="icon" aria-hidden="true" style="width:24px;height:24px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"></path><path d="m4 7 8 5 8-5"></path></svg>';
+    $iconPhone = '<svg class="icon" aria-hidden="true" style="width:24px;height:24px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h2.7c.2 0 .4.15.45.35l.7 3a.5.5 0 0 1-.14.47L8.6 8.87a9.5 9.5 0 0 0 6.53 6.53l1.05-1.61a.5.5 0 0 1 .47-.14l3 .7c.2.05.35.25.35.46v2.7a1 1 0 0 1-1 1A12.5 12.5 0 0 1 5.5 4a1 1 0 0 1 1-1z"></path></svg>';
+    // WhatsApp Icon Base64 (Feather Phone Icon - Standard 24px)
+    $iconWhatsappBase64 = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIyIDE2LjkydjNhMiAyIDAgMCAxLTIuMTggMiAxOS43OSAxOS43OSAwIDAgMS04LjYzLTMuMDcgMTkuNSAxOS41IDAgMCAxLTYtNiAxOS43OSAxOS43OSAwIDAgMSAxIDYgMTkuNzkgMTkuNzkgMCAwIDEgMS02IDMuMDcgOS43NCAxOS43NCAwIDAgMSAyLTIuMTggMiAyIDAgMCAxIDIgMi4xOHYuOGEyIDIgMCAwIDEgMi4xOCAyIDkgOSAwIDAgMSAxIDZ6Ii8+PC9zdmc+';
+    $iconWhatsapp = '<img src="' . $iconWhatsappBase64 . '" alt="WhatsApp" style="width:24px;height:24px;object-fit:contain;vertical-align:middle;" />';
 
+    // Mapa de Escuelas
+    $schoolLabels = [
+        'ciencias-salud-psicologia' => 'Ciencias de la Salud y Psicología',
+        'ciencias-politicas-juridicas' => 'Ciencias Políticas y Jurídicas',
+        'ciencias-sociales-comunicacion' => 'Ciencias Sociales y Comunicación',
+        'educacion-formacion-general' => 'Educación y Formación General',
+        'ingenieria-tecnologia' => 'Ingeniería y Tecnología',
+        'negocios-turismo' => 'Negocios y Turismo',
+        'postgrado' => 'Postgrado'
+    ];
+    $displaySchool = isset($schoolLabels[$db_record->escuela]) ? $schoolLabels[$db_record->escuela] : $db_record->escuela;
 
-    // Logo UAPA: Usar la imagen local copiada en pix/logo-uapa.png
-    // Usamos moodle_url para generar la ruta correcta al directorio de imágenes del módulo
-    $logoUrl = new moodle_url('/mod/bannerdocente/pix/logo-uapa.png');
-    $logoUrl = $logoUrl->out();
+    $initial = !empty($db_record->nombre_docente) ? mb_substr($db_record->nombre_docente, 0, 1) : '?';
 
-    $initial = mb_substr($nombreDocente, 0, 1);
+    // Construcción del HTML con ESTILOS INLINE para asegurar visualización sin dependencia de CSS externo
+    $content = '';
 
-    ob_start();
-?>
-    <div class="bannerdocente-card" style="<?php echo $bgStyle; ?>">
-        <div class="bannerdocente-content">
-            <!-- Header -->
-            <div class="bannerdocente-header">
-                <div style="display:flex; align-items:center; gap:16px;">
-                    <div class="bannerdocente-photo-wrapper">
-                        <?php if ($photoUrl): ?>
-                            <img src="<?php echo $photoUrl; ?>" alt="<?php echo s($nombreDocente); ?>" class="bannerdocente-photo" />
-                        <?php else: ?>
-                            <div class="bannerdocente-photo-placeholder"><?php echo $initial; ?></div>
-                        <?php endif; ?>
-                        <span class="bannerdocente-status-dot" title="Activo"></span>
-                    </div>
-                    <div>
-                        <div class="bannerdocente-title"><?php echo s($nombreDocente); ?></div>
-                        <div class="bannerdocente-school"><?php echo s($escuelaLabel); ?></div>
-                    </div>
-                </div>
-                <img class="bannerdocente-logo" src="<?php echo $logoUrl; ?>" alt="Logo UAPA" />
-            </div>
+    // Contenedor Gradient
+    $content .= '<div class="banner-content" style="background: linear-gradient(135deg, ' . $primaryColor . ' 0%, ' . $accentColor . ' 100%); width: 100%; color: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif; margin-bottom: 20px;">';
 
-            <!-- Contact -->
-            <div class="bannerdocente-contact">
-                <div class="bannerdocente-contact-item">
-                    <?php echo $iconMail; ?>
-                    <a href="mailto:<?php echo s($email); ?>"><?php echo s($email); ?></a>
-                </div>
-                <div class="bannerdocente-contact-item">
-                    <?php echo $iconPhone; ?>
-                    <a href="tel:<?php echo s($telefono); ?>"><?php echo s($telefono); ?></a>
-                </div>
+    // --- Header ---
+    $content .= '<div class="banner-header" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">';
+    $content .= '<div style="display:flex; align-items:center; gap:16px;">';
 
-                <?php if ($whatsapp):
-                    $cleanWa = preg_replace('/[^0-9]/', '', $whatsapp);
-                ?>
-                    <a href="https://wa.me/<?php echo $cleanWa; ?>" target="_blank" class="bannerdocente-button bannerdocente-btn-whatsapp-personal">
-                        Chat Personal <?php echo $iconWhatsapp; ?>
-                    </a>
-                <?php endif; ?>
+    // Foto
+    $content .= '<div class="banner-photo-wrapper" style="position: relative; width: 80px; height: 80px; flex-shrink: 0;">';
+    if ($photoUrl) {
+        $content .= '<img src="' . $photoUrl . '" alt="Foto Docente" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);" />';
+    } else {
+        $content .= '<div style="width: 100%; height: 100%; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; color: white; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">' . $initial . '</div>';
+    }
+    // Status dot
+    $content .= '<span style="position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; border-radius: 50%; background: #25d366; border: 2px solid white; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);"></span>';
+    $content .= '</div>';
 
-                <?php if ($linkGrupo): ?>
-                    <a href="<?php echo s($linkGrupo); ?>" target="_blank" class="bannerdocente-button bannerdocente-btn-whatsapp-group">
-                        Unirse al Grupo <?php echo $iconWhatsapp; ?>
-                    </a>
-                <?php endif; ?>
-            </div>
+    // Texto Nombre
+    $content .= '<div>';
+    $content .= '<div style="font-size: 24px; font-weight: bold; margin-bottom: 4px; color: white; line-height: 1.2;">' . s($db_record->nombre_docente) . '</div>';
+    $content .= '<div style="font-size: 18px; opacity: 0.95; color: white;">' . s($displaySchool) . '</div>';
+    $content .= '</div>';
+    $content .= '</div>'; // Fin izq
 
-            <!-- Additional Info & QR -->
-            <?php if (!empty($infoAdicional) || !empty($qrImgUrl)): ?>
-                <div class="bannerdocente-additional">
-                    <div class="bannerdocente-extra-row">
-                        <div class="bannerdocente-extra-text">
-                            <?php if (!empty($infoAdicional)): ?>
-                                <h4>Información Adicional</h4>
-                                <p><?php echo nl2br(s($infoAdicional)); ?></p>
-                            <?php elseif (!empty($linkGrupo)): ?>
-                                <h4>Grupo de WhatsApp</h4>
-                                <p>Escanea el código para unirte al grupo.</p>
-                            <?php endif; ?>
-                        </div>
-                        <?php if ($qrImgUrl): ?>
-                            <div class="bannerdocente-qr">
-                                <img src="<?php echo $qrImgUrl; ?>" alt="QR Grupo" />
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
+    // Logo (Con altura forzada)
+    $content .= '<img src="' . $logoUrl . '" alt="Logo UAPA" style="height: 80px; max-width: 200px; object-fit: contain;" />';
+    $content .= '</div>'; // Fin Header
 
-        </div>
-    </div>
-<?php
-    $content = ob_get_clean();
+    // --- Contacto ---
+    $content .= '<div class="banner-contact" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">';
+
+    // Email
+    if (!empty($db_record->email)) {
+        $content .= '<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 18px; color: white;">';
+        $content .= $iconMail;
+        $content .= '<a href="mailto:' . s($db_record->email) . '" style="color: white; text-decoration: none;">' . s($db_record->email) . '</a>';
+        $content .= '</div>';
+    }
+
+    // Teléfono
+    if (!empty($db_record->telefono)) {
+        $phoneLink = preg_replace('/[^0-9+]/', '', $db_record->telefono);
+        $content .= '<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 18px; color: white;">';
+        $content .= $iconPhone;
+        $content .= '<a href="tel:' . $phoneLink . '" style="color: white; text-decoration: none;">' . s($db_record->telefono) . '</a>';
+        $content .= '</div>';
+    }
+
+    // Botones WhatsApp
+    // Chat Personal (Botón Verde)
+    if (!empty($db_record->whatsapp)) {
+        $waNum = preg_replace('/[^0-9]/', '', $db_record->whatsapp);
+        $waUrl = 'https://wa.me/' . $waNum;
+        $content .= '<a href="' . $waUrl . '" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 10px; font-size: 16px; text-decoration: none; color: white; background: #25d366;">';
+        $content .= '<span>Chat Personal</span> ';
+        $content .= $iconWhatsapp;
+        $content .= '</a>';
+    }
+
+    // Grupo (Botón Transparente)
+    if (!empty($db_record->link_grupo)) {
+        $content .= '<a href="' . s($db_record->link_grupo) . '" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 10px; font-size: 16px; text-decoration: none; color: white; background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.5);">';
+        $content .= '<span>Unirse al Grupo</span> ';
+        $content .= $iconWhatsapp;
+        $content .= '</a>';
+    }
+
+    $content .= '</div>'; // Fin contact
+
+    // --- Info Adicional / QR ---
+    $hasComments = !empty($db_record->info_adicional) && trim($db_record->info_adicional) !== '';
+    if ($hasComments || !empty($qrUrl)) {
+        $content .= '<div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 12px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.2); color: white;">';
+        $content .= '<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px;">';
+
+        $content .= '<div style="flex: 1;">';
+        if ($hasComments) {
+            $content .= '<h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: white; margin-top: 0;">Información Adicional</h4>';
+            $content .= '<p style="font-size: 16px; line-height: 1.5; opacity: 0.95; margin-bottom: 0; color: white;">' . nl2br(s($db_record->info_adicional)) . '</p>';
+        } else {
+            $content .= '<h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: white; margin-top: 0;">Grupo de WhatsApp</h4>';
+            $content .= '<p style="font-size: 16px; line-height: 1.5; opacity: 0.95; margin-bottom: 0; color: white;">Escanea el código para unirte al grupo.</p>';
+        }
+        $content .= '</div>';
+
+        if (!empty($qrUrl)) {
+            $content .= '<div style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; padding: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); flex-shrink: 0;">';
+            $content .= '<img src="' . $qrUrl . '" alt="QR Grupo" style="display: block; width: 96px; height: 96px; border-radius: 6px;" />';
+            $content .= '</div>';
+        }
+
+        $content .= '</div>';
+        $content .= '</div>';
+    }
+
+    $content .= '</div>'; // Fin banner-content
 
     $result->content = $content;
     return $result;

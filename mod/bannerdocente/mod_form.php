@@ -125,5 +125,65 @@ class mod_bannerdocente_mod_form extends moodleform_mod
 
         // --- Botones de Acción ---
         $this->add_action_buttons();
+        // --- JavaScript para Auto-completado por Cédula ---
+        $js = "
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        var cedulaField = $('#id_cedula');
+        var loading = false;
+
+        cedulaField.on('blur', function() {
+            var cedula = $(this).val().trim();
+            if (cedula.length < 5 || loading) return;
+
+            loading = true;
+            // Mostrar indicador de carga (opcional)
+            cedulaField.css('opacity', '0.5');
+
+            $.ajax({
+                url: M.cfg.wwwroot + '/mod/bannerdocente/ajax_find_teacher.php',
+                type: 'POST',
+                data: { cedula: cedula },
+                dataType: 'json',
+                success: function(response) {
+                    loading = false;
+                    cedulaField.css('opacity', '1');
+
+                    if (response.found && response.data) {
+                        // Poblar campos
+                        $('#id_nombre_docente').val(response.data.nombre_docente);
+                        $('#id_email').val(response.data.email);
+                        $('#id_telefono').val(response.data.telefono);
+                        $('#id_whatsapp').val(response.data.whatsapp);
+                        
+                        // Escuela (Select)
+                        if (response.data.escuela) {
+                            $('#id_escuela').val(response.data.escuela);
+                        }
+                        
+                        // Notificar al usuario
+                        require(['core/str', 'core/toast'], function(str, toast) {
+                            toast.addToastRegion(document.body);
+                            toast.add('Datos del docente encontrados y cargados.', {
+                                type: 'success',
+                                closeButton: true
+                            });
+                        });
+                        
+                        // Foto: El usuario pidió no notificar nada extra, solo llenar datos.
+                    }
+                },
+                error: function() {
+                    loading = false;
+                    cedulaField.css('opacity', '1');
+                }
+            });
+        });
+    });
+});
+</script>
+        ";
+        $mform->addElement('html', $js);
     }
 }

@@ -1,21 +1,19 @@
+/* Estilos para Banner Docente (V4) */
 
-/* Contenedor Principal (Tarjeta) */
-.bannerdocente-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    min-height: auto;
-    background: linear-gradient(135deg, #ff6f00 0%, #ff1744 100%); /* Default Sunset Theme */
-    padding: 30px;
-    position: relative;
-    max-width: 800px;
-    margin: 20px auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+.banner-content {
+    width: 100%;
     color: white;
+    /* Background is handled by inline style in PHP for dynamic colors */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin-bottom: 20px;
 }
 
-/* Header: Foto, Nombre, Escuela, Logo */
-.bannerdocente-header {
+.banner-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -24,14 +22,7 @@
     flex-wrap: wrap;
 }
 
-.bannerdocente-photo-wrapper {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-}
-
-.bannerdocente-photo {
+.banner-photo {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -40,7 +31,14 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.bannerdocente-photo-placeholder {
+.banner-photo-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.banner-photo-placeholder {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -55,7 +53,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.bannerdocente-status-dot {
+.status-dot {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -67,26 +65,27 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.bannerdocente-logo {
+.banner-logo {
     height: 80px;
     max-width: 200px;
     object-fit: contain;
 }
 
-.bannerdocente-title {
+.banner-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 4px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: white;
+    line-height: 1.2;
 }
 
-.bannerdocente-school {
+.banner-school {
     font-size: 14px;
-    opacity: 0.95;
+    opacity: 0.9;
+    color: white;
 }
 
-/* Sección de Contacto */
-.bannerdocente-contact {
+.banner-contact {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border-radius: 12px;
@@ -95,38 +94,30 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.bannerdocente-contact-item {
+.contact-item {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 12px;
     font-size: 16px;
     line-height: 1.4;
+    color: white;
 }
 
-.bannerdocente-contact-item a {
-    color: white; 
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item a {
+    color: white;
     text-decoration: none;
 }
-.bannerdocente-contact-item a:hover {
+
+.contact-item a:hover {
     text-decoration: underline;
 }
 
-.bannerdocente-icon {
-    width: 20px;
-    height: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-/* Botones */
-.bannerdocente-button {
+.banner-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,69 +126,95 @@
     padding: 12px;
     border: none;
     border-radius: 8px;
-    color: white;
+    color: white !important;
     font-weight: 600;
     cursor: pointer;
     margin-bottom: 10px;
     transition: all 0.3s ease;
     font-size: 14px;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
-.bannerdocente-button:hover {
-    text-decoration: none;
+.banner-button:hover {
     transform: translateY(-2px);
-    color: white;
+    opacity: 0.95;
+    color: white !important;
 }
 
-.bannerdocente-btn-whatsapp-personal {
+.banner-button.whatsapp-personal {
     background: #25d366;
 }
-.bannerdocente-btn-whatsapp-personal:hover {
+
+.banner-button.whatsapp-personal:hover {
     background: #1fa854;
 }
 
-.bannerdocente-btn-whatsapp-group {
+.banner-button.whatsapp-group {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
-.bannerdocente-btn-whatsapp-group:hover {
+
+.banner-button.whatsapp-group:hover {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Sección Extra (QR y Texto) */
-.bannerdocente-additional {
+.banner-button .icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.contact-item .icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.banner-additional {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
-.bannerdocente-extra-row {
+.banner-additional h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+    margin-top: 0;
+}
+
+.banner-additional p {
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin-bottom: 0;
+    color: white;
+}
+
+.banner-extra-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 14px;
 }
 
-.bannerdocente-extra-text h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 0;
-    color: white;
+.banner-extra-text {
+    flex: 1;
 }
 
-.bannerdocente-extra-text p {
-    font-size: 15px;
-    line-height: 1.5;
-    opacity: 0.95;
-    margin: 0;
-    color: white;
-}
-
-.bannerdocente-qr {
+.banner-qr {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 8px;
@@ -205,22 +222,27 @@
     flex-shrink: 0;
 }
 
-.bannerdocente-qr img {
+.banner-qr img {
     display: block;
     width: 96px;
     height: 96px;
     border-radius: 6px;
 }
 
+/* Responsive */
 @media (max-width: 640px) {
-    .bannerdocente-header {
-        flex-direction: column;
-    }
-    .bannerdocente-extra-row {
+    .banner-extra-row {
         flex-direction: column;
         align-items: flex-start;
     }
-    .bannerdocente-qr {
+
+    .banner-qr {
         align-self: flex-end;
+    }
+
+    .banner-header {
+        flex-direction: column;
+        align-items: center;
+        /* Center on mobile like prototype? Or flex-start? Prototype CSS said flex-direction column. */
     }
 }
