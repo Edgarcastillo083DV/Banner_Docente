@@ -1,5 +1,5 @@
 <?php
-// Script para forzar la configuración de la barra de herramientas de TinyMCE
+// Script para forzar la configuración de la barra de herramientas de TinyMCE (Versión Agresiva)
 require_once('../../config.php');
 require_login();
 require_capability('moodle/site:config', context_system::instance());
@@ -7,46 +7,48 @@ require_capability('moodle/site:config', context_system::instance());
 $PAGE->set_url(new moodle_url('/local/bannerdocente/activar_toolbar.php'));
 $PAGE->set_context(context_system::instance());
 $PAGE->set_title('Activar Banner UAPA');
-$PAGE->set_heading('Configuración Forzada TinyMCE');
+$PAGE->set_heading('Configuración Forzada TinyMCE - Intento 2');
 
 echo $OUTPUT->header();
 
 $plugin = 'editor_tiny';
 $config = get_config($plugin);
 
-echo "<h2>Configuración Actual de '$plugin'</h2>";
+echo "<h2>Estado Actual de '$plugin'</h2>";
+echo "<pre>" . print_r($config, true) . "</pre>";
 
-$toolbar_keys = ['rows', 'toolbar', 'editor_toolbar', 'customtoolbar', 'json_config'];
-$found = false;
-
-echo "<pre>";
-print_r($config);
-echo "</pre>";
-
-// Estrategia: Si no hay configuración explícita, MOODLE USA DEFAULTS.
-// Para agregar nuestro botón, debemos CREAR una configuración que anule los defaults.
-// Probaremos inyectando en 'rows' (común en Tiny 6) y 'branding' (para probar escritura).
-
-$default_toolbar = 'undo redo | blocks | bold italic | link | tiny_banner_uapa';
+$default_toolbar = 'undo redo | bold italic | link | tiny_banner_uapa';
 
 if (optional_param('fix', 0, PARAM_BOOL)) {
-    // Forzar creación de configuración
-    set_config('rows', $default_toolbar, $plugin);
-    // Algunos Moodle 4 usan json_config para override
-    // set_config('json_config', '{"toolbar": "'.$default_toolbar.'"}', $plugin); 
+    echo "<h3>Aplicando cambios...</h3>";
 
-    echo "<div class='alert alert-success'>✅ ¡Configuración 'rows' creada forzosamente!</div>";
-    echo "<p>Valor inyectado: <code>$default_toolbar</code></p>";
+    // 1. Desactivar branding (Prueba de control)
+    set_config('branding', '0', $plugin);
+    echo "<li>branding => 0 (Si desaparece el logo 'Tiny', tenemos control)</li>";
+
+    // 2. Intento via 'rows'
+    set_config('rows', $default_toolbar, $plugin);
+    echo "<li>rows => $default_toolbar</li>";
+
+    // 3. Intento via 'editor_toolbar'
+    set_config('editor_toolbar', $default_toolbar, $plugin);
+    echo "<li>editor_toolbar => $default_toolbar</li>";
+
+    // 4. Intento via 'json_config' (Formato JSON estricto)
+    $json_val = json_encode(['toolbar' => $default_toolbar]);
+    set_config('json_config', $json_val, $plugin);
+    echo "<li>json_config => $json_val</li>";
+
+    echo "<div class='alert alert-success'>✅ ¡Todas las configuraciones inyectadas!</div>";
     echo "<p><strong>Siguientes pasos:</strong></p>";
-    echo "<ol><li>Purgue todas las cachés.</li><li>Verifique si el editor cambió (debería ver menos botones, pero INCLUYENDO EL NUESTRO).</li></ol>";
-    echo "<p>Si esto funciona pero faltan botones, luego podemos editar la barra en la administración para agregar los que faltan.</p>";
+    echo "<ol><li>Purgue todas las cachés.</li><li>Recargue el editor.</li></ol>";
+    echo "<p><strong>¿Qué buscar?</strong><br>1. ¿Desapareció el logo 'Powered by TinyMCE'?<br>2. ¿Cambió la barra?</p>";
     echo $OUTPUT->single_button(new moodle_url('/admin/purgecaches.php'), 'Ir a Purgar Cachés');
 } else {
-    echo "<div class='alert alert-warning'>⚠️ No se detectó configuración de barra personalizada. Se están usando los valores predeterminados de Moodle.</div>";
-    echo "<p>Para ver el botón, debemos <strong>sobreescribir</strong> los valores predeterminados con una barra personalizada que incluya nuestro botón.</p>";
+    echo "<div class='alert alert-info'>ℹ️ La prueba anterior falló. Vamos a intentar inyectar la configuración en TODOS los lugares posibles y desactivar el branding para confirmar control.</div>";
 
     $url = new moodle_url('/local/bannerdocente/activar_toolbar.php', ['fix' => 1]);
-    echo $OUTPUT->single_button($url, 'FIX: Forzar creación de barra personalizada');
+    echo $OUTPUT->single_button($url, 'FIX: Inyectar configuración agresiva');
 }
 
 echo $OUTPUT->footer();
